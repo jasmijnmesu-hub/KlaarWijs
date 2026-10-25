@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KlaarWijs — Jouw leven. Jouw volgende stap.</title>
+<meta name="description" content="KlaarWijs helpt jongeren praktische dingen begrijpen en regelen: loonstroken, contracten, huren en de keuzes die daarbij horen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-navy: #1A2B4C;
+    --color-navy-deep: #142139;
+    --color-coral: #E76F51;
+    --color-white: #FFFFFF;
+    --color-cream: #F6F0E4;
+    --color-paper: #EDE5D5;
+    --color-text-muted: #E0E5ED;
+    --color-rule: rgba(246, 240, 228, 0.18);
+
+    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --transition-fast: 160ms ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-navy);
+    color: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a, button { font-family: inherit; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-coral);
+    outline-offset: 3px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .dash {
+    display: inline-block;
+    width: 36px;
+    height: 5px;
+    background: var(--color-coral);
+    margin-bottom: 14px;
+    border-radius: 3px;
+  }
+
+  /* Decorative round dot after heading sentences. The literal "." stays in the
+     text for screen readers; visually it is replaced by a guaranteed-circular
+     shape so it never renders as a square glyph fragment of the display font. */
+  .dot {
+    position: relative;
+    display: inline-block;
+    width: 0.22em;
+    color: transparent;
+  }
+  .dot::after {
+    content: "";
+    position: absolute;
+    left: 0.02em;
+    bottom: 0.1em;
+    width: 0.48em;
+    height: 0.48em;
+    border-radius: 50%;
+    background: var(--color-coral);
+  }
+
+  /* Subtle paper grain, consistent across the navy surface and connecting
+     visually with the photographic collage texture. Decorative only. */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-size: 160px 160px;
+  }
+  .site-header, main, .site-footer { position: relative; z-index: 1; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: relative;
+    z-index: 20;
+  }
+  .header-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-white);
+  }
+  .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
+  .logo-word {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .nav-link {
+    background: none;
+    border: none;
+    color: var(--color-cream);
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+  @media (min-width: 560px) {
+    .main-nav { gap: 8px; }
+    .nav-link { font-size: 0.95rem; padding: 10px 14px; }
+  }
+  .nav-link:hover { background: rgba(255,255,255,0.08); }
+
+  /* ---------- Hero ----------
+     One shared composition container (.hero-stage). The collage photo
+     (.hero-media) and all hero text (.hero-text) are both positioned
+     relative to this single container, so they stay visually coupled at
+     every breakpoint instead of drifting apart as independent columns.
+     On mobile the two stack in normal flow; from 900px up, .hero-stage is
+     locked to the photo's native aspect ratio and the text is layered on
+     top at fixed proportions taken directly from the reference composition. */
+  .hero {
+    position: relative;
+    padding-top: 8px;
+  }
+  .hero-stage {
+    position: relative;
+    max-width: 1356px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 24px 28px;
+    box-sizing: border-box;
+  }
+  .hero-heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+    line-height: 0.98;
+    letter-spacing: 0.001em;
+    margin: 0 0 18px;
+    color: var(--color-cream);
+    text-transform: none;
+  }
+  .hero-subtext {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2.4vw, 1.1rem);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 30ch;
+    margin: 0 0 24px;
+  }
+  .btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-coral);
+    color: var(--color-navy-deep);
+    border: none;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    padding: 14px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .btn-start:hover { transform: translateY(-2px); }
+  .btn-start:active { transform: translateY(0); }
+  .btn-start svg { width: 16px; height: 16px; }
+
+  .hero-payoff {
+    position: relative;
+    z-index: 5;
+    font-size: 0.82rem;
+    color: rgba(246,240,228,0.6);
+    margin: 20px 0 0;
+  }
+
+  .hero-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden; /* clip limited to this decorative image layer only */
+  }
+  .hero-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 14%;
+  }
+
+  /* ---------- Buttons / dialogs shared ---------- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(10, 16, 32, 0.72);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+  .overlay[hidden] { display: none; }
+  .overlay-panel {
+    position: relative;
+    background: var(--color-navy);
+    width: 100%;
+    max-width: 720px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 56px 28px 40px;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.4);
+  }
+  @media (min-width: 720px) {
+    .overlay { align-items: center; padding: 24px; }
+    .overlay-panel { border-radius: var(--radius-lg); padding: 48px; }
+  }
+  /* The two short info panels (Zo werkt het / Voor scholen) stay compact
+     dialogs — proportionally smaller than a full screen, unlike the
+     concept-program flow below which has its own dedicated views. */
+  .panel-small .overlay-panel {
+    max-width: 440px;
+    padding: 40px 24px 32px;
+  }
+  @media (min-width: 720px) {
+    .panel-small .overlay-panel { padding: 36px 36px 32px; }
+  }
+  .panel-small .overlay h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); }
+  .panel-small .panel-body p { font-size: 0.92rem; }
+  .panel-steps {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .panel-steps li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .panel-steps .step-num {
+    flex-shrink: 0;
+    color: var(--color-coral);
+    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+  .overlay-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-rule);
+    background: transparent;
+    color: var(--color-cream);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .overlay-close:hover { background: rgba(255,255,255,0.08); }
+
+  .overlay-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-coral);
+    margin: 0 0 10px;
+  }
+  .overlay h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    color: var(--color-white);
+    margin: 0 0 10px;
+    line-height: 1.02;
+  }
+  .overlay-sub {
+    color: var(--color-text-muted);
+    margin: 0 0 28px;
+    font-size: 1rem;
+  }
+  .panel-body p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-size: 0.98rem;
+  }
+  .panel-body h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-white);
+    font-size: 1.05rem;
+    margin: 24px 0 8px;
+  }
+
+  /* ---------- Program grid ---------- */
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .program-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .program-card {
+    text-align: left;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--color-rule);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.02rem;
+    padding: 20px 18px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+    min-height: 64px;
+  }
+  .program-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .route-back {
+    background: none;
+    border: none;
+    color: var(--color-coral);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0 0 20px;
+  }
+  .route-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .step-btn {
+    width: 100%;
+    text-align: left;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--color-rule);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    min-height: 56px;
+  }
+  .step-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .in-development {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(231,111,81,0.15);
+    color: var(--color-coral);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Concept program: dedicated views (not modals) ----------
+     Each situation lives at its own URL (#/programma, #/programma/bijbaan,
+     ...) and replaces the homepage content in <main>, so the browser back
+     button moves naturally through the steps instead of stacking dialogs. */
+  .program-view { padding: 40px 24px 80px; }
+  .program-view-inner { max-width: 760px; margin: 0 auto; }
+
+  .breadcrumb {
+    font-size: 0.82rem;
+    color: rgba(246,240,228,0.55);
+    margin: 0 0 22px;
+  }
+  .breadcrumb a {
+    color: rgba(246,240,228,0.75);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span[aria-hidden] { margin: 0 6px; }
+
+  .program-view h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 2.5rem);
+    color: var(--color-cream);
+    margin: 0 0 10px;
+    line-height: 1.04;
+  }
+  .view-sub {
+    color: var(--color-text-muted);
+    margin: 0 0 28px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .program-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .program-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--color-rule);
+    color: var(--color-white);
+    padding: 14px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .program-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.28);
+  }
+  .program-card:active { transform: scale(0.99); }
+  .program-card:focus-visible {
+    border-color: var(--color-coral);
+  }
+  .card-thumb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-image: url("assets/collage-full.jpg");
+    background-size: 1356px 764px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+  }
+  .thumb-bruto { background-position: -655px -63px; }
+  .thumb-checklist { background-position: -1155px -354px; }
+  .thumb-building { background-position: -1150px -100px; }
+  .thumb-huur { background-position: -1290px -330px; }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-white);
+  }
+  .card-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: rgba(246,240,228,0.6);
+  }
+  .card-cue svg { width: 13px; height: 13px; }
+  .card-status {
+    flex-shrink: 0;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-demo { background: rgba(231,111,81,0.22); color: var(--color-coral); }
+  .status-dev { background: rgba(255,255,255,0.08); color: rgba(246,240,228,0.55); }
+
+  .route-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--color-coral);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    padding: 0 0 20px;
+  }
+  .route-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .step-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--color-rule);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    min-height: 56px;
+  }
+  .step-btn:hover { background: rgba(255,255,255,0.1); }
+  .step-btn:focus-visible { border-color: var(--color-coral); }
+  .step-btn svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(246,240,228,0.5); }
+
+  /* ---------- Loonstrook concept exercise ---------- */
+  .exercise {
+    display: grid;
+    gap: 24px;
+    margin: 8px 0 20px;
+  }
+  @media (min-width: 640px) {
+    .exercise { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
+  }
+  .payslip-demo {
+    background: var(--color-paper);
+    color: var(--color-navy-deep);
+    border-radius: var(--radius-md);
+    padding: 20px;
+  }
+  .payslip-demo-title {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 14px;
+    color: var(--color-navy);
+  }
+  .payslip-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    border-bottom: 1px solid rgba(26,43,76,0.12);
+  }
+  .payslip-row.is-marked {
+    background: rgba(231,111,81,0.18);
+    border-bottom: none;
+    font-weight: 700;
+    outline: 2px solid var(--color-coral);
+    outline-offset: -2px;
+  }
+  .exercise-prompt {
+    margin: 0 0 14px;
+    color: var(--color-white);
+    font-size: 1.02rem;
+  }
+  .exercise-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .exercise-option {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--color-rule);
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 18px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+  }
+  .exercise-option:hover:not(:disabled) { background: rgba(255,255,255,0.12); }
+  .exercise-option:focus-visible { border-color: var(--color-coral); }
+  .exercise-option:disabled { cursor: default; opacity: 0.6; }
+  .exercise-option.is-correct { background: rgba(94,173,110,0.25); border-color: #5EAD6E; opacity: 1; }
+  .exercise-option.is-incorrect { background: rgba(231,111,81,0.2); border-color: var(--color-coral); opacity: 1; }
+  .exercise-feedback {
+    min-height: 1.4em;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0 0 14px;
+  }
+  .exercise-disclaimer {
+    font-size: 0.8rem;
+    color: rgba(246,240,228,0.5);
+    border-top: 1px solid var(--color-rule);
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    color: rgba(246,240,228,0.5);
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Responsive: desktop hero composition ----------
+     From here the photo locks to its native 1360:768 ratio and fills the
+     stage edge to edge (no crop at any width up to max-width, since the
+     container ratio always matches the image ratio). Text is layered on
+     top at the same proportions measured from the reference composition,
+     so heading / subtext / button / payoff stay visually coupled to the
+     photo instead of behaving as a separate column. */
+  @media (min-width: 900px) {
+    .hero-stage {
+      aspect-ratio: 1356 / 764;
+      display: block;
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+    }
+    .hero-media img { object-position: center top; }
+    .hero-text {
+      position: absolute;
+      inset: 0;
+      max-width: none;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+    .hero-heading {
+      position: absolute;
+      left: 3%;
+      top: 7%;
+      width: 44%;
+      font-size: clamp(2.6rem, 4.6vw, 4.2rem);
+      margin: 0;
+    }
+    .hero-subtext {
+      position: absolute;
+      left: 3%;
+      top: 55%;
+      width: 34%;
+      margin: 0;
+    }
+    .btn-start {
+      position: absolute;
+      left: 3%;
+      top: 66%;
+    }
+    .hero-payoff {
+      position: absolute;
+      left: 3%;
+      top: 91%;
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 1356px) {
+    .hero-stage { width: 1356px; }
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="logo" aria-label="KlaarWijs, naar boven">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+        <path fill="#FFFFFF" d="M32 96H316Q322 96 322 102V154Q322 160 316 160H72V440H352V232Q352 226 358 226H410Q416 226 416 232V480Q416 504 392 504H32Q8 504 8 480V120Q8 96 32 96Z"/>
+        <rect x="348" y="32" width="156" height="156" rx="9" fill="#E76F51"/>
+      </svg>
+      <span class="logo-word">KlaarWijs</span>
+    </a>
+    <nav class="main-nav" aria-label="Hoofdnavigatie">
+      <button type="button" class="nav-link" data-open-panel="panelHow">Zo werkt het</button>
+      <button type="button" class="nav-link" data-open-panel="panelSchools">Voor scholen</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="hero-stage">
+      <div class="hero-text">
+        <h1 class="hero-heading">
+          Jouw leven<span class="dot">.</span><br>
+          Jouw volgende<br>
+          stap<span class="dot">.</span>
+        </h1>
+        <p class="hero-subtext">Leer begrijpen hoe het werkt<br>en wat jij kunt doen.</p>
+        <button type="button" class="btn-start" id="startBtn">
+          START
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="hero-payoff">Leren begrijpen, leren regelen.</p>
+      </div>
+      <div class="hero-media">
+        <img src="assets/collage-full.jpg" width="1356" height="764" alt="Foto van een jonge vrouw omringd door papieren documenten: een loonstrook met de vraag &quot;Bruto?&quot;, een arbeidscontract met de vraag &quot;Wat teken ik?&quot;, een briefje &quot;Waar begin ik?&quot;, een huurcontract met sleutels, een routebordje onderweg met studie, werk, eigen plek of later, en een kaartfragment met vervolgstappen.">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>KlaarWijs is in ontwikkeling. Deze website toont een conceptversie.</p>
+</footer>
+
+<!-- Concept program: each situation is a dedicated view at its own URL
+     (#/programma, #/programma/bijbaan, ...), not a stack of modals. -->
+<section class="program-view" id="view-program" hidden aria-label="Conceptprogramma">
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> Conceptprogramma</p>
+    <p class="overlay-eyebrow">Conceptprogramma</p>
+    <h1>Wat speelt er bij jou?</h1>
+    <p class="view-sub">Kies een situatie die je herkent.</p>
+    <div class="program-grid">
+      <button type="button" class="program-card" data-route="bijbaan">
+        <span class="card-thumb thumb-bruto" aria-hidden="true"></span>
+        <span class="card-body">
+          <span class="card-title">Mijn eerste bijbaan</span>
+          <span class="card-cue">Bekijk de route
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </span>
+        <span class="card-status status-demo">Demo beschikbaar</span>
+      </button>
+      <button type="button" class="program-card" data-route="achttien">
+        <span class="card-thumb thumb-checklist" aria-hidden="true"></span>
+        <span class="card-body">
+          <span class="card-title">Ik word 18</span>
+          <span class="card-cue">Bekijk de route
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </span>
+        <span class="card-status status-dev">In ontwikkeling</span>
+      </button>
+      <button type="button" class="program-card" data-route="studeren">
+        <span class="card-thumb thumb-building" aria-hidden="true"></span>
+        <span class="card-body">
+          <span class="card-title">Ik ga studeren</span>
+          <span class="card-cue">Bekijk de route
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </span>
+        <span class="card-status status-dev">In ontwikkeling</span>
+      </button>
+      <button type="button" class="program-card" data-route="opmezelf">
+        <span class="card-thumb thumb-huur" aria-hidden="true"></span>
+        <span class="card-body">
+          <span class="card-title">Ik ga op mezelf</span>
+          <span class="card-cue">Bekijk de route
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </span>
+        <span class="card-status status-dev">In ontwikkeling</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="program-view" id="view-route-bijbaan" hidden aria-label="Mijn eerste bijbaan">
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> Mijn eerste bijbaan</p>
+    <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
+    <h1>Mijn eerste bijbaan</h1>
+    <p class="view-sub">Drie dingen die vaak onduidelijk zijn als je voor het eerst gaat werken.</p>
+    <ul class="route-steps">
+      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/loonstrook"><span>Je loonstrook begrijpen</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/contract"><span>Je contract bekijken</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/vragen"><span>Vragen die je kunt stellen</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+    </ul>
+  </div>
+</section>
+
+<section class="program-view" id="view-step-loonstrook" hidden aria-label="Je loonstrook begrijpen">
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je loonstrook begrijpen</p>
+    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
+    <h1>Je loonstrook begrijpen</h1>
+    <p class="view-sub">Een loonstrook laat zien wat je bruto verdient en wat je netto overhoudt. Oefen het verschil tussen de twee labels.</p>
+
+    <div class="exercise">
+      <div class="payslip-demo" aria-hidden="true">
+        <p class="payslip-demo-title">Voorbeeldloonstrook</p>
+        <div class="payslip-row"><span>Bruto loon</span><span>€ •••,••</span></div>
+        <div class="payslip-row"><span>Loonheffing</span><span>− € •••,••</span></div>
+        <div class="payslip-row is-marked"><span>Netto loon</span><span>€ •••,••</span></div>
+      </div>
+
+      <div class="exercise-question">
+        <p class="exercise-prompt"><strong>Welk label is hierboven gemarkeerd?</strong></p>
+        <div class="exercise-options">
+          <button type="button" class="exercise-option" data-answer="bruto">Bruto loon</button>
+          <button type="button" class="exercise-option" data-answer="netto">Netto loon</button>
+        </div>
+        <p class="exercise-feedback" id="exerciseFeedback" role="status" aria-live="polite"></p>
+        <button type="button" class="route-back exercise-retry" id="exerciseRetry" hidden>&#8635; Opnieuw proberen</button>
+      </div>
+    </div>
+
+    <p class="exercise-disclaimer">Conceptoefening met fictieve gegevens. Inhoud en didactiek zijn nog niet beoordeeld.</p>
+  </div>
+</section>
+
+<section class="program-view" id="view-step-contract" hidden aria-label="Je contract bekijken">
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je contract bekijken</p>
+    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
+    <h1>Je contract bekijken</h1>
+    <p class="view-sub">Een arbeidscontract bevat afspraken over loon, uren, proeftijd en opzegtermijn.</p>
+    <p class="exercise-disclaimer">Deze route is in ontwikkeling. Hier komt later een oefening om een voorbeeldcontract te leren lezen.</p>
+  </div>
+</section>
+
+<section class="program-view" id="view-step-vragen" hidden aria-label="Vragen die je kunt stellen">
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Vragen die je kunt stellen</p>
+    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
+    <h1>Vragen die je kunt stellen</h1>
+    <p class="view-sub">Het is normaal om vragen te stellen aan een werkgever, bijvoorbeeld over uren, loon of vakantiedagen.</p>
+    <p class="exercise-disclaimer">Deze route is in ontwikkeling. Hier komen later voorbeeldvragen die je zo kunt gebruiken.</p>
+  </div>
+</section>
+
+<section class="program-view" id="view-stub" hidden>
+  <div class="program-view-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <span id="stubBreadcrumbCurrent"></span></p>
+    <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
+    <h1 id="stubTitle"></h1>
+    <p class="view-sub">Deze route is in ontwikkeling.</p>
+    <span class="in-development">Binnenkort beschikbaar</span>
+  </div>
+</section>
+
+<!-- Zo werkt het panel (stays a small, short modal) -->
+<div class="overlay panel-small" id="panelHow" role="dialog" aria-modal="true" aria-labelledby="howTitle" hidden>
+  <div class="overlay-panel">
+    <button type="button" class="overlay-close" data-close-overlay="panelHow" aria-label="Sluiten">&times;</button>
+    <p class="overlay-eyebrow">Zo werkt het</p>
+    <h2 id="howTitle">In drie stappen</h2>
+    <div class="panel-body">
+      <ol class="panel-steps">
+        <li><span class="step-num">1</span><span>Kies jouw situatie.</span></li>
+        <li><span class="step-num">2</span><span>Begrijp hoe het werkt.</span></li>
+        <li><span class="step-num">3</span><span>Oefen je volgende stap.</span></li>
+      </ol>
+      <p>Geen wetteksten, geen jargon — korte uitleg op het moment dat die voor jou speelt.</p>
+      <p>KlaarWijs is nu een concept. We bouwen de inhoud stap voor stap uit, te beginnen met "Mijn eerste bijbaan".</p>
+    </div>
+  </div>
+</div>
+
+<!-- Voor scholen panel (stays a small, short modal) -->
+<div class="overlay panel-small" id="panelSchools" role="dialog" aria-modal="true" aria-labelledby="schoolsTitle" hidden>
+  <div class="overlay-panel">
+    <button type="button" class="overlay-close" data-close-overlay="panelSchools" aria-label="Sluiten">&times;</button>
+    <p class="overlay-eyebrow">Voor scholen</p>
+    <h2 id="schoolsTitle">In ontwikkeling</h2>
+    <div class="panel-body">
+      <p>KlaarWijs is een concept in ontwikkeling. We verkennen hoe het bruikbaar kan zijn in het onderwijs.</p>
+      <p>Er is nog geen kant-en-klaar lesmateriaal, geen getoetste resultaten en geen vastgestelde aansluiting op kerndoelen.</p>
+      <p>Denk je mee na over hoe dit er voor jouw school uit zou kunnen zien? We bouwen dit het liefst samen met scholen op.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Accessible modal panels (Zo werkt het / Voor scholen) ---------- */
+
+  var lastFocused = null;
+
+  function openOverlay(overlay) {
+    lastFocused = document.activeElement;
+    overlay.hidden = false;
+    var closeBtn = overlay.querySelector(".overlay-close");
+    if (closeBtn) closeBtn.focus();
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function closeOverlay(overlay) {
+    overlay.hidden = true;
+    document.removeEventListener("keydown", onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key !== "Escape") return;
+    var openOne = document.querySelector(".overlay:not([hidden])");
+    if (openOne) closeOverlay(openOne);
+  }
+
+  document.querySelectorAll("[data-open-panel]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.getAttribute("data-open-panel"));
+      if (target) openOverlay(target);
+    });
+  });
+
+  document.querySelectorAll("[data-close-overlay]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.getAttribute("data-close-overlay"));
+      if (target) closeOverlay(target);
+    });
+  });
+
+  document.querySelectorAll(".overlay").forEach(function (overlay) {
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeOverlay(overlay);
+    });
+  });
+
+  /* ---------- Hash-based router for the dedicated program pages ---------- */
+
+  var routes = {
+    "": "top",
+    "programma": "view-program",
+    "programma/bijbaan": "view-route-bijbaan",
+    "programma/bijbaan/loonstrook": "view-step-loonstrook",
+    "programma/bijbaan/contract": "view-step-contract",
+    "programma/bijbaan/vragen": "view-step-vragen",
+    "programma/achttien": "view-stub",
+    "programma/studeren": "view-stub",
+    "programma/opmezelf": "view-stub"
+  };
+
+  var allViewIds = [
+    "top",
+    "view-program",
+    "view-route-bijbaan",
+    "view-step-loonstrook",
+    "view-step-contract",
+    "view-step-vragen",
+    "view-stub"
+  ];
+
+  var pageTitles = {
+    "top": "KlaarWijs",
+    "view-program": "Conceptprogramma · KlaarWijs",
+    "view-route-bijbaan": "Mijn eerste bijbaan · KlaarWijs",
+    "view-step-loonstrook": "Je loonstrook begrijpen · KlaarWijs",
+    "view-step-contract": "Je contract bekijken · KlaarWijs",
+    "view-step-vragen": "Vragen die je kunt stellen · KlaarWijs"
+  };
+
+  var stubTitles = {
+    achttien: "Ik word 18",
+    studeren: "Ik ga studeren",
+    opmezelf: "Ik ga op mezelf"
+  };
+
+  function currentPath() {
+    return location.hash.replace(/^#\/?/, "");
+  }
+
+  function render(moveFocus) {
+    var path = currentPath();
+    var viewId = routes.hasOwnProperty(path) ? routes[path] : "top";
+
+    allViewIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.hidden = id !== viewId;
+    });
+
+    if (viewId === "view-stub") {
+      var key = path.split("/").pop();
+      var title = stubTitles[key] || "";
+      document.getElementById("stubTitle").textContent = title;
+      document.getElementById("stubBreadcrumbCurrent").textContent = title;
+      document.title = title + " · KlaarWijs";
+    } else {
+      document.title = pageTitles[viewId] || "KlaarWijs";
+    }
+
+    if (viewId === "view-step-loonstrook") {
+      resetExercise();
+    }
+
+    window.scrollTo(0, 0);
+
+    if (moveFocus) {
+      var active = document.getElementById(viewId);
+      var heading = active ? active.querySelector("h1") : null;
+      if (heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus();
+      }
+    }
+  }
+
+  window.addEventListener("hashchange", function () {
+    render(true);
+  });
+
+  document.getElementById("startBtn").addEventListener("click", function () {
+    location.hash = "#/programma";
+  });
+
+  document.querySelectorAll("[data-route]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      location.hash = "#/programma/" + btn.getAttribute("data-route");
+    });
+  });
+
+  document.querySelectorAll("[data-nav]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      location.hash = btn.getAttribute("data-nav");
+    });
+  });
+
+  /* ---------- Loonstrook concept exercise ---------- */
+
+  function resetExercise() {
+    document.querySelectorAll("#view-step-loonstrook .exercise-option").forEach(function (opt) {
+      opt.disabled = false;
+      opt.classList.remove("is-correct", "is-incorrect");
+    });
+    var feedback = document.getElementById("exerciseFeedback");
+    if (feedback) feedback.textContent = "";
+    var retry = document.getElementById("exerciseRetry");
+    if (retry) retry.hidden = true;
+  }
+
+  document.querySelectorAll("#view-step-loonstrook .exercise-option").forEach(function (opt) {
+    opt.addEventListener("click", function () {
+      var options = document.querySelectorAll("#view-step-loonstrook .exercise-option");
+      options.forEach(function (o) {
+        o.disabled = true;
+      });
+
+      var correct = opt.getAttribute("data-answer") === "netto";
+      opt.classList.add(correct ? "is-correct" : "is-incorrect");
+      if (!correct) {
+        var correctBtn = document.querySelector('#view-step-loonstrook .exercise-option[data-answer="netto"]');
+        if (correctBtn) correctBtn.classList.add("is-correct");
+      }
+
+      var feedback = document.getElementById("exerciseFeedback");
+      feedback.textContent = correct
+        ? "Goed! \u201cNetto loon\u201d is het bedrag dat je daadwerkelijk ontvangt."
+        : "Niet helemaal. Het gemarkeerde label is \u201cNetto loon\u201d.";
+
+      document.getElementById("exerciseRetry").hidden = false;
+    });
+  });
+
+  document.getElementById("exerciseRetry").addEventListener("click", resetExercise);
+
+  render(false);
+})();
+</script>
+
+</body>
+</html>
