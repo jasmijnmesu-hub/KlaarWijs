@@ -483,52 +483,11 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   4. SITUATIES
-   ========================================================= */
-.situations { overflow: hidden; }
-.situation-grid { display: grid; gap: 48px; }
-.situation-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; min-width: 0; text-decoration: none; color: var(--on-navy); }
-.situation-figure {
-  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
-  background: var(--navy-soft);
-  clip-path: polygon(0 2%, 7% 0, 18% 2.4%, 31% 0.6%, 44% 2.8%, 58% 0.4%, 71% 2.2%, 86% 0, 100% 1.8%, 99.2% 30%, 100% 62%, 99% 100%, 84% 98%, 68% 100%, 52% 97.8%, 37% 99.6%, 21% 97.6%, 9% 99.4%, 0 98%, 0.8% 64%, 0 32%);
-}
-.situation-figure > * {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 900ms var(--ease-out);
-}
-.situation-card:hover .situation-figure > *, .situation-card:focus-visible .situation-figure > * { transform: scale(1.06); }
-.situation-tag {
-  position: absolute; z-index: 1; left: -6px; top: 22px;
-  padding: 8px 14px 8px 18px;
-  background: var(--cream); color: var(--navy);
-  font-size: 0.76rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-  box-shadow: 5px 5px 0 var(--coral);
-  transform: rotate(-3deg);
-  transition: transform 500ms var(--ease-out);
-}
-.situation-card:hover .situation-tag { transform: rotate(0deg) translateX(6px); }
-.situation-body { display: grid; gap: 12px; }
-.situation-title { font-family: var(--font-display); font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1; color: var(--white); }
-.situation-lead { color: var(--on-navy-muted); max-width: 40ch; }
-.situation-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; padding-top: 14px; border-top: 1px solid var(--rule-dark); font-size: var(--fs-small); color: var(--on-navy-muted); }
-.situation-go { display: inline-flex; align-items: center; gap: 8px; color: var(--cream); font-weight: 800; }
-.situation-go svg { width: 16px; height: 16px; transition: transform var(--t-med) var(--ease-out); }
-.situation-card:hover .situation-go { color: var(--coral); }
-.situation-card:hover .situation-go svg { transform: translateX(5px); }
-.situation-card:focus-visible { outline-offset: 8px; }
-@media (min-width: 760px) {
-  .situation-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 80px 40px; }
-  .situation-card:nth-child(1) { grid-column: 1 / span 7; }
-  .situation-card:nth-child(2) { grid-column: 8 / span 5; margin-top: 120px; }
-  .situation-card:nth-child(3) { grid-column: 1 / span 5; }
-  .situation-card:nth-child(4) { grid-column: 6 / span 7; margin-top: -60px; }
-  .situation-card:nth-child(2) .situation-figure, .situation-card:nth-child(3) .situation-figure { aspect-ratio: 1 / 1; }
-}
-
-/* =========================================================
    5. ZO WERKT KLAARWIJS
    ========================================================= */
+/* Volgt direct op de intro (zelfde ondergrond): scheiding met een lijn, net als de thema's. */
+.how { padding-block: 0 clamp(64px, 8vw, 112px); }
+.how > .wrap > .section-head { border-top: 1px solid var(--rule-light); padding-top: clamp(64px, 8vw, 112px); }
 .how .h2 { max-width: 14ch; }
 .how-steps { position: relative; display: grid; gap: 48px; }
 /* doorlopende lijn: ::before is het spoor, ::after de koraal voortgang */
@@ -577,6 +536,70 @@ main, .site-footer { position: relative; z-index: 1; }
 .how-note p { color: var(--ink-muted); font-size: 0.98rem; }
 .how-note svg { width: 32px; height: 32px; color: var(--coral-ink); }
 @media (min-width: 760px) { .how-note { grid-template-columns: auto minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+
+/* =========================================================
+   ONZE INFORMATIEBRONNEN
+   Redactioneel: de bronnen staan in een lopende zin, de namen zijn
+   links met een getekende markeerstreep. Geen logo's, geen badges.
+   ========================================================= */
+.sources { background: #FBF9F4; color: var(--ink); border-top: 1px solid var(--rule-light); }
+.sources-title { max-width: 17ch; font-size: clamp(2.2rem, 4.6vw, 4.2rem); color: var(--ink); }
+.sources-body { margin-top: clamp(36px, 5vw, 64px); }
+.sources-cols { display: grid; gap: 16px 48px; max-width: 58rem; color: var(--ink-muted); font-size: 1.05rem; line-height: 1.7; }
+.sources-cols p:first-child { color: var(--ink); }
+/* Wegwijzer: onderwerp → bron */
+.signposts { display: grid; gap: clamp(40px, 5vw, 64px); margin-top: clamp(48px, 6vw, 80px); }
+.signpost-label {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--ink);
+  font-size: 0.95rem; font-weight: 700; color: var(--ink);
+}
+.signpost-label span { font-weight: 500; color: var(--ink-muted); }
+.signpost {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px;
+  padding: 18px 0; border-bottom: 1px solid var(--rule-light);
+  color: var(--ink); text-decoration: none;
+}
+.signpost-topic { font-size: 1rem; color: var(--ink-muted); }
+.signpost-arrow { display: none; }
+.signpost-name { display: inline-flex; align-items: center; gap: 8px; font-size: clamp(1.45rem, 2.4vw, 2.1rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; }
+.marker {
+  padding: 0 0.05em;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'><path d='M3 12 C 40 6, 85 16, 125 9 S 182 8, 197 11' fill='none' stroke='%23E76F51' stroke-opacity='0.5' stroke-width='10' stroke-linecap='round'/></svg>") 0 96% / 100% 0.36em no-repeat;
+  transition: background-size 300ms var(--ease-out);
+}
+.signpost-ext { width: 0.55em; height: 0.55em; color: var(--coral-ink); transition: transform var(--t-med) var(--ease-out); }
+.signpost-domain { font-size: 0.82rem; color: #6A7894; }
+.signpost:hover .marker, .signpost:focus-visible .marker { background-size: 100% 0.7em; }
+.signpost:hover .signpost-ext { transform: translate(2px, -2px); }
+.signpost:focus-visible { outline-offset: 6px; }
+@media (min-width: 760px) {
+  .signpost {
+    grid-template-columns: minmax(0, 0.95fr) 72px minmax(0, 1.25fr) 9.5rem;
+    align-items: center; gap: 20px; padding: 22px 0;
+    transition: padding var(--t-med) var(--ease-out), background var(--t-fast) ease;
+  }
+  .signpost:hover { padding-left: 12px; background: rgba(231,111,81,0.05); }
+  .signpost-topic { font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 500; }
+  .signpost-arrow { display: block; width: 64px; height: 20px; fill: none; stroke: var(--coral); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--t-med) var(--ease-out); }
+  .signpost:hover .signpost-arrow { transform: translateX(8px); }
+  .signpost-domain { text-align: right; }
+}
+
+.sources-note { display: flex; gap: 10px; align-items: baseline; margin-top: clamp(36px, 4vw, 52px); max-width: 40rem; color: var(--ink-muted); font-size: var(--fs-small); }
+.sources-note::before { content: ""; flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); transform: translateY(-1px); }
+@media (min-width: 760px) { .sources-cols { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1040px) { .sources-body { margin-left: 16.66%; } }
+
+/* Bronnen van één les (onderwerppagina) */
+.lesson-sources { margin-top: 40px; max-width: 44rem; }
+.lesson-sources h2 { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
+.lesson-sources li { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--rule-light); }
+.lesson-sources .text-link { justify-self: start; color: var(--ink); text-decoration: underline; text-decoration-color: var(--coral); text-underline-offset: 4px; background: none; }
+.lesson-sources .text-link svg { width: 14px; height: 14px; }
+.lesson-source-meta { font-size: var(--fs-small); color: var(--ink-muted); }
+.lesson-sources li p { font-size: 0.95rem; color: var(--ink-muted); }
+.lesson-sources-note { margin-top: 12px; font-size: var(--fs-small); color: var(--ink-muted); }
 
 /* =========================================================
    6. VOOR SCHOLEN
@@ -720,7 +743,6 @@ main, .site-footer { position: relative; z-index: 1; }
 .back-link svg { width: 18px; height: 18px; transition: transform var(--t-med) var(--ease-out); }
 .back-link:hover { color: var(--coral); }
 .back-link:hover svg { transform: translateX(-4px); }
-.compass-hint { font-size: var(--fs-small); color: var(--on-navy-muted); }
 .compass-intro { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 28px; margin-bottom: 18px; }
 .compass-intro h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); color: var(--cream); }
 .compass-intro p { max-width: 22rem; color: var(--on-navy-muted); }
@@ -744,7 +766,7 @@ main, .site-footer { position: relative; z-index: 1; }
 .compass-arrow:hover { border-color: var(--coral); color: var(--coral); background: rgba(231,111,81,0.1); }
 .compass-arrow:active { transform: scale(0.94); }
 .compass-nav { display: flex; justify-content: center; gap: 8px; margin: 4px auto 28px; }
-.compass-tab { position: relative; min-width: 76px; min-height: 52px; padding: 10px 8px 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: rgba(246,240,228,0.6); font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: color var(--t-fast) ease, border-color var(--t-fast) ease; }
+.compass-tab { position: relative; min-width: 96px; min-height: 52px; padding: 10px 10px 12px; white-space: nowrap; border: 0; border-bottom: 2px solid transparent; background: transparent; color: rgba(246,240,228,0.6); font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: color var(--t-fast) ease, border-color var(--t-fast) ease; }
 .compass-tab::before { content: attr(data-number); display: block; margin-bottom: 4px; color: rgba(246,240,228,0.4); font-size: 0.68rem; }
 .compass-tab:hover, .compass-tab.is-active { color: var(--cream); }
 .compass-tab.is-active { border-color: var(--coral); }
@@ -773,7 +795,7 @@ main, .site-footer { position: relative; z-index: 1; }
   .compass-paper { font-size: 0.64rem; padding: 7px 9px; }
   .compass-nav { justify-content: space-between; gap: 2px; }
   .compass-tab { min-width: 0; flex: 1; }
-  .compass-hint { display: none; }
+
 }
 
 /* ---------- Beweging beperken ---------- */

@@ -25,6 +25,7 @@
   <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.8 12.2l2.2 2.2 4.2-4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M8 16L17 7M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-open" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -40,9 +41,8 @@
     <nav class="nav" aria-label="Hoofdnavigatie">
       <ul class="nav-list" id="navList">
         <li><a class="nav-link" href="#/ontdek" data-section="ontdek">Ontdek</a></li>
-        <li><a class="nav-link" href="#/themas" data-section="themas">Thema's</a></li>
-        <li><a class="nav-link" href="#/situaties" data-section="situaties">Situaties</a></li>
         <li><a class="nav-link" href="#/zo-werkt-het" data-section="zo-werkt-het">Zo werkt het</a></li>
+        <li><a class="nav-link" href="#/themas" data-section="themas">Thema's</a></li>
         <li><a class="nav-link" href="#/voor-scholen" data-section="voor-scholen">Voor scholen</a></li>
       </ul>
       <a class="btn btn-primary nav-start" href="#/levenskompas">START</a>
@@ -105,52 +105,8 @@
       </div>
     </section>
 
-    <!-- 3. Thema's + zoeken -->
-    <section class="section on-light themes" id="themas" aria-labelledby="themes-title">
-      <div class="wrap">
-        <div class="themes-inner">
-          <div class="section-head reveal">
-            <div>
-              <p class="kicker">Wat wil jij ontdekken?</p>
-              <h2 class="display h2" id="themes-title" tabindex="-1">Van geldzaken tot je eerste baan. Ontdek wat jij wilt weten.</h2>
-            </div>
-            <p class="lead">Of het nu vandaag speelt of pas over een paar jaar: bij KlaarWijs kun je ontdekken hoe het werkt. Kies een onderwerp dat jou nieuwsgierig maakt.</p>
-          </div>
-
-          <div class="search reveal" role="search">
-            <label class="search-label" for="searchInput">Wat wil jij weten of regelen?</label>
-            <div class="search-field">
-              <svg aria-hidden="true"><use href="#i-search"/></svg>
-              <input class="search-input" id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Bijvoorbeeld loonstrook, DigiD of huurcontract" aria-describedby="searchStatus" aria-controls="searchResults">
-              <button type="button" class="search-clear" id="searchClear" aria-label="Zoekopdracht wissen" hidden>&times;</button>
-            </div>
-            <div class="search-suggest" id="searchSuggest">
-              <span>Veel gezocht:</span>
-            </div>
-            <p class="search-status" id="searchStatus" role="status" aria-live="polite"></p>
-            <div class="search-results" id="searchResults"></div>
-          </div>
-
-          <div class="theme-grid" id="themeGrid"></div>        </div>
-      </div>
-    </section>
-
-    <!-- 4. Situaties -->
-    <section class="section on-navy situations" id="situaties" aria-labelledby="situations-title">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <p class="kicker">Herkenbare situaties</p>
-            <h2 class="display h2" id="situations-title" tabindex="-1">Wat speelt er bij jou?</h2>
-          </div>
-          <p class="lead">Soms weet je precies wat je wilt leren. Soms gebeurt er iets in je leven en wil je gewoon weten waar je moet beginnen.</p>
-        </div>
-        <div class="situation-grid" id="situationGrid"></div>
-      </div>
-    </section>
-
-    <!-- 5. Zo werkt KlaarWijs -->
-    <section class="section on-light torn-top how" id="zo-werkt-het" aria-labelledby="how-title">
+    <!-- 3. Zo werkt KlaarWijs -->
+    <section class="section on-light how" id="zo-werkt-het" aria-labelledby="how-title">
       <div class="wrap">
         <div class="section-head reveal">
           <div>
@@ -192,6 +148,54 @@
       </div>
     </section>
 
+    <!-- 4. Thema's + zoeken -->
+    <section class="section on-light themes" id="themas" aria-labelledby="themes-title">
+      <div class="wrap">
+        <div class="themes-inner">
+          <div class="section-head reveal">
+            <div>
+              <p class="kicker">Wat wil jij ontdekken?</p>
+              <h2 class="display h2" id="themes-title" tabindex="-1">Van geldzaken tot je eerste baan. Ontdek wat jij wilt weten.</h2>
+            </div>
+            <p class="lead">Of het nu vandaag speelt of pas over een paar jaar: bij KlaarWijs kun je ontdekken hoe het werkt. Kies een onderwerp dat jou nieuwsgierig maakt.</p>
+          </div>
+
+          <div class="search reveal" role="search">
+            <label class="search-label" for="searchInput">Wat wil jij weten of regelen?</label>
+            <div class="search-field">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input class="search-input" id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Bijvoorbeeld loonstrook, DigiD of huurcontract" aria-describedby="searchStatus" aria-controls="searchResults">
+              <button type="button" class="search-clear" id="searchClear" aria-label="Zoekopdracht wissen" hidden>&times;</button>
+            </div>
+            <div class="search-suggest" id="searchSuggest">
+              <span>Veel gezocht:</span>
+            </div>
+            <p class="search-status" id="searchStatus" role="status" aria-live="polite"></p>
+            <div class="search-results" id="searchResults"></div>
+          </div>
+
+          <div class="theme-grid" id="themeGrid"></div>        </div>
+      </div>
+    </section>
+
+    <!-- 5. Onze informatiebronnen: wegwijzer, bewust zonder logo's -->
+    <section class="section sources" id="bronnen" aria-labelledby="sources-title">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="kicker">Onze informatiebronnen</p>
+          <h2 class="display sources-title" id="sources-title" tabindex="-1">Weten waar je informatie vandaan komt.</h2>
+        </div>
+        <div class="sources-body">
+          <div class="sources-cols reveal">
+            <p>Voor de ontwikkeling van KlaarWijs gebruiken we informatie van officiële Nederlandse instanties en andere deskundige organisaties.</p>
+            <p>Bij onze lessen willen we duidelijk laten zien op welke bronnen de uitleg is gebaseerd. Zo kun je zelf controleren waar de informatie vandaan komt en verder lezen bij de oorspronkelijke bron.</p>
+          </div>
+          <div class="signposts reveal" id="sourcesList"></div>
+          <p class="sources-note">Dit zijn informatiebronnen, geen samenwerkingspartners. KlaarWijs is een onafhankelijk initiatief in ontwikkeling.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- 6. Voor scholen -->
     <section class="section on-deep schools" id="voor-scholen" aria-labelledby="schools-title">
       <div class="wrap schools-grid">
@@ -221,7 +225,6 @@
     <div class="wrap">
       <div class="compass-top">
         <a class="back-link" href="#/"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg> Terug naar home</a>
-        <p class="compass-hint">Tip: gebruik de pijltjestoetsen om door de fases te bladeren.</p>
       </div>
       <div class="compass-intro">
         <div>
@@ -358,7 +361,6 @@
         <ul>
           <li><a href="#/levenskompas">Het Levenskompas</a></li>
           <li><a href="#/themas">Thema's</a></li>
-          <li><a href="#/situaties">Situaties</a></li>
         </ul>
       </div>
       <div>
@@ -366,6 +368,7 @@
         <ul>
           <li><a href="#/ontdek">Dit is KlaarWijs</a></li>
           <li><a href="#/zo-werkt-het">Zo werkt het</a></li>
+          <li><a href="#/bronnen">Onze bronnen</a></li>
           <li><a href="#/onderwijs">Voor scholen</a></li>
         </ul>
       </div>

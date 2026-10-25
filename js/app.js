@@ -8,6 +8,7 @@
   var themes = C.themes;
   var situations = C.situations;
   var phases = C.phases;
+  var sources = C.sources;
 
   var themeById = indexBy(themes, "id");
   var situationById = indexBy(situations, "id");
@@ -97,7 +98,7 @@
     return '<nav class="breadcrumb" aria-label="Kruimelpad">' + html + "</nav>";
   }
 
-  /* ---------- Homepage: thema's en situaties vanuit de data ---------- */
+  /* ---------- Homepage: thema's vanuit de data ---------- */
 
   // "Een bankrekening" → "bankrekening"; eigennamen als DigiD en BSN blijven staan.
   function inSentence(title) {
@@ -118,20 +119,63 @@
         "</a>";
     }).join("");
 
-    document.getElementById("situationGrid").innerHTML = situations.map(function (s) {
-      return '<a class="situation-card reveal" href="#/situaties/' + s.id + '">' +
-        '<span class="situation-tag">' + esc(s.when) + "</span>" +
-        '<span class="situation-body">' +
-          '<h3 class="situation-title">' + esc(s.title) + "</h3>" +
-          '<span class="situation-lead">' + esc(s.lead) + "</span>" +
-          '<span class="situation-foot"><span>' + topicCountLabel(s.topics) + '</span><span class="situation-go">Bekijk de route ' + icon("arrow") + "</span></span>" +
-        "</span>" +
-        "</a>";
-    }).join("");
+    renderSources();
 
     document.getElementById("eduThemes").innerHTML = themes.map(function (t) {
       return chip("#/themas/" + t.id, t.title);
     }).join("");
+  }
+
+  /* ---------- Informatiebronnen ---------- */
+
+  var sourceById = indexBy(sources, "id");
+  var NEW_TAB = '<span class="visually-hidden"> (opent in een nieuw tabblad)</span>';
+
+  function externalLink(href, label, cls) {
+    return '<a class="' + cls + '" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' +
+      esc(label) + NEW_TAB + '<svg aria-hidden="true"><use href="#i-external"/></svg></a>';
+  }
+
+  // Wegwijzer: onderwerp → bron. Elke regel is één gewone tekstlink, geen beeldmerk.
+  function renderSources() {
+    var groups = [
+      { kind: "overheid", title: "Overheid en uitvoeringsorganisaties" },
+      { kind: "onafhankelijk", title: "Onafhankelijke deskundige organisatie", note: "Geen overheidsinstantie." }
+    ];
+    document.getElementById("sourcesList").innerHTML = groups.map(function (group) {
+      return '<div class="signpost-group">' +
+        '<h3 class="signpost-label">' + esc(group.title) + (group.note ? " <span>" + esc(group.note) + "</span>" : "") + "</h3>" +
+        "<ul>" + sources.filter(function (s) { return s.kind === group.kind; }).map(function (s) {
+          return '<li><a class="signpost" href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' +
+            '<span class="signpost-topic">' + esc(s.topic) + "</span>" +
+            '<svg class="signpost-arrow" viewBox="0 0 64 20" aria-hidden="true"><path d="M2 11 C 18 7, 34 13, 58 10 M49 3 L 60 10 L 50 17"/></svg>' +
+            '<span class="signpost-name"><span class="visually-hidden">: </span><span class="marker">' + esc(s.name) + "</span>" +
+              '<svg class="signpost-ext" aria-hidden="true"><use href="#i-external"/></svg></span>' +
+            '<span class="visually-hidden">, </span><span class="signpost-domain">' + esc(s.url.replace(/^https?:\/\/(www\.)?/, "").split("/")[0]) + "</span>" +
+            NEW_TAB + "</a></li>";
+        }).join("") + "</ul></div>";
+    }).join("");
+  }
+
+  var REVIEW_LABELS = {
+    "niet-gecontroleerd": "Nog niet gecontroleerd",
+    "gecontroleerd": "Gecontroleerd",
+    "opnieuw-controleren": "Opnieuw te controleren"
+  };
+
+  // Bronnen van één les; verschijnt alleen als er in content.js bronnen zijn ingevuld.
+  function lessonSources(topic) {
+    if (!topic.sources.length) return "";
+    return '<div class="lesson-sources"><h2>Bronnen van deze les</h2><ul>' +
+      topic.sources.map(function (ref) {
+        var source = sourceById[ref.source];
+        return "<li>" + externalLink(ref.url || source.url, source.name, "text-link") +
+          '<span class="lesson-source-meta">' + esc(REVIEW_LABELS[ref.review]) +
+          (ref.checkedOn ? " op " + esc(ref.checkedOn) : "") + "</span>" +
+          (ref.conditions ? '<p>' + esc(ref.conditions) + "</p>" : "") +
+          "</li>";
+      }).join("") +
+      '</ul><p class="lesson-sources-note">Dit zijn informatiebronnen, geen samenwerkingspartners.</p></div>';
   }
 
   /* ---------- Subpagina's ---------- */
@@ -199,7 +243,7 @@
     var relatedThemes = themesForTopics(s.topics);
 
     return pageHead({
-      crumbs: breadcrumb([["KlaarWijs", "#/"], ["Situaties", "#/situaties"], [s.title]]),
+      crumbs: breadcrumb([["KlaarWijs", "#/"], [s.title]]),
       kicker: "Situatie · " + s.when,
       title: s.title,
       lead: s.lead,
@@ -262,6 +306,7 @@
           (topic.summary ? '<p class="topic-summary">' + esc(topic.summary) + "</p>" : "") +
           '<div class="dev-panel"><h2>' + (topic.status === "demo" ? "Probeer de oefening" : "Deze les is in ontwikkeling") + "</h2>" + devText + "</div>" +
           (topic.status === "demo" ? '<div id="lessonSlot" style="margin-top:28px"></div>' : "") +
+          lessonSources(topic) +
         "</div>" +
         '<aside aria-label="Hier vind je dit onderwerp ook">' + places + "</aside>" +
       "</div>" +
@@ -295,7 +340,7 @@
 
   compassTabs.innerHTML = phases.map(function (phase, i) {
     return '<button type="button" class="compass-tab" data-phase="' + i + '" data-number="' + pad(i + 1) + '" aria-pressed="false">' +
-      '<span class="visually-hidden">Levensfase </span>' + phase.key.replace("-", "–") + '<span class="visually-hidden"> jaar</span></button>';
+      '<span class="visually-hidden">Levensfase </span>' + phase.key.replace("-", "–") + " jaar</button>";
   }).join("");
   var tabButtons = compassTabs.querySelectorAll(".compass-tab");
 
@@ -370,7 +415,7 @@
 
   /* ---------- Router ---------- */
 
-  var SECTIONS = ["ontdek", "themas", "situaties", "zo-werkt-het", "voor-scholen"];
+  var SECTIONS = ["ontdek", "zo-werkt-het", "themas", "bronnen", "voor-scholen"];
 
   // Oude adressen blijven werken.
   var ALIASES = [
@@ -378,7 +423,7 @@
     [/^leeftijd$/, "levenskompas"],
     [/^leeftijd\/(.+)$/, "levenskompas/$1"],
     [/^situaties\/(\d\d-\d\d)$/, "levenskompas/$1"],
-    [/^programma$/, "situaties"],
+    [/^programma$/, ""],
     [/^programma\/bijbaan$/, "situaties/eerste-bijbaan"],
     [/^programma\/bijbaan\/loonstrook$/, "onderwerpen/loonstrook"],
     [/^programma\/bijbaan\/contract$/, "onderwerpen/arbeidscontract"],
@@ -412,7 +457,7 @@
     if (SECTIONS.indexOf(path) > -1) return { view: "view-home", section: path };
     if (parts[0] === "levenskompas" && parts.length <= 2) return { view: "view-compass", phase: parts[1] };
     if (parts.length === 2 && parts[0] === "themas" && themeById[parts[1]]) return { view: "view-page", kind: "theme", item: themeById[parts[1]], nav: "themas" };
-    if (parts.length === 2 && parts[0] === "situaties" && situationById[parts[1]]) return { view: "view-page", kind: "situation", item: situationById[parts[1]], nav: "situaties" };
+    if (parts.length === 2 && parts[0] === "situaties" && situationById[parts[1]]) return { view: "view-page", kind: "situation", item: situationById[parts[1]] };
     if (parts.length === 2 && parts[0] === "onderwerpen" && topics[parts[1]]) return { view: "view-page", kind: "topic", item: topics[parts[1]], nav: "themas" };
     if (path === "onderwijs") return { view: "view-edu", nav: "voor-scholen" };
     return null;

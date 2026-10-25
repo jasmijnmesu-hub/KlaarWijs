@@ -7,7 +7,16 @@
            Voeg later een pad toe (image) met een beschrijving (imageAlt).
 
    status: "demo" = er is een oefenversie te bekijken
-           "dev"  = onderwerp staat op de planning, les nog in ontwikkeling */
+           "dev"  = onderwerp staat op de planning, les nog in ontwikkeling
+
+   Bronnen per les (optioneel, per onderwerp). Vul alleen in wat echt is gebeurd:
+     sources: [{
+       source: "duo",                       // id uit de lijst 'sources' hieronder
+       url: "https://duo.nl/...",           // directe link naar de gebruikte pagina
+       checkedOn: null,                     // "2026-11-03" pas na een echte controle
+       conditions: "",                      // belangrijke voorwaarden, als die er zijn
+       review: "niet-gecontroleerd"         // of "gecontroleerd" / "opnieuw-controleren"
+     }] */
 window.KW_CONTENT = (function () {
   "use strict";
 
@@ -102,7 +111,7 @@ window.KW_CONTENT = (function () {
       title: "Geld & betalen",
       lead: "Van je eerste bankrekening tot je eigen budget. Ontdek hoe betalen, sparen en belasting werken.",
       intro: "Geld komt overal terug: in je zakgeld, je eerste salaris en je vaste lasten. In dit thema ontdek je hoe je overzicht houdt en bewuste keuzes maakt.",
-      image: "assets/themas/geld-betalen.png",
+      image: "assets/themas/zorg-gezondheid.webp",
       imageAlt: "Collage over geld en betalen met een bankpas, munten, een betaalautomaat en een overzicht van inkomsten en uitgaven.",
       topics: ["bankrekening", "betalen", "telefoonabonnement", "sparen", "budgetteren", "bruto-netto", "belastingen", "toeslagen", "vaste-variabele-uitgaven", "financiele-verantwoordelijkheid"]
     },
@@ -111,7 +120,7 @@ window.KW_CONTENT = (function () {
       title: "Werk & inkomen",
       lead: "Een bijbaan, een contract en je eerste loonstrook. Wat spreek je af en wat houd je over?",
       intro: "Of het nu je eerste bijbaan is of je eerste vaste baan: werken brengt afspraken, rechten en een loonstrook met zich mee. Hier ontdek je hoe dat werkt.",
-      image: "assets/themas/werk-inkomen.png",
+      image: "assets/themas/geld-betalen.webp",
       imageAlt: "Collage over werk en inkomen met een laptop, sollicitatie, arbeidscontract, loonstrook en salaris.",
       topics: ["eerste-bijbaan", "solliciteren", "arbeidscontract", "loonstrook", "minimumjeugdloon", "vakantiegeld", "arbeidsvoorwaarden", "salaris", "pensioen"]
     },
@@ -120,7 +129,7 @@ window.KW_CONTENT = (function () {
       title: "Studie & toekomst",
       lead: "Welke opleiding past bij jou, wat kost studeren en hoe werkt DUO?",
       intro: "Na school komen er grote keuzes. Welke route past bij je, hoe meld je je aan en hoe betaal je je studie? Ontdek het stap voor stap.",
-      image: "assets/themas/studie-toekomst.png",
+      image: "assets/themas/werk-inkomen.webp",
       imageAlt: "Collage over studie en toekomst met een leerling, studiekeuzes, boeken, een laptop en richtingen voor later.",
       topics: ["onderwijsroutes", "studiekeuze", "aanmelden-opleiding", "studiekosten", "duo", "studiefinanciering", "studentenreisproduct", "stage", "stoppen-overstappen", "student-naar-werkende"]
     },
@@ -129,7 +138,7 @@ window.KW_CONTENT = (function () {
       title: "Wonen & regelen",
       lead: "Op kamers, een huurcontract en vaste lasten. Waar let je op als je zelf gaat wonen?",
       intro: "Je eigen plek is een grote stap. Van kamer zoeken tot inschrijven bij de gemeente: hier ontdek je wat er bij zelfstandig wonen komt kijken.",
-      image: "assets/themas/wonen-regelen.png",
+      image: "assets/themas/studie-toekomst.webp",
       imageAlt: "Collage over wonen en regelen met een woning, huurovereenkomst, sleutels en verhuisdozen.",
       topics: ["op-kamers", "huurcontract", "huurprijzen", "borg", "servicekosten", "verhuizen", "inschrijven-gemeente", "energie-internet", "vaste-lasten", "huurrechten"]
     },
@@ -138,7 +147,7 @@ window.KW_CONTENT = (function () {
       title: "Zorg & gezondheid",
       lead: "Van de huisarts tot je zorgverzekering. Ontdek wat je zelf regelt voor je gezondheid.",
       intro: "Steeds meer rond je gezondheid regel je zelf. Hoe werkt een zorgverzekering, wat is eigen risico en hoe maak je een afspraak? Dat ontdek je hier.",
-      image: "assets/themas/zorg-gezondheid.png",
+      image: "assets/themas/wonen-regelen.webp",
       imageAlt: "Collage over zorg en gezondheid met een huisarts, zorgverzekeringspas, stethoscoop en agenda.",
       topics: ["huisarts", "zorgafspraken", "zorgverzekering", "zorgpremie", "eigen-risico", "vergoedingen", "medische-rechten", "zorgtoeslag", "gezondheid-regelen"]
     },
@@ -147,7 +156,7 @@ window.KW_CONTENT = (function () {
       title: "Overheid & digitaal",
       lead: "DigiD, je BSN en veilig online. Zo regel je zaken met de overheid en herken je oplichting.",
       intro: "Veel zaken met de overheid regel je online. In dit thema ontdek je hoe DigiD werkt, wat je wel en niet deelt en hoe je nepberichten herkent.",
-      image: "assets/themas/overheid-digitaal.png",
+      image: "assets/themas/overheid-digitaal.webp",
       imageAlt: "Collage over overheid en digitaal met DigiD, een telefoon, identiteitskaart en online veiligheid.",
       topics: ["digid", "identiteitsbewijs", "bsn", "officiele-websites", "digitale-post", "privacy", "online-veiligheid", "oplichting", "overheid-online"]
     }
@@ -235,12 +244,31 @@ window.KW_CONTENT = (function () {
     }
   ];
 
+  /* Informatiebronnen. Dit zijn bronnen, geen samenwerkingspartners.
+     kind: "overheid"      = overheid of publieke uitvoeringsorganisatie
+           "onafhankelijk" = onafhankelijke deskundige organisatie */
+  var sources = [
+    { id: "rijksoverheid", name: "Rijksoverheid", topic: "Rechten en regels", url: "https://www.rijksoverheid.nl/", kind: "overheid" },
+    { id: "belastingdienst", name: "Belastingdienst", topic: "Belastingen", url: "https://www.belastingdienst.nl/", kind: "overheid" },
+    { id: "duo", name: "DUO", topic: "Studie en studiefinanciering", url: "https://duo.nl/", kind: "overheid" },
+    { id: "toeslagen", name: "Dienst Toeslagen", topic: "Zorgtoeslag en andere toeslagen", url: "https://www.belastingdienst.nl/wps/wcm/connect/nl/toeslagen/", kind: "overheid" },
+    { id: "uwv", name: "UWV", topic: "Werk en inkomen", url: "https://www.uwv.nl/", kind: "overheid" },
+    { id: "nibud", name: "Nibud", topic: "Geldzaken en budgetteren", url: "https://www.nibud.nl/", kind: "onafhankelijk" }
+  ];
+  var REVIEW_STATES = ["niet-gecontroleerd", "gecontroleerd", "opnieuw-controleren"];
+
   // Vul elk onderwerp aan met zijn id, standaardstatus en de plekken waar het voorkomt.
   Object.keys(topics).forEach(function (id) {
     var topic = topics[id];
     topic.id = id;
     topic.status = topic.status || "dev";
     topic.keywords = topic.keywords || [];
+    topic.sources = topic.sources || [];
+    topic.sources.forEach(function (ref) {
+      if (!sources.some(function (s) { return s.id === ref.source; })) throw new Error("Onbekende bron: " + ref.source);
+      ref.review = ref.review || "niet-gecontroleerd";
+      if (REVIEW_STATES.indexOf(ref.review) < 0) throw new Error("Onbekende controlestatus: " + ref.review);
+    });
     topic.themes = [];
     topic.situations = [];
     topic.phases = [];
@@ -257,5 +285,5 @@ window.KW_CONTENT = (function () {
   situations.forEach(function (situation) { link(situation.topics, "situations", situation.id); });
   phases.forEach(function (phase) { link(phase.topics, "phases", phase.key); });
 
-  return { topics: topics, themes: themes, situations: situations, phases: phases };
+  return { topics: topics, themes: themes, situations: situations, phases: phases, sources: sources };
 })();
