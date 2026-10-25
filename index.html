@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KlaarWijs — Jouw leven. Jouw volgende stap.</title>
-<meta name="description" content="KlaarWijs helpt jongeren praktische dingen begrijpen en regelen: loonstroken, contracten, huren en de keuzes die daarbij horen.">
+<title>KlaarWijs | Jouw leven. Jouw volgende stap.</title>
+<meta name="description" content="KlaarWijs helpt jongeren begrijpen hoe zaken rond werk, geld, wonen en studeren werken.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,6 +16,9 @@
     --color-white: #FFFFFF;
     --color-cream: #F6F0E4;
     --color-paper: #EDE5D5;
+    --color-warm: #F6F3EC;
+    --color-blue-pale: #E9EDF3;
+    --color-blue-muted: #293B5A;
     --color-text-muted: #E0E5ED;
     --color-rule: rgba(246, 240, 228, 0.18);
 
@@ -79,16 +82,16 @@
   .dot {
     position: relative;
     display: inline-block;
-    width: 0.22em;
+    width: 0.16em;
     color: transparent;
   }
   .dot::after {
     content: "";
     position: absolute;
-    left: 0.02em;
-    bottom: 0.1em;
-    width: 0.48em;
-    height: 0.48em;
+    left: 0.03em;
+    bottom: 0.16em;
+    width: 0.28em;
+    height: 0.28em;
     border-radius: 50%;
     background: var(--color-coral);
   }
@@ -223,18 +226,10 @@
   .btn-start:active { transform: translateY(0); }
   .btn-start svg { width: 16px; height: 16px; }
 
-  .hero-payoff {
-    position: relative;
-    z-index: 5;
-    font-size: 0.82rem;
-    color: rgba(246,240,228,0.6);
-    margin: 20px 0 0;
-  }
-
   .hero-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1356 / 764;
     overflow: hidden; /* clip limited to this decorative image layer only */
   }
   .hero-media img {
@@ -244,6 +239,286 @@
     height: 100%;
     object-fit: cover;
     object-position: 70% 14%;
+  }
+
+  /* ---------- Homepage story ---------- */
+  .homepage-content {
+    overflow: hidden;
+  }
+  .story-section {
+    position: relative;
+    padding: clamp(76px, 10vw, 148px) 24px;
+  }
+  .story-inner {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+  }
+  .story-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 22px;
+    color: var(--color-coral);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .story-kicker::before {
+    content: "";
+    width: 28px;
+    height: 4px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+  .story-intro {
+    background: var(--color-warm);
+    color: var(--color-navy);
+  }
+  .story-intro::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    background: var(--color-warm);
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 82% 100%, 61% 30%, 38% 85%, 17% 25%, 0 70%);
+  }
+  .intro-grid {
+    display: grid;
+    gap: 42px;
+  }
+  .intro-title {
+    max-width: 720px;
+    margin: 0;
+    color: var(--color-navy);
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 6.7rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: 0;
+  }
+  .intro-title em {
+    color: var(--color-coral);
+    font-style: normal;
+  }
+  .intro-copy {
+    max-width: 560px;
+    color: var(--color-blue-muted);
+    font-size: clamp(1rem, 1.8vw, 1.16rem);
+    line-height: 1.7;
+  }
+  .intro-copy p { margin: 0 0 20px; }
+  .intro-copy p:last-child { margin-bottom: 0; }
+  .intro-highlight {
+    display: block;
+    max-width: 430px;
+    margin: 28px 0 28px -12px;
+    padding: 14px 18px;
+    border-left: 5px solid var(--color-coral);
+    color: var(--color-navy);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+    line-height: 1.08;
+  }
+  .intro-signoff {
+    position: relative;
+    max-width: 760px;
+    margin: 72px 0 0;
+    padding-top: 28px;
+    color: var(--color-navy);
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 3.3vw, 2.8rem);
+    line-height: 1.04;
+  }
+  .intro-signoff::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 84px;
+    height: 5px;
+    background: var(--color-coral);
+  }
+  .story-route {
+    background: var(--color-navy);
+    color: var(--color-cream);
+  }
+  .route-heading {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 66px;
+  }
+  .route-heading h2 {
+    max-width: 760px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5.8vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.96;
+  }
+  .route-heading p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .route-note {
+    display: inline-block;
+    margin-top: 16px;
+    color: rgba(246,240,228,0.58);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+  .life-route {
+    position: relative;
+    display: grid;
+    gap: 18px;
+  }
+  .life-route::before {
+    content: "";
+    position: absolute;
+    top: 26px;
+    bottom: 26px;
+    left: 18px;
+    width: 2px;
+    background: linear-gradient(var(--color-coral), rgba(246,240,228,0.28));
+  }
+  .life-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .life-marker {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 2px solid var(--color-coral);
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-coral);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+  }
+  .life-card {
+    position: relative;
+    min-height: 240px;
+    padding: 28px 24px 26px;
+    background: var(--color-blue-muted);
+    border: 1px solid rgba(246,240,228,0.18);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+  }
+  .life-card::after {
+    content: "";
+    position: absolute;
+    right: -28px;
+    bottom: -38px;
+    width: 130px;
+    height: 130px;
+    border: 1px solid rgba(246,240,228,0.18);
+    transform: rotate(18deg);
+  }
+  .life-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-coral);
+    background: #324867;
+  }
+  .life-age {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--color-coral);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .life-card h3 {
+    max-width: 370px;
+    margin: 0 0 14px;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2.35rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+  .life-card p {
+    max-width: 520px;
+    margin: 0 0 22px;
+    color: var(--color-text-muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+  .life-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 610px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .life-topics li {
+    padding: 7px 10px;
+    border: 1px solid rgba(246,240,228,0.26);
+    color: var(--color-cream);
+    font-size: 0.78rem;
+    line-height: 1.2;
+  }
+  .story-cta {
+    padding-top: 0;
+    background: var(--color-warm);
+    color: var(--color-navy);
+  }
+  .story-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(26,43,76,0.18);
+  }
+  .story-cta p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
+  .story-cta strong { color: var(--color-coral); }
+  .story-cta a {
+    flex-shrink: 0;
+    color: var(--color-navy);
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .story-cta a:hover { color: var(--color-coral); }
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 650ms ease, transform 650ms ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (min-width: 760px) {
+    .intro-grid { grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr); gap: 8vw; align-items: start; }
+    .intro-copy { padding-top: 20px; }
+    .route-heading { grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr); align-items: end; }
+    .life-route { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px 18px; }
+    .life-route::before { top: 18px; bottom: auto; left: 4%; width: 92%; height: 2px; background: linear-gradient(90deg, var(--color-coral), rgba(246,240,228,0.28)); }
+    .life-stage { display: block; padding-top: 0; }
+    .life-marker { margin-bottom: 18px; }
+  }
+  @media (min-width: 1120px) {
+    .story-section { padding-left: 48px; padding-right: 48px; }
+    .life-route { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .life-card { min-height: 330px; padding: 28px 22px; }
+    .life-card p { font-size: 0.9rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .life-card { transition: none; }
   }
 
   /* ---------- Buttons / dialogs shared ---------- */
@@ -273,8 +548,8 @@
     .overlay { align-items: center; padding: 24px; }
     .overlay-panel { border-radius: var(--radius-lg); padding: 48px; }
   }
-  /* The two short info panels (Zo werkt het / Voor scholen) stay compact
-     dialogs — proportionally smaller than a full screen, unlike the
+    /* The two short info panels (Zo werkt het / Voor scholen) stay compact
+      dialogs. They are smaller than a full screen, unlike the
      concept-program flow below which has its own dedicated views. */
   .panel-small .overlay-panel {
     max-width: 440px;
@@ -432,6 +707,75 @@
      button moves naturally through the steps instead of stacking dialogs. */
   .program-view { padding: 40px 24px 80px; }
   .program-view-inner { max-width: 760px; margin: 0 auto; }
+  .age-choice-view { background: var(--color-warm); color: var(--color-navy); min-height: calc(100vh - 90px); }
+  .age-choice-inner { max-width: 1080px; }
+  .age-choice-view .breadcrumb { color: rgba(26,43,76,0.58); }
+  .age-choice-view .breadcrumb a { color: var(--color-navy); }
+  .age-choice-view .overlay-eyebrow { color: var(--color-coral); }
+  .program-view.age-choice-view h1 { max-width: 680px; color: var(--color-navy); font-size: clamp(2.5rem, 7vw, 5rem); }
+  .age-choice-intro { max-width: 520px; margin: 0 0 38px; color: var(--color-blue-muted); font-size: 1.05rem; line-height: 1.6; }
+  .age-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .age-card { position: relative; min-height: 190px; padding: 22px 20px 20px; border: 1px solid rgba(26,43,76,0.22); border-radius: 4px; background: var(--color-white); color: var(--color-navy); text-align: left; cursor: pointer; overflow: hidden; transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+  .age-card::after { content: ""; position: absolute; right: -28px; bottom: -42px; width: 120px; height: 120px; border: 1px solid rgba(231,111,81,0.38); transform: rotate(22deg); }
+  .age-card:hover { transform: translateY(-5px); border-color: var(--color-coral); box-shadow: 0 12px 24px rgba(26,43,76,0.12); }
+  .age-card:focus-visible { border-color: var(--color-coral); }
+  .age-number { display: block; margin-bottom: 28px; color: var(--color-coral); font-family: var(--font-display); font-size: 0.95rem; }
+  .age-range { display: block; margin-bottom: 8px; color: rgba(26,43,76,0.62); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .age-card h2 { position: relative; z-index: 1; max-width: 190px; margin: 0 0 8px; color: var(--color-navy); font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 400; line-height: 1; }
+  .age-card p { position: relative; z-index: 1; max-width: 210px; margin: 0; color: var(--color-blue-muted); font-size: 0.88rem; line-height: 1.45; }
+  .age-choice-note { margin: 30px 0 0; color: rgba(26,43,76,0.62); font-size: 0.82rem; }
+  .compass-view { background: var(--color-navy); color: var(--color-cream); min-height: calc(100vh - 90px); overflow: hidden; }
+  .compass-inner { max-width: 1180px; }
+  .compass-view .breadcrumb { color: rgba(246,240,228,0.58); }
+  .compass-view .breadcrumb a { color: var(--color-cream); }
+  .compass-intro { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 26px; }
+  .compass-intro h1 { max-width: 720px; margin: 0; color: var(--color-cream); font-size: clamp(2.4rem, 6vw, 5.8rem); }
+  .compass-intro p { max-width: 320px; margin: 0 0 8px; color: var(--color-text-muted); line-height: 1.5; }
+  .compass-stage-wrap { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 12px; align-items: center; }
+  .compass-stage { position: relative; min-height: clamp(310px, 48vw, 560px); display: grid; place-items: center; }
+  .compass-stage::before, .compass-stage::after { content: ""; position: absolute; border: 1px solid rgba(246,240,228,0.18); border-radius: 50%; pointer-events: none; }
+  .compass-stage::before { width: 88%; aspect-ratio: 1; }
+  .compass-stage::after { width: 68%; aspect-ratio: 1; border-color: rgba(231,111,81,0.4); }
+  .compass-orbit { position: relative; z-index: 1; width: min(94%, 760px); aspect-ratio: 16 / 9; display: grid; place-items: center; }
+  .compass-orbit::before { content: ""; position: absolute; inset: 7% 12%; border: 1px dashed rgba(246,240,228,0.34); transform: rotate(-7deg); }
+  .compass-collage { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 22px 22px rgba(0,0,0,0.28)); transition: transform 750ms cubic-bezier(.22,.8,.24,1), opacity 350ms ease, filter 350ms ease; }
+  .compass-collage.is-changing { opacity: 0.2; transform: translateX(-34px) rotate(-3deg) scale(0.96); filter: blur(1px) drop-shadow(0 18px 18px rgba(0,0,0,0.22)); }
+  .compass-paper { position: absolute; z-index: 2; padding: 9px 12px; background: var(--color-warm); color: var(--color-navy); font-size: 0.72rem; font-weight: 800; line-height: 1.1; box-shadow: 7px 7px 0 var(--color-coral); transform: rotate(-7deg); transition: transform 650ms cubic-bezier(.22,.8,.24,1), opacity 350ms ease; }
+  .compass-paper.one { top: 8%; left: 5%; }
+  .compass-paper.two { right: 3%; bottom: 12%; transform: rotate(6deg); }
+  .compass-stage.is-changing .compass-paper.one { opacity: 0; transform: translate(-28px, -18px) rotate(-18deg); }
+  .compass-stage.is-changing .compass-paper.two { opacity: 0; transform: translate(30px, 18px) rotate(18deg); }
+  .compass-arrow { position: relative; z-index: 3; width: 48px; height: 48px; border: 1px solid rgba(246,240,228,0.3); border-radius: 50%; background: transparent; color: var(--color-cream); font-size: 1.4rem; cursor: pointer; transition: border-color 180ms ease, color 180ms ease, background 180ms ease; }
+  .compass-arrow:hover { border-color: var(--color-coral); color: var(--color-coral); background: rgba(231,111,81,0.1); }
+  .compass-arrow:focus-visible { border-color: var(--color-coral); }
+  .compass-nav { display: flex; justify-content: center; gap: 8px; margin: -2px auto 26px; }
+  .compass-tab { position: relative; min-width: 70px; padding: 11px 8px 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: rgba(246,240,228,0.55); font-size: 0.78rem; font-weight: 800; cursor: pointer; }
+  .compass-tab::before { content: attr(data-number); display: block; margin-bottom: 4px; color: rgba(246,240,228,0.34); font-size: 0.68rem; }
+  .compass-tab:hover, .compass-tab.is-active { color: var(--color-cream); }
+  .compass-tab.is-active { border-color: var(--color-coral); }
+  .compass-tab.is-active::before { color: var(--color-coral); }
+  .compass-content { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 40px; align-items: start; padding: 26px 0 14px; border-top: 1px solid rgba(246,240,228,0.2); }
+  .compass-content h2 { margin: 0 0 8px; color: var(--color-white); font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3.4rem); font-weight: 400; line-height: 0.98; }
+  .compass-age { display: block; margin-bottom: 12px; color: var(--color-coral); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .compass-description { max-width: 520px; margin: 0; color: var(--color-text-muted); font-size: 1rem; line-height: 1.6; }
+  .compass-topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; }
+  .compass-topics li { padding: 8px 10px; border: 1px solid rgba(246,240,228,0.25); color: var(--color-cream); font-size: 0.8rem; }
+  .compass-cta { display: inline-flex; align-items: center; gap: 8px; border: 0; background: var(--color-coral); color: var(--color-navy-deep); padding: 13px 17px; font-weight: 800; cursor: pointer; }
+  .compass-cta:hover { background: var(--color-cream); }
+  @media (max-width: 700px) { .compass-intro { display: block; } .compass-intro p { margin-top: 16px; } .compass-stage-wrap { grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 4px; } .compass-arrow { width: 36px; height: 36px; font-size: 1rem; } .compass-paper { font-size: 0.64rem; } .compass-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 2px; } .compass-tab { min-width: 76px; } .compass-content { grid-template-columns: 1fr; gap: 22px; } }
+  @media (prefers-reduced-motion: reduce) { .compass-collage, .compass-paper, .compass-arrow, .compass-tab { transition: none; } }
+  .situations-view { background: var(--color-navy); min-height: calc(100vh - 90px); }
+  .choice-summary { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--color-coral); font-size: 0.82rem; font-weight: 700; }
+  .choice-summary::before { content: ""; width: 24px; height: 2px; background: currentColor; }
+  @media (min-width: 560px) {
+    .age-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  }
+  @media (min-width: 900px) {
+    .age-choice-view { padding-top: 64px; padding-bottom: 100px; }
+    .age-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .age-card:nth-child(2), .age-card:nth-child(4) { margin-top: 36px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .age-card { transition: none; } }
 
   .breadcrumb {
     font-size: 0.82rem;
@@ -489,20 +833,6 @@
   .program-card:focus-visible {
     border-color: var(--color-coral);
   }
-  .card-thumb {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
-    background-image: url("assets/collage-full.jpg");
-    background-size: 1356px 764px;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
-  }
-  .thumb-bruto { background-position: -655px -63px; }
-  .thumb-checklist { background-position: -1155px -354px; }
-  .thumb-building { background-position: -1150px -100px; }
-  .thumb-huur { background-position: -1290px -330px; }
-
   .card-body {
     flex: 1;
     display: flex;
@@ -710,12 +1040,6 @@
       left: 3%;
       top: 66%;
     }
-    .hero-payoff {
-      position: absolute;
-      left: 3%;
-      top: 91%;
-      margin: 0;
-    }
   }
 
   @media (min-width: 1356px) {
@@ -743,7 +1067,8 @@
 </header>
 
 <main>
-  <section class="hero" id="top">
+  <div class="homepage-content" id="homepage-content">
+    <section class="hero" id="top">
     <div class="hero-stage">
       <div class="hero-text">
         <h1 class="hero-heading">
@@ -756,30 +1081,160 @@
           START
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <p class="hero-payoff">Leren begrijpen, leren regelen.</p>
       </div>
       <div class="hero-media">
         <img src="assets/collage-full.jpg" width="1356" height="764" alt="Foto van een jonge vrouw omringd door papieren documenten: een loonstrook met de vraag &quot;Bruto?&quot;, een arbeidscontract met de vraag &quot;Wat teken ik?&quot;, een briefje &quot;Waar begin ik?&quot;, een huurcontract met sleutels, een routebordje onderweg met studie, werk, eigen plek of later, en een kaartfragment met vervolgstappen.">
       </div>
     </div>
-  </section>
+    </section>
+
+    <section class="story-section story-intro" aria-labelledby="intro-title">
+      <div class="story-inner">
+        <div class="intro-grid">
+          <div class="reveal">
+            <p class="story-kicker">Dit is KlaarWijs</p>
+            <h2 class="intro-title" id="intro-title">Het echte leven komt niet met een <em>handleiding.</em></h2>
+          </div>
+          <div class="intro-copy reveal">
+            <p>Een DigiD aanvragen. Een telefoonabonnement kiezen. Je eerste bijbaan en loonstrook begrijpen. Studiefinanciering regelen. Of voor het eerst een huurcontract ondertekenen.</p>
+            <p>Als je ouder wordt, krijg je steeds meer zaken zelf te regelen. Soms weet je niet waar je moet beginnen.</p>
+            <strong class="intro-highlight">Daar is KlaarWijs voor.</strong>
+            <p>KlaarWijs helpt jongeren van 12 tot en met 24 jaar om steeds meer zelf te kunnen. Van een eerste keuze tot zaken die later op je pad komen.</p>
+            <p>Je krijgt duidelijke uitleg, herkent situaties uit je eigen leven en oefent met opdrachten. Zo leer je hoe iets werkt en wat je zelf kunt doen.</p>
+          </div>
+        </div>
+        <p class="intro-signoff reveal">Want zelfstandig worden hoef je niet in één keer te kunnen.</p>
+      </div>
+    </section>
+
+    <section class="story-section story-route" aria-labelledby="route-title">
+      <div class="story-inner">
+        <div class="route-heading reveal">
+          <div>
+            <p class="story-kicker">Jouw volgende stappen</p>
+            <h2 id="route-title">Jouw leven verandert. KlaarWijs groeit met je mee.</h2>
+          </div>
+          <div>
+            <p>Je maakt steeds meer eigen keuzes. Bekijk welke onderwerpen je in verschillende fases van je leven kunt tegenkomen.</p>
+            <span class="route-note">Zie deze route als richting. Jij bepaalt zelf wat bij je past.</span>
+          </div>
+        </div>
+        <div class="life-route">
+          <article class="life-stage reveal">
+            <span class="life-marker" aria-hidden="true">01</span>
+            <div class="life-card">
+              <span class="life-age">12 t/m 14 jaar</span>
+              <h3>Mijn eerste stappen</h3>
+              <p>Je ontdekt steeds meer zelf. Waar begin je en hoe maak je een goede keuze?</p>
+              <ul class="life-topics">
+                <li>DigiD</li><li>Geld</li><li>Online veiligheid</li><li>Telefoonabonnement</li>
+              </ul>
+            </div>
+          </article>
+          <article class="life-stage reveal">
+            <span class="life-marker" aria-hidden="true">02</span>
+            <div class="life-card">
+              <span class="life-age">15 t/m 17 jaar</span>
+              <h3>Ik regel steeds meer</h3>
+              <p>Je krijgt meer vrijheid en moet meer zelf regelen. Kijk eerst goed waar je ja tegen zegt.</p>
+              <ul class="life-topics">
+                <li>Eerste bijbaan</li><li>Loonstrook</li><li>Contracten</li><li>Sparen</li>
+              </ul>
+            </div>
+          </article>
+          <article class="life-stage reveal">
+            <span class="life-marker" aria-hidden="true">03</span>
+            <div class="life-card">
+              <span class="life-age">18 t/m 20 jaar</span>
+              <h3>Er verandert veel</h3>
+              <p>Je krijgt nieuwe keuzes en zaken om zelf te regelen. Kijk waar je op moet letten.</p>
+              <ul class="life-topics">
+                <li>Zorgverzekering</li><li>Studiefinanciering</li><li>Studiekeuzes</li><li>Vaste lasten</li>
+              </ul>
+            </div>
+          </article>
+          <article class="life-stage reveal">
+            <span class="life-marker" aria-hidden="true">04</span>
+            <div class="life-card">
+              <span class="life-age">21 t/m 24 jaar</span>
+              <h3>Op eigen benen</h3>
+              <p>Misschien ga je werken, verder leren of kies je een andere weg. Leer hoe je zaken zelf kunt regelen.</p>
+              <ul class="life-topics">
+                <li>Arbeidscontract</li><li>Salaris</li><li>Pensioen</li><li>Werk en studie</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section story-cta" aria-label="KlaarWijs voor jongeren en scholen">
+      <div class="story-inner story-cta-inner reveal">
+        <p><strong>Leren begrijpen, leren regelen.</strong><br>Op het moment dat het bij jou past.</p>
+        <a href="#top">Naar boven <span aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer class="site-footer">
-  <p>KlaarWijs is in ontwikkeling. Deze website toont een conceptversie.</p>
 </footer>
 
-<!-- Concept program: each situation is a dedicated view at its own URL
+<!-- Program: each situation is a dedicated view at its own URL
      (#/programma, #/programma/bijbaan, ...), not a stack of modals. -->
-<section class="program-view" id="view-program" hidden aria-label="Conceptprogramma">
+<section class="program-view compass-view" id="view-program" hidden aria-label="Het Levenskompas">
+  <div class="program-view-inner compass-inner">
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> Het Levenskompas</p>
+    <div class="compass-intro">
+      <div>
+        <p class="overlay-eyebrow">Het Levenskompas</p>
+        <h1>Jouw leven. Jouw fase.</h1>
+      </div>
+      <p>Van je eerste eigen keuzes tot steeds meer zelf regelen. Ontdek wat bij jou past.</p>
+    </div>
+    <div class="compass-stage-wrap">
+      <button type="button" class="compass-arrow" id="compassPrevious" aria-label="Vorige levensfase">&#8592;</button>
+      <div class="compass-stage" id="compassStage">
+        <span class="compass-paper one" id="compassPaperOne">Kijk wat bij jou past</span>
+        <span class="compass-paper two" id="compassPaperTwo">Jouw volgende stap</span>
+        <div class="compass-orbit">
+          <img class="compass-collage" id="compassCollage" src="assets/levensfases/12-14.png" alt="Collage van de levensfase 12 tot en met 14 jaar met onderwerpen over een telefoon, geld, DigiD en online veiligheid.">
+        </div>
+      </div>
+      <button type="button" class="compass-arrow" id="compassNext" aria-label="Volgende levensfase">&#8594;</button>
+    </div>
+    <nav class="compass-nav" aria-label="Kies een levensfase">
+      <button type="button" class="compass-tab is-active" data-phase="0" data-number="01">12–14</button>
+      <button type="button" class="compass-tab" data-phase="1" data-number="02">15–17</button>
+      <button type="button" class="compass-tab" data-phase="2" data-number="03">18–20</button>
+      <button type="button" class="compass-tab" data-phase="3" data-number="04">21–24</button>
+    </nav>
+    <div class="compass-content" aria-live="polite">
+      <div>
+        <span class="compass-age" id="compassAge">12–14 jaar</span>
+        <h2 id="compassTitle">Mijn eerste stappen</h2>
+        <p class="compass-description" id="compassDescription">Je krijgt steeds meer vrijheid en maakt je eerste eigen keuzes. Hoe werkt je bankrekening? Wat kost een telefoonabonnement? En waarom is DigiD belangrijk? Ontdek stap voor stap hoe de wereld om je heen werkt.</p>
+      </div>
+      <div>
+        <ul class="compass-topics" id="compassTopics">
+          <li>Mijn telefoon</li><li>Mijn geld</li><li>Sparen voor</li><li>DigiD</li><li>Online veilig</li><li>School en toekomst</li>
+        </ul>
+        <button type="button" class="compass-cta" id="compassOpen">Ontdek deze fase <span aria-hidden="true">&#8594;</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="program-view situations-view" id="view-situations" hidden aria-label="Jouw situaties">
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> Conceptprogramma</p>
-    <p class="overlay-eyebrow">Conceptprogramma</p>
-    <h1>Wat speelt er bij jou?</h1>
-    <p class="view-sub">Kies een situatie die je herkent.</p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/leeftijd">Kies je leeftijd</a> <span aria-hidden="true">/</span> Jouw situaties</p>
+    <p class="choice-summary" id="choiceSummary">Jouw onderwerpen</p>
+    <p class="overlay-eyebrow">Jouw situaties</p>
+    <h1 id="overviewTitle">Wat speelt er bij jou?</h1>
+    <p class="view-sub" id="overviewDescription">Kies wat nu bij jou past.</p>
+    <ul class="compass-topics" id="overviewTopics" aria-label="Onderwerpen van deze fase"></ul>
     <div class="program-grid">
       <button type="button" class="program-card" data-route="bijbaan">
-        <span class="card-thumb thumb-bruto" aria-hidden="true"></span>
         <span class="card-body">
           <span class="card-title">Mijn eerste bijbaan</span>
           <span class="card-cue">Bekijk de route
@@ -789,34 +1244,28 @@
         <span class="card-status status-demo">Demo beschikbaar</span>
       </button>
       <button type="button" class="program-card" data-route="achttien">
-        <span class="card-thumb thumb-checklist" aria-hidden="true"></span>
         <span class="card-body">
           <span class="card-title">Ik word 18</span>
           <span class="card-cue">Bekijk de route
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </span>
-        <span class="card-status status-dev">In ontwikkeling</span>
       </button>
       <button type="button" class="program-card" data-route="studeren">
-        <span class="card-thumb thumb-building" aria-hidden="true"></span>
         <span class="card-body">
           <span class="card-title">Ik ga studeren</span>
           <span class="card-cue">Bekijk de route
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </span>
-        <span class="card-status status-dev">In ontwikkeling</span>
       </button>
       <button type="button" class="program-card" data-route="opmezelf">
-        <span class="card-thumb thumb-huur" aria-hidden="true"></span>
         <span class="card-body">
           <span class="card-title">Ik ga op mezelf</span>
           <span class="card-cue">Bekijk de route
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </span>
-        <span class="card-status status-dev">In ontwikkeling</span>
       </button>
     </div>
   </div>
@@ -824,10 +1273,10 @@
 
 <section class="program-view" id="view-route-bijbaan" hidden aria-label="Mijn eerste bijbaan">
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> Mijn eerste bijbaan</p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> Mijn eerste bijbaan</p>
     <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
     <h1>Mijn eerste bijbaan</h1>
-    <p class="view-sub">Drie dingen die vaak onduidelijk zijn als je voor het eerst gaat werken.</p>
+    <p class="view-sub">Drie dingen die je wilt weten als je voor het eerst gaat werken.</p>
     <ul class="route-steps">
       <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/loonstrook"><span>Je loonstrook begrijpen</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
       <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/contract"><span>Je contract bekijken</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
@@ -838,10 +1287,10 @@
 
 <section class="program-view" id="view-step-loonstrook" hidden aria-label="Je loonstrook begrijpen">
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je loonstrook begrijpen</p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je loonstrook begrijpen</p>
     <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
     <h1>Je loonstrook begrijpen</h1>
-    <p class="view-sub">Een loonstrook laat zien wat je bruto verdient en wat je netto overhoudt. Oefen het verschil tussen de twee labels.</p>
+    <p class="view-sub">Op een loonstrook zie je wat je bruto verdient en wat je netto krijgt. Oefen het verschil tussen die twee bedragen.</p>
 
     <div class="exercise">
       <div class="payslip-demo" aria-hidden="true">
@@ -862,41 +1311,36 @@
       </div>
     </div>
 
-    <p class="exercise-disclaimer">Conceptoefening met fictieve gegevens. Inhoud en didactiek zijn nog niet beoordeeld.</p>
   </div>
 </section>
 
 <section class="program-view" id="view-step-contract" hidden aria-label="Je contract bekijken">
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je contract bekijken</p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je contract bekijken</p>
     <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
     <h1>Je contract bekijken</h1>
-    <p class="view-sub">Een arbeidscontract bevat afspraken over loon, uren, proeftijd en opzegtermijn.</p>
-    <p class="exercise-disclaimer">Deze route is in ontwikkeling. Hier komt later een oefening om een voorbeeldcontract te leren lezen.</p>
+    <p class="view-sub">In een arbeidscontract staan afspraken over loon, uren, proeftijd en opzegtermijn.</p>
   </div>
 </section>
 
 <section class="program-view" id="view-step-vragen" hidden aria-label="Vragen die je kunt stellen">
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Vragen die je kunt stellen</p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Vragen die je kunt stellen</p>
     <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
     <h1>Vragen die je kunt stellen</h1>
-    <p class="view-sub">Het is normaal om vragen te stellen aan een werkgever, bijvoorbeeld over uren, loon of vakantiedagen.</p>
-    <p class="exercise-disclaimer">Deze route is in ontwikkeling. Hier komen later voorbeeldvragen die je zo kunt gebruiken.</p>
+    <p class="view-sub">Je mag een werkgever vragen stellen over uren, loon en vakantiedagen.</p>
   </div>
 </section>
 
 <section class="program-view" id="view-stub" hidden>
   <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Conceptprogramma</a> <span aria-hidden="true">/</span> <span id="stubBreadcrumbCurrent"></span></p>
+    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <span id="stubBreadcrumbCurrent"></span></p>
     <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
     <h1 id="stubTitle"></h1>
-    <p class="view-sub">Deze route is in ontwikkeling.</p>
-    <span class="in-development">Binnenkort beschikbaar</span>
   </div>
 </section>
 
-<!-- Zo werkt het panel (stays a small, short modal) -->
+<!-- Zo werkt het panel -->
 <div class="overlay panel-small" id="panelHow" role="dialog" aria-modal="true" aria-labelledby="howTitle" hidden>
   <div class="overlay-panel">
     <button type="button" class="overlay-close" data-close-overlay="panelHow" aria-label="Sluiten">&times;</button>
@@ -908,22 +1352,20 @@
         <li><span class="step-num">2</span><span>Begrijp hoe het werkt.</span></li>
         <li><span class="step-num">3</span><span>Oefen je volgende stap.</span></li>
       </ol>
-      <p>Geen wetteksten, geen jargon — korte uitleg op het moment dat die voor jou speelt.</p>
-      <p>KlaarWijs is nu een concept. We bouwen de inhoud stap voor stap uit, te beginnen met "Mijn eerste bijbaan".</p>
+      <p>Geen wetteksten en geen moeilijke taal. Je krijgt korte uitleg over wat op dat moment bij je speelt.</p>
     </div>
   </div>
 </div>
 
-<!-- Voor scholen panel (stays a small, short modal) -->
+<!-- Voor scholen panel -->
 <div class="overlay panel-small" id="panelSchools" role="dialog" aria-modal="true" aria-labelledby="schoolsTitle" hidden>
   <div class="overlay-panel">
     <button type="button" class="overlay-close" data-close-overlay="panelSchools" aria-label="Sluiten">&times;</button>
     <p class="overlay-eyebrow">Voor scholen</p>
-    <h2 id="schoolsTitle">In ontwikkeling</h2>
+    <h2 id="schoolsTitle">Voor scholen</h2>
     <div class="panel-body">
-      <p>KlaarWijs is een concept in ontwikkeling. We verkennen hoe het bruikbaar kan zijn in het onderwijs.</p>
-      <p>Er is nog geen kant-en-klaar lesmateriaal, geen getoetste resultaten en geen vastgestelde aansluiting op kerndoelen.</p>
-      <p>Denk je mee na over hoe dit er voor jouw school uit zou kunnen zien? We bouwen dit het liefst samen met scholen op.</p>
+      <p>KlaarWijs helpt jongeren om zaken rond werk, wonen en studeren beter te begrijpen.</p>
+      <p>We denken graag mee over hoe je dit in je lessen kunt gebruiken.</p>
     </div>
   </div>
 </div>
@@ -979,8 +1421,19 @@
   /* ---------- Hash-based router for the dedicated program pages ---------- */
 
   var routes = {
-    "": "top",
+    "": "homepage-content",
+    "top": "homepage-content",
     "programma": "view-program",
+    "leeftijd": "view-program",
+    "leeftijd/12-14": "view-program",
+    "leeftijd/15-17": "view-program",
+    "leeftijd/18-20": "view-program",
+    "leeftijd/21-24": "view-program",
+    "situaties": "view-situations",
+    "situaties/12-14": "view-situations",
+    "situaties/15-17": "view-situations",
+    "situaties/18-20": "view-situations",
+    "situaties/21-24": "view-situations",
     "programma/bijbaan": "view-route-bijbaan",
     "programma/bijbaan/loonstrook": "view-step-loonstrook",
     "programma/bijbaan/contract": "view-step-contract",
@@ -991,8 +1444,9 @@
   };
 
   var allViewIds = [
-    "top",
+    "homepage-content",
     "view-program",
+    "view-situations",
     "view-route-bijbaan",
     "view-step-loonstrook",
     "view-step-contract",
@@ -1001,8 +1455,9 @@
   ];
 
   var pageTitles = {
-    "top": "KlaarWijs",
-    "view-program": "Conceptprogramma · KlaarWijs",
+    "homepage-content": "KlaarWijs",
+    "view-program": "Het Levenskompas | KlaarWijs",
+    "view-situations": "Jouw situaties | KlaarWijs",
     "view-route-bijbaan": "Mijn eerste bijbaan · KlaarWijs",
     "view-step-loonstrook": "Je loonstrook begrijpen · KlaarWijs",
     "view-step-contract": "Je contract bekijken · KlaarWijs",
@@ -1015,13 +1470,112 @@
     opmezelf: "Ik ga op mezelf"
   };
 
+  var phases = [
+    {
+      key: "12-14",
+      image: "assets/levensfases/12-14.png",
+      alt: "Collage van de levensfase 12 tot en met 14 jaar met onderwerpen over een telefoon, geld, DigiD en online veiligheid.",
+      age: "12–14 jaar",
+      title: "Mijn eerste stappen",
+      description: "Je krijgt steeds meer vrijheid en maakt je eerste eigen keuzes. Hoe werkt je bankrekening? Wat kost een telefoonabonnement? En waarom is DigiD belangrijk? Ontdek stap voor stap hoe de wereld om je heen werkt.",
+      topics: ["Mijn telefoon", "Mijn geld", "Sparen voor", "DigiD", "Online veilig", "School en toekomst"]
+    },
+    {
+      key: "15-17",
+      image: "assets/levensfases/15-17.png",
+      alt: "Collage van de levensfase 15 tot en met 17 jaar met onderwerpen over een bijbaan, loonstrook, contracten en studiekeuze.",
+      age: "15–17 jaar",
+      title: "Steeds meer zelf",
+      description: "Je eerste bijbaan, je eigen salaris en keuzes over je toekomst. Je krijgt meer mogelijkheden, maar ook nieuwe vragen. Leer hoe je een loonstrook begrijpt en waar je op let bij een contract.",
+      topics: ["Mijn eerste bijbaan", "Mijn loonstrook", "Contracten", "Mbo, hbo, universiteit of werken?", "Studiekeuze", "Mijn rijbewijs", "Bijna 18"]
+    },
+    {
+      key: "18-20",
+      image: "assets/levensfases/18-20.png",
+      alt: "Collage van de levensfase 18 tot en met 20 jaar met onderwerpen over zorgverzekering, DUO, studeren, geld en op kamers gaan.",
+      age: "18–20 jaar",
+      title: "Er verandert veel",
+      description: "Je wordt meerderjarig en ineens verandert er van alles. Van je zorgverzekering tot DUO en misschien je eerste eigen kamer. Ontdek wat voor jou speelt en hoe je zaken zelf kunt regelen.",
+      topics: ["18 worden", "Zorgverzekering", "Zorgtoeslag", "DUO en studiefinanciering", "Op kamers", "Mijn geld en vaste lasten"]
+    },
+    {
+      key: "21-24",
+      image: "assets/levensfases/21-24.png",
+      alt: "Collage van de levensfase 21 tot en met 24 jaar met onderwerpen over werk, salaris, wonen, pensioen en vaste lasten.",
+      age: "21–24 jaar",
+      title: "Op eigen benen",
+      description: "Misschien rond je je studie af, begin je aan een nieuwe baan of ga je zelfstandig wonen. Je krijgt meer zaken rond werk, inkomen en je huishouden zelf te regelen.",
+      topics: ["Mijn eerste serieuze baan", "Salaris en arbeidsvoorwaarden", "Pensioen", "Van student naar werkende", "DUO stopzetten", "Wonen en eigen huishouden", "Belastingen en vaste lasten"]
+    }
+  ];
+
+  var activePhase = 0;
+
+  function phaseFromPath(path) {
+    var key = path.split("/").pop();
+    var index = phases.findIndex(function (phase) { return phase.key === key; });
+    return index < 0 ? 0 : index;
+  }
+
   function currentPath() {
     return location.hash.replace(/^#\/?/, "");
   }
 
+  function ageFromPath(path) {
+    var key = path.split("/").pop();
+    var ages = {
+      "12-14": "12 t/m 14 jaar",
+      "15-17": "15 t/m 17 jaar",
+      "18-20": "18 t/m 20 jaar",
+      "21-24": "21 t/m 24 jaar"
+    };
+    return ages[key] || "";
+  }
+
+  function renderCompass(index, animate) {
+    activePhase = (index + phases.length) % phases.length;
+    var phase = phases[activePhase];
+    var stage = document.getElementById("compassStage");
+    var collage = document.getElementById("compassCollage");
+    var tabs = document.querySelectorAll(".compass-tab");
+
+    function update() {
+      document.getElementById("compassAge").textContent = phase.age;
+      document.getElementById("compassTitle").textContent = phase.title;
+      document.getElementById("compassDescription").textContent = phase.description;
+      document.getElementById("compassCollage").src = phase.image;
+      document.getElementById("compassCollage").alt = phase.alt;
+      document.getElementById("compassTopics").innerHTML = phase.topics.map(function (topic) {
+        return "<li>" + topic + "</li>";
+      }).join("");
+      tabs.forEach(function (tab, tabIndex) {
+        tab.classList.toggle("is-active", tabIndex === activePhase);
+        tab.setAttribute("aria-current", tabIndex === activePhase ? "true" : "false");
+      });
+      document.getElementById("compassOpen").setAttribute("data-phase-key", phase.key);
+    }
+
+    if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      update();
+      return;
+    }
+
+    stage.classList.add("is-changing");
+    collage.classList.add("is-changing");
+    window.setTimeout(function () {
+      update();
+      stage.classList.remove("is-changing");
+      collage.classList.remove("is-changing");
+    }, 360);
+  }
+
   function render(moveFocus) {
     var path = currentPath();
-    var viewId = routes.hasOwnProperty(path) ? routes[path] : "top";
+    var viewId = routes.hasOwnProperty(path) ? routes[path] : "homepage-content";
+
+    if (path.indexOf("leeftijd/") === 0) {
+      activePhase = phaseFromPath(path);
+    }
 
     allViewIds.forEach(function (id) {
       var el = document.getElementById(id);
@@ -1034,8 +1588,22 @@
       document.getElementById("stubTitle").textContent = title;
       document.getElementById("stubBreadcrumbCurrent").textContent = title;
       document.title = title + " · KlaarWijs";
+    } else if (viewId === "view-situations") {
+      var age = ageFromPath(path);
+      var overviewPhase = phases[phaseFromPath(path)];
+      document.getElementById("choiceSummary").textContent = age ? "Gekozen fase: " + age : "Jouw onderwerpen";
+      document.getElementById("overviewTitle").textContent = overviewPhase.title;
+      document.getElementById("overviewDescription").textContent = overviewPhase.description;
+      document.getElementById("overviewTopics").innerHTML = overviewPhase.topics.map(function (topic) {
+        return "<li>" + topic + "</li>";
+      }).join("");
+      document.title = pageTitles[viewId] || "KlaarWijs";
     } else {
       document.title = pageTitles[viewId] || "KlaarWijs";
+    }
+
+    if (viewId === "view-program") {
+      renderCompass(activePhase, false);
     }
 
     if (viewId === "view-step-loonstrook") {
@@ -1059,7 +1627,31 @@
   });
 
   document.getElementById("startBtn").addEventListener("click", function () {
-    location.hash = "#/programma";
+    location.hash = "#/leeftijd";
+  });
+
+  document.querySelectorAll(".compass-tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      var index = Number(tab.getAttribute("data-phase"));
+      history.replaceState(null, "", "#/leeftijd/" + phases[index].key);
+      renderCompass(index, true);
+    });
+  });
+
+  document.getElementById("compassPrevious").addEventListener("click", function () {
+    var nextIndex = (activePhase + phases.length - 1) % phases.length;
+    history.replaceState(null, "", "#/leeftijd/" + phases[nextIndex].key);
+    renderCompass(nextIndex, true);
+  });
+
+  document.getElementById("compassNext").addEventListener("click", function () {
+    var nextIndex = (activePhase + 1) % phases.length;
+    history.replaceState(null, "", "#/leeftijd/" + phases[nextIndex].key);
+    renderCompass(nextIndex, true);
+  });
+
+  document.getElementById("compassOpen").addEventListener("click", function () {
+    location.hash = "#/situaties/" + this.getAttribute("data-phase-key");
   });
 
   document.querySelectorAll("[data-route]").forEach(function (btn) {
@@ -1111,6 +1703,26 @@
   });
 
   document.getElementById("exerciseRetry").addEventListener("click", resetExercise);
+
+  var revealItems = document.querySelectorAll(".reveal");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    revealItems.forEach(function (item) {
+      item.classList.add("is-visible");
+    });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
+    });
+  }
 
   render(false);
 })();
