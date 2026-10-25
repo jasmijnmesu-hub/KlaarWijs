@@ -4,1729 +4,380 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KlaarWijs | Jouw leven. Jouw volgende stap.</title>
-<meta name="description" content="KlaarWijs helpt jongeren begrijpen hoe zaken rond werk, geld, wonen en studeren werken.">
+<meta name="description" content="KlaarWijs helpt jongeren van 12 tot en met 24 jaar begrijpen hoe geld, werk, studie, wonen, zorg en digitale zaken werken. Leren begrijpen, leren regelen.">
+<meta name="theme-color" content="#1A2B4C">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%231A2B4C'/%3E%3Cg transform='translate(56 40) scale(0.78)'%3E%3Cpath fill='%23FFFFFF' d='M32 96H316Q322 96 322 102V154Q322 160 316 160H72V440H352V232Q352 226 358 226H410Q416 226 416 232V480Q416 504 392 504H32Q8 504 8 480V120Q8 96 32 96Z'/%3E%3Crect x='348' y='32' width='156' height='156' rx='9' fill='%23E76F51'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --color-navy: #1A2B4C;
-    --color-navy-deep: #142139;
-    --color-coral: #E76F51;
-    --color-white: #FFFFFF;
-    --color-cream: #F6F0E4;
-    --color-paper: #EDE5D5;
-    --color-warm: #F6F3EC;
-    --color-blue-pale: #E9EDF3;
-    --color-blue-muted: #293B5A;
-    --color-text-muted: #E0E5ED;
-    --color-rule: rgba(246, 240, 228, 0.18);
-
-    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-
-    --radius-md: 14px;
-    --radius-lg: 24px;
-    --transition-fast: 160ms ease;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
-  body {
-    margin: 0;
-    font-family: var(--font-body);
-    background: var(--color-navy);
-    color: var(--color-cream);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  img { max-width: 100%; display: block; }
-
-  a, button { font-family: inherit; }
-
-  :focus-visible {
-    outline: 3px solid var(--color-coral);
-    outline-offset: 3px;
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px; height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-
-  .dash {
-    display: inline-block;
-    width: 36px;
-    height: 5px;
-    background: var(--color-coral);
-    margin-bottom: 14px;
-    border-radius: 3px;
-  }
-
-  /* Decorative round dot after heading sentences. The literal "." stays in the
-     text for screen readers; visually it is replaced by a guaranteed-circular
-     shape so it never renders as a square glyph fragment of the display font. */
-  .dot {
-    position: relative;
-    display: inline-block;
-    width: 0.16em;
-    color: transparent;
-  }
-  .dot::after {
-    content: "";
-    position: absolute;
-    left: 0.03em;
-    bottom: 0.16em;
-    width: 0.28em;
-    height: 0.28em;
-    border-radius: 50%;
-    background: var(--color-coral);
-  }
-
-  /* Subtle paper grain, consistent across the navy surface and connecting
-     visually with the photographic collage texture. Decorative only. */
-  .grain {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    background-size: 160px 160px;
-  }
-  .site-header, main, .site-footer { position: relative; z-index: 1; }
-
-  /* ---------- Header ---------- */
-  .site-header {
-    position: relative;
-    z-index: 20;
-  }
-  .header-inner {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 22px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--color-white);
-  }
-  .logo svg { width: 30px; height: 30px; flex-shrink: 0; }
-  .logo-word {
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -0.01em;
-  }
-  .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-  }
-  .nav-link {
-    background: none;
-    border: none;
-    color: var(--color-cream);
-    font-weight: 600;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    padding: 8px 10px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background var(--transition-fast), color var(--transition-fast);
-  }
-  @media (min-width: 560px) {
-    .main-nav { gap: 8px; }
-    .nav-link { font-size: 0.95rem; padding: 10px 14px; }
-  }
-  .nav-link:hover { background: rgba(255,255,255,0.08); }
-
-  /* ---------- Hero ----------
-     One shared composition container (.hero-stage). The collage photo
-     (.hero-media) and all hero text (.hero-text) are both positioned
-     relative to this single container, so they stay visually coupled at
-     every breakpoint instead of drifting apart as independent columns.
-     On mobile the two stack in normal flow; from 900px up, .hero-stage is
-     locked to the photo's native aspect ratio and the text is layered on
-     top at fixed proportions taken directly from the reference composition. */
-  .hero {
-    position: relative;
-    padding-top: 8px;
-  }
-  .hero-stage {
-    position: relative;
-    max-width: 1356px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .hero-text {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 20px 24px 28px;
-    box-sizing: border-box;
-  }
-  .hero-heading {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(2.4rem, 11vw, 3.4rem);
-    line-height: 0.98;
-    letter-spacing: 0.001em;
-    margin: 0 0 18px;
-    color: var(--color-cream);
-    text-transform: none;
-  }
-  .hero-subtext {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 2.4vw, 1.1rem);
-    line-height: 1.5;
-    color: var(--color-text-muted);
-    max-width: 30ch;
-    margin: 0 0 24px;
-  }
-  .btn-start {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--color-coral);
-    color: var(--color-navy-deep);
-    border: none;
-    font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-    padding: 14px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  }
-  .btn-start:hover { transform: translateY(-2px); }
-  .btn-start:active { transform: translateY(0); }
-  .btn-start svg { width: 16px; height: 16px; }
-
-  .hero-media {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1356 / 764;
-    overflow: hidden; /* clip limited to this decorative image layer only */
-  }
-  .hero-media img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 70% 14%;
-  }
-
-  /* ---------- Homepage story ---------- */
-  .homepage-content {
-    overflow: hidden;
-  }
-  .story-section {
-    position: relative;
-    padding: clamp(76px, 10vw, 148px) 24px;
-  }
-  .story-inner {
-    width: min(1180px, 100%);
-    margin: 0 auto;
-  }
-  .story-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 22px;
-    color: var(--color-coral);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-  }
-  .story-kicker::before {
-    content: "";
-    width: 28px;
-    height: 4px;
-    border-radius: 999px;
-    background: currentColor;
-  }
-  .story-intro {
-    background: var(--color-warm);
-    color: var(--color-navy);
-  }
-  .story-intro::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 100%;
-    height: 18px;
-    background: var(--color-warm);
-    clip-path: polygon(0 0, 100% 0, 100% 20%, 82% 100%, 61% 30%, 38% 85%, 17% 25%, 0 70%);
-  }
-  .intro-grid {
-    display: grid;
-    gap: 42px;
-  }
-  .intro-title {
-    max-width: 720px;
-    margin: 0;
-    color: var(--color-navy);
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 7vw, 6.7rem);
-    font-weight: 400;
-    line-height: 0.94;
-    letter-spacing: 0;
-  }
-  .intro-title em {
-    color: var(--color-coral);
-    font-style: normal;
-  }
-  .intro-copy {
-    max-width: 560px;
-    color: var(--color-blue-muted);
-    font-size: clamp(1rem, 1.8vw, 1.16rem);
-    line-height: 1.7;
-  }
-  .intro-copy p { margin: 0 0 20px; }
-  .intro-copy p:last-child { margin-bottom: 0; }
-  .intro-highlight {
-    display: block;
-    max-width: 430px;
-    margin: 28px 0 28px -12px;
-    padding: 14px 18px;
-    border-left: 5px solid var(--color-coral);
-    color: var(--color-navy);
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2.5vw, 1.8rem);
-    line-height: 1.08;
-  }
-  .intro-signoff {
-    position: relative;
-    max-width: 760px;
-    margin: 72px 0 0;
-    padding-top: 28px;
-    color: var(--color-navy);
-    font-family: var(--font-display);
-    font-size: clamp(1.45rem, 3.3vw, 2.8rem);
-    line-height: 1.04;
-  }
-  .intro-signoff::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 84px;
-    height: 5px;
-    background: var(--color-coral);
-  }
-  .story-route {
-    background: var(--color-navy);
-    color: var(--color-cream);
-  }
-  .route-heading {
-    display: grid;
-    gap: 24px;
-    margin-bottom: 66px;
-  }
-  .route-heading h2 {
-    max-width: 760px;
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 5.8vw, 5.5rem);
-    font-weight: 400;
-    line-height: 0.96;
-  }
-  .route-heading p {
-    max-width: 500px;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
-  }
-  .route-note {
-    display: inline-block;
-    margin-top: 16px;
-    color: rgba(246,240,228,0.58);
-    font-size: 0.78rem;
-    line-height: 1.5;
-  }
-  .life-route {
-    position: relative;
-    display: grid;
-    gap: 18px;
-  }
-  .life-route::before {
-    content: "";
-    position: absolute;
-    top: 26px;
-    bottom: 26px;
-    left: 18px;
-    width: 2px;
-    background: linear-gradient(var(--color-coral), rgba(246,240,228,0.28));
-  }
-  .life-stage {
-    position: relative;
-    display: grid;
-    grid-template-columns: 38px 1fr;
-    gap: 18px;
-    align-items: start;
-  }
-  .life-marker {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-    width: 38px;
-    height: 38px;
-    border: 2px solid var(--color-coral);
-    border-radius: 50%;
-    background: var(--color-navy);
-    color: var(--color-coral);
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-  }
-  .life-card {
-    position: relative;
-    min-height: 240px;
-    padding: 28px 24px 26px;
-    background: var(--color-blue-muted);
-    border: 1px solid rgba(246,240,228,0.18);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
-  }
-  .life-card::after {
-    content: "";
-    position: absolute;
-    right: -28px;
-    bottom: -38px;
-    width: 130px;
-    height: 130px;
-    border: 1px solid rgba(246,240,228,0.18);
-    transform: rotate(18deg);
-  }
-  .life-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-coral);
-    background: #324867;
-  }
-  .life-age {
-    display: block;
-    margin-bottom: 14px;
-    color: var(--color-coral);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .life-card h3 {
-    max-width: 370px;
-    margin: 0 0 14px;
-    color: var(--color-white);
-    font-family: var(--font-display);
-    font-size: clamp(1.55rem, 3vw, 2.35rem);
-    font-weight: 400;
-    line-height: 0.98;
-  }
-  .life-card p {
-    max-width: 520px;
-    margin: 0 0 22px;
-    color: var(--color-text-muted);
-    font-size: 0.94rem;
-    line-height: 1.55;
-  }
-  .life-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    max-width: 610px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .life-topics li {
-    padding: 7px 10px;
-    border: 1px solid rgba(246,240,228,0.26);
-    color: var(--color-cream);
-    font-size: 0.78rem;
-    line-height: 1.2;
-  }
-  .story-cta {
-    padding-top: 0;
-    background: var(--color-warm);
-    color: var(--color-navy);
-  }
-  .story-cta-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-    padding: 28px 0;
-    border-top: 1px solid rgba(26,43,76,0.18);
-  }
-  .story-cta p { margin: 0; font-size: 0.9rem; line-height: 1.5; }
-  .story-cta strong { color: var(--color-coral); }
-  .story-cta a {
-    flex-shrink: 0;
-    color: var(--color-navy);
-    font-weight: 800;
-    text-decoration: none;
-  }
-  .story-cta a:hover { color: var(--color-coral); }
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 650ms ease, transform 650ms ease;
-  }
-  .reveal.is-visible { opacity: 1; transform: none; }
-  @media (min-width: 760px) {
-    .intro-grid { grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr); gap: 8vw; align-items: start; }
-    .intro-copy { padding-top: 20px; }
-    .route-heading { grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr); align-items: end; }
-    .life-route { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 42px 18px; }
-    .life-route::before { top: 18px; bottom: auto; left: 4%; width: 92%; height: 2px; background: linear-gradient(90deg, var(--color-coral), rgba(246,240,228,0.28)); }
-    .life-stage { display: block; padding-top: 0; }
-    .life-marker { margin-bottom: 18px; }
-  }
-  @media (min-width: 1120px) {
-    .story-section { padding-left: 48px; padding-right: 48px; }
-    .life-route { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-    .life-card { min-height: 330px; padding: 28px 22px; }
-    .life-card p { font-size: 0.9rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    .life-card { transition: none; }
-  }
-
-  /* ---------- Buttons / dialogs shared ---------- */
-  .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    background: rgba(10, 16, 32, 0.72);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0;
-  }
-  .overlay[hidden] { display: none; }
-  .overlay-panel {
-    position: relative;
-    background: var(--color-navy);
-    width: 100%;
-    max-width: 720px;
-    max-height: 92vh;
-    overflow-y: auto;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    padding: 56px 28px 40px;
-    box-shadow: 0 -8px 40px rgba(0,0,0,0.4);
-  }
-  @media (min-width: 720px) {
-    .overlay { align-items: center; padding: 24px; }
-    .overlay-panel { border-radius: var(--radius-lg); padding: 48px; }
-  }
-    /* The two short info panels (Zo werkt het / Voor scholen) stay compact
-      dialogs. They are smaller than a full screen, unlike the
-     concept-program flow below which has its own dedicated views. */
-  .panel-small .overlay-panel {
-    max-width: 440px;
-    padding: 40px 24px 32px;
-  }
-  @media (min-width: 720px) {
-    .panel-small .overlay-panel { padding: 36px 36px 32px; }
-  }
-  .panel-small .overlay h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); }
-  .panel-small .panel-body p { font-size: 0.92rem; }
-  .panel-steps {
-    list-style: none;
-    margin: 0 0 18px;
-    padding: 0;
-    display: grid;
-    gap: 10px;
-  }
-  .panel-steps li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    color: var(--color-text-muted);
-    font-size: 0.92rem;
-    line-height: 1.5;
-  }
-  .panel-steps .step-num {
-    flex-shrink: 0;
-    color: var(--color-coral);
-    font-weight: 800;
-    font-family: var(--font-display);
-    font-size: 1rem;
-  }
-  .overlay-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--color-rule);
-    background: transparent;
-    color: var(--color-cream);
-    font-size: 1.4rem;
-    line-height: 1;
-    cursor: pointer;
-  }
-  .overlay-close:hover { background: rgba(255,255,255,0.08); }
-
-  .overlay-eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--color-coral);
-    margin: 0 0 10px;
-  }
-  .overlay h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.8rem, 5vw, 2.4rem);
-    color: var(--color-white);
-    margin: 0 0 10px;
-    line-height: 1.02;
-  }
-  .overlay-sub {
-    color: var(--color-text-muted);
-    margin: 0 0 28px;
-    font-size: 1rem;
-  }
-  .panel-body p {
-    color: var(--color-text-muted);
-    line-height: 1.6;
-    font-size: 0.98rem;
-  }
-  .panel-body h3 {
-    font-family: var(--font-body);
-    font-weight: 700;
-    color: var(--color-white);
-    font-size: 1.05rem;
-    margin: 24px 0 8px;
-  }
-
-  /* ---------- Program grid ---------- */
-  .program-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  @media (min-width: 560px) {
-    .program-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .program-card {
-    text-align: left;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--color-rule);
-    color: var(--color-white);
-    font-weight: 700;
-    font-size: 1.02rem;
-    padding: 20px 18px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: background var(--transition-fast), border-color var(--transition-fast);
-    min-height: 64px;
-  }
-  .program-card:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.3);
-  }
-
-  .route-back {
-    background: none;
-    border: none;
-    color: var(--color-coral);
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    padding: 0 0 20px;
-  }
-  .route-steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 10px;
-  }
-  .step-btn {
-    width: 100%;
-    text-align: left;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--color-rule);
-    color: var(--color-white);
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 16px 18px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    min-height: 56px;
-  }
-  .step-btn:hover { background: rgba(255,255,255,0.1); }
-
-  .in-development {
-    display: inline-block;
-    margin-top: 8px;
-    background: rgba(231,111,81,0.15);
-    color: var(--color-coral);
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 8px 14px;
-    border-radius: 999px;
-  }
-
-  /* ---------- Concept program: dedicated views (not modals) ----------
-     Each situation lives at its own URL (#/programma, #/programma/bijbaan,
-     ...) and replaces the homepage content in <main>, so the browser back
-     button moves naturally through the steps instead of stacking dialogs. */
-  .program-view { padding: 40px 24px 80px; }
-  .program-view-inner { max-width: 760px; margin: 0 auto; }
-  .age-choice-view { background: var(--color-warm); color: var(--color-navy); min-height: calc(100vh - 90px); }
-  .age-choice-inner { max-width: 1080px; }
-  .age-choice-view .breadcrumb { color: rgba(26,43,76,0.58); }
-  .age-choice-view .breadcrumb a { color: var(--color-navy); }
-  .age-choice-view .overlay-eyebrow { color: var(--color-coral); }
-  .program-view.age-choice-view h1 { max-width: 680px; color: var(--color-navy); font-size: clamp(2.5rem, 7vw, 5rem); }
-  .age-choice-intro { max-width: 520px; margin: 0 0 38px; color: var(--color-blue-muted); font-size: 1.05rem; line-height: 1.6; }
-  .age-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-  .age-card { position: relative; min-height: 190px; padding: 22px 20px 20px; border: 1px solid rgba(26,43,76,0.22); border-radius: 4px; background: var(--color-white); color: var(--color-navy); text-align: left; cursor: pointer; overflow: hidden; transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
-  .age-card::after { content: ""; position: absolute; right: -28px; bottom: -42px; width: 120px; height: 120px; border: 1px solid rgba(231,111,81,0.38); transform: rotate(22deg); }
-  .age-card:hover { transform: translateY(-5px); border-color: var(--color-coral); box-shadow: 0 12px 24px rgba(26,43,76,0.12); }
-  .age-card:focus-visible { border-color: var(--color-coral); }
-  .age-number { display: block; margin-bottom: 28px; color: var(--color-coral); font-family: var(--font-display); font-size: 0.95rem; }
-  .age-range { display: block; margin-bottom: 8px; color: rgba(26,43,76,0.62); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
-  .age-card h2 { position: relative; z-index: 1; max-width: 190px; margin: 0 0 8px; color: var(--color-navy); font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 400; line-height: 1; }
-  .age-card p { position: relative; z-index: 1; max-width: 210px; margin: 0; color: var(--color-blue-muted); font-size: 0.88rem; line-height: 1.45; }
-  .age-choice-note { margin: 30px 0 0; color: rgba(26,43,76,0.62); font-size: 0.82rem; }
-  .compass-view { background: var(--color-navy); color: var(--color-cream); min-height: calc(100vh - 90px); overflow: hidden; }
-  .compass-inner { max-width: 1180px; }
-  .compass-view .breadcrumb { color: rgba(246,240,228,0.58); }
-  .compass-view .breadcrumb a { color: var(--color-cream); }
-  .compass-intro { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 26px; }
-  .compass-intro h1 { max-width: 720px; margin: 0; color: var(--color-cream); font-size: clamp(2.4rem, 6vw, 5.8rem); }
-  .compass-intro p { max-width: 320px; margin: 0 0 8px; color: var(--color-text-muted); line-height: 1.5; }
-  .compass-stage-wrap { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 12px; align-items: center; }
-  .compass-stage { position: relative; min-height: clamp(310px, 48vw, 560px); display: grid; place-items: center; }
-  .compass-stage::before, .compass-stage::after { content: ""; position: absolute; border: 1px solid rgba(246,240,228,0.18); border-radius: 50%; pointer-events: none; }
-  .compass-stage::before { width: 88%; aspect-ratio: 1; }
-  .compass-stage::after { width: 68%; aspect-ratio: 1; border-color: rgba(231,111,81,0.4); }
-  .compass-orbit { position: relative; z-index: 1; width: min(94%, 760px); aspect-ratio: 16 / 9; display: grid; place-items: center; }
-  .compass-orbit::before { content: ""; position: absolute; inset: 7% 12%; border: 1px dashed rgba(246,240,228,0.34); transform: rotate(-7deg); }
-  .compass-collage { position: relative; z-index: 1; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 22px 22px rgba(0,0,0,0.28)); transition: transform 750ms cubic-bezier(.22,.8,.24,1), opacity 350ms ease, filter 350ms ease; }
-  .compass-collage.is-changing { opacity: 0.2; transform: translateX(-34px) rotate(-3deg) scale(0.96); filter: blur(1px) drop-shadow(0 18px 18px rgba(0,0,0,0.22)); }
-  .compass-paper { position: absolute; z-index: 2; padding: 9px 12px; background: var(--color-warm); color: var(--color-navy); font-size: 0.72rem; font-weight: 800; line-height: 1.1; box-shadow: 7px 7px 0 var(--color-coral); transform: rotate(-7deg); transition: transform 650ms cubic-bezier(.22,.8,.24,1), opacity 350ms ease; }
-  .compass-paper.one { top: 8%; left: 5%; }
-  .compass-paper.two { right: 3%; bottom: 12%; transform: rotate(6deg); }
-  .compass-stage.is-changing .compass-paper.one { opacity: 0; transform: translate(-28px, -18px) rotate(-18deg); }
-  .compass-stage.is-changing .compass-paper.two { opacity: 0; transform: translate(30px, 18px) rotate(18deg); }
-  .compass-arrow { position: relative; z-index: 3; width: 48px; height: 48px; border: 1px solid rgba(246,240,228,0.3); border-radius: 50%; background: transparent; color: var(--color-cream); font-size: 1.4rem; cursor: pointer; transition: border-color 180ms ease, color 180ms ease, background 180ms ease; }
-  .compass-arrow:hover { border-color: var(--color-coral); color: var(--color-coral); background: rgba(231,111,81,0.1); }
-  .compass-arrow:focus-visible { border-color: var(--color-coral); }
-  .compass-nav { display: flex; justify-content: center; gap: 8px; margin: -2px auto 26px; }
-  .compass-tab { position: relative; min-width: 70px; padding: 11px 8px 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: rgba(246,240,228,0.55); font-size: 0.78rem; font-weight: 800; cursor: pointer; }
-  .compass-tab::before { content: attr(data-number); display: block; margin-bottom: 4px; color: rgba(246,240,228,0.34); font-size: 0.68rem; }
-  .compass-tab:hover, .compass-tab.is-active { color: var(--color-cream); }
-  .compass-tab.is-active { border-color: var(--color-coral); }
-  .compass-tab.is-active::before { color: var(--color-coral); }
-  .compass-content { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 40px; align-items: start; padding: 26px 0 14px; border-top: 1px solid rgba(246,240,228,0.2); }
-  .compass-content h2 { margin: 0 0 8px; color: var(--color-white); font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3.4rem); font-weight: 400; line-height: 0.98; }
-  .compass-age { display: block; margin-bottom: 12px; color: var(--color-coral); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
-  .compass-description { max-width: 520px; margin: 0; color: var(--color-text-muted); font-size: 1rem; line-height: 1.6; }
-  .compass-topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; }
-  .compass-topics li { padding: 8px 10px; border: 1px solid rgba(246,240,228,0.25); color: var(--color-cream); font-size: 0.8rem; }
-  .compass-cta { display: inline-flex; align-items: center; gap: 8px; border: 0; background: var(--color-coral); color: var(--color-navy-deep); padding: 13px 17px; font-weight: 800; cursor: pointer; }
-  .compass-cta:hover { background: var(--color-cream); }
-  @media (max-width: 700px) { .compass-intro { display: block; } .compass-intro p { margin-top: 16px; } .compass-stage-wrap { grid-template-columns: 36px minmax(0, 1fr) 36px; gap: 4px; } .compass-arrow { width: 36px; height: 36px; font-size: 1rem; } .compass-paper { font-size: 0.64rem; } .compass-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 2px; } .compass-tab { min-width: 76px; } .compass-content { grid-template-columns: 1fr; gap: 22px; } }
-  @media (prefers-reduced-motion: reduce) { .compass-collage, .compass-paper, .compass-arrow, .compass-tab { transition: none; } }
-  .situations-view { background: var(--color-navy); min-height: calc(100vh - 90px); }
-  .choice-summary { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--color-coral); font-size: 0.82rem; font-weight: 700; }
-  .choice-summary::before { content: ""; width: 24px; height: 2px; background: currentColor; }
-  @media (min-width: 560px) {
-    .age-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-  }
-  @media (min-width: 900px) {
-    .age-choice-view { padding-top: 64px; padding-bottom: 100px; }
-    .age-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .age-card:nth-child(2), .age-card:nth-child(4) { margin-top: 36px; }
-  }
-  @media (prefers-reduced-motion: reduce) { .age-card { transition: none; } }
-
-  .breadcrumb {
-    font-size: 0.82rem;
-    color: rgba(246,240,228,0.55);
-    margin: 0 0 22px;
-  }
-  .breadcrumb a {
-    color: rgba(246,240,228,0.75);
-    text-decoration: none;
-  }
-  .breadcrumb a:hover { text-decoration: underline; }
-  .breadcrumb span[aria-hidden] { margin: 0 6px; }
-
-  .program-view h1 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.9rem, 5vw, 2.5rem);
-    color: var(--color-cream);
-    margin: 0 0 10px;
-    line-height: 1.04;
-  }
-  .view-sub {
-    color: var(--color-text-muted);
-    margin: 0 0 28px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .program-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  @media (min-width: 560px) {
-    .program-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .program-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-align: left;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--color-rule);
-    color: var(--color-white);
-    padding: 14px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-  }
-  .program-card:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.28);
-  }
-  .program-card:active { transform: scale(0.99); }
-  .program-card:focus-visible {
-    border-color: var(--color-coral);
-  }
-  .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-  }
-  .card-title {
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--color-white);
-  }
-  .card-cue {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.82rem;
-    color: rgba(246,240,228,0.6);
-  }
-  .card-cue svg { width: 13px; height: 13px; }
-  .card-status {
-    flex-shrink: 0;
-    align-self: flex-start;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-  .status-demo { background: rgba(231,111,81,0.22); color: var(--color-coral); }
-  .status-dev { background: rgba(255,255,255,0.08); color: rgba(246,240,228,0.55); }
-
-  .route-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: none;
-    border: none;
-    color: var(--color-coral);
-    font-weight: 700;
-    font-size: 0.92rem;
-    cursor: pointer;
-    padding: 0 0 20px;
-  }
-  .route-steps {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 10px;
-  }
-  .step-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    text-align: left;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--color-rule);
-    color: var(--color-white);
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 16px 18px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    min-height: 56px;
-  }
-  .step-btn:hover { background: rgba(255,255,255,0.1); }
-  .step-btn:focus-visible { border-color: var(--color-coral); }
-  .step-btn svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(246,240,228,0.5); }
-
-  /* ---------- Loonstrook concept exercise ---------- */
-  .exercise {
-    display: grid;
-    gap: 24px;
-    margin: 8px 0 20px;
-  }
-  @media (min-width: 640px) {
-    .exercise { grid-template-columns: 0.9fr 1.1fr; align-items: start; }
-  }
-  .payslip-demo {
-    background: var(--color-paper);
-    color: var(--color-navy-deep);
-    border-radius: var(--radius-md);
-    padding: 20px;
-  }
-  .payslip-demo-title {
-    font-weight: 800;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 0 0 14px;
-    color: var(--color-navy);
-  }
-  .payslip-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px;
-    border-radius: 6px;
-    font-size: 0.92rem;
-    border-bottom: 1px solid rgba(26,43,76,0.12);
-  }
-  .payslip-row.is-marked {
-    background: rgba(231,111,81,0.18);
-    border-bottom: none;
-    font-weight: 700;
-    outline: 2px solid var(--color-coral);
-    outline-offset: -2px;
-  }
-  .exercise-prompt {
-    margin: 0 0 14px;
-    color: var(--color-white);
-    font-size: 1.02rem;
-  }
-  .exercise-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .exercise-option {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--color-rule);
-    color: var(--color-white);
-    font-weight: 700;
-    font-size: 0.95rem;
-    padding: 12px 18px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-  }
-  .exercise-option:hover:not(:disabled) { background: rgba(255,255,255,0.12); }
-  .exercise-option:focus-visible { border-color: var(--color-coral); }
-  .exercise-option:disabled { cursor: default; opacity: 0.6; }
-  .exercise-option.is-correct { background: rgba(94,173,110,0.25); border-color: #5EAD6E; opacity: 1; }
-  .exercise-option.is-incorrect { background: rgba(231,111,81,0.2); border-color: var(--color-coral); opacity: 1; }
-  .exercise-feedback {
-    min-height: 1.4em;
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    margin: 0 0 14px;
-  }
-  .exercise-disclaimer {
-    font-size: 0.8rem;
-    color: rgba(246,240,228,0.5);
-    border-top: 1px solid var(--color-rule);
-    padding-top: 16px;
-    margin-top: 8px;
-  }
-
-  /* ---------- Footer ---------- */
-  .site-footer {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 40px 24px 60px;
-    color: rgba(246,240,228,0.5);
-    font-size: 0.85rem;
-  }
-
-  /* ---------- Responsive: desktop hero composition ----------
-     From here the photo locks to its native 1360:768 ratio and fills the
-     stage edge to edge (no crop at any width up to max-width, since the
-     container ratio always matches the image ratio). Text is layered on
-     top at the same proportions measured from the reference composition,
-     so heading / subtext / button / payoff stay visually coupled to the
-     photo instead of behaving as a separate column. */
-  @media (min-width: 900px) {
-    .hero-stage {
-      aspect-ratio: 1356 / 764;
-      display: block;
-    }
-    .hero-media {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      aspect-ratio: auto;
-    }
-    .hero-media img { object-position: center top; }
-    .hero-text {
-      position: absolute;
-      inset: 0;
-      max-width: none;
-      width: auto;
-      margin: 0;
-      padding: 0;
-    }
-    .hero-heading {
-      position: absolute;
-      left: 3%;
-      top: 7%;
-      width: 44%;
-      font-size: clamp(2.6rem, 4.6vw, 4.2rem);
-      margin: 0;
-    }
-    .hero-subtext {
-      position: absolute;
-      left: 3%;
-      top: 55%;
-      width: 34%;
-      margin: 0;
-    }
-    .btn-start {
-      position: absolute;
-      left: 3%;
-      top: 66%;
-    }
-  }
-
-  @media (min-width: 1356px) {
-    .hero-stage { width: 1356px; }
-  }
-</style>
+<link rel="preload" as="image" href="assets/collage-full.jpg">
+<link rel="stylesheet" href="css/klaarwijs.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Naar de inhoud</a>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="site-header">
+<!-- Pictogrammen, één keer gedefinieerd en overal hergebruikt -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.8 12.2l2.2 2.2 4.2-4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#top" class="logo" aria-label="KlaarWijs, naar boven">
+    <a href="#/" class="logo" aria-label="KlaarWijs, naar de homepage">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
         <path fill="#FFFFFF" d="M32 96H316Q322 96 322 102V154Q322 160 316 160H72V440H352V232Q352 226 358 226H410Q416 226 416 232V480Q416 504 392 504H32Q8 504 8 480V120Q8 96 32 96Z"/>
         <rect x="348" y="32" width="156" height="156" rx="9" fill="#E76F51"/>
       </svg>
       <span class="logo-word">KlaarWijs</span>
     </a>
-    <nav class="main-nav" aria-label="Hoofdnavigatie">
-      <button type="button" class="nav-link" data-open-panel="panelHow">Zo werkt het</button>
-      <button type="button" class="nav-link" data-open-panel="panelSchools">Voor scholen</button>
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <ul class="nav-list" id="navList">
+        <li><a class="nav-link" href="#/ontdek" data-section="ontdek">Ontdek</a></li>
+        <li><a class="nav-link" href="#/themas" data-section="themas">Thema's</a></li>
+        <li><a class="nav-link" href="#/situaties" data-section="situaties">Situaties</a></li>
+        <li><a class="nav-link" href="#/zo-werkt-het" data-section="zo-werkt-het">Zo werkt het</a></li>
+        <li><a class="nav-link" href="#/voor-scholen" data-section="voor-scholen">Voor scholen</a></li>
+      </ul>
+      <a class="btn btn-primary nav-start" href="#/levenskompas">START</a>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navList">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="menu-label">Menu</span>
+      </button>
     </nav>
   </div>
 </header>
 
-<main>
-  <div class="homepage-content" id="homepage-content">
-    <section class="hero" id="top">
-    <div class="hero-stage">
-      <div class="hero-text">
-        <h1 class="hero-heading">
-          Jouw leven<span class="dot">.</span><br>
-          Jouw volgende<br>
-          stap<span class="dot">.</span>
-        </h1>
-        <p class="hero-subtext">Leer begrijpen hoe het werkt<br>en wat jij kunt doen.</p>
-        <button type="button" class="btn-start" id="startBtn">
-          START
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+<main id="main">
+
+  <!-- =====================================================
+       HOMEPAGE
+       ===================================================== -->
+  <div class="view" id="view-home" data-title="KlaarWijs | Jouw leven. Jouw volgende stap.">
+
+    <!-- 1. Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-stage">
+        <div class="hero-text">
+          <h1 class="hero-title" id="hero-title">
+            <span class="line"><span>Jouw leven<span class="dot">.</span></span></span>
+            <span class="line"><span>Jouw volgende</span></span>
+            <span class="line"><span>stap<span class="dot">.</span></span></span>
+          </h1>
+          <p class="hero-payoff">Leren begrijpen, leren regelen.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-start" href="#/levenskompas" aria-describedby="start-desc">
+              START
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+              <span class="pulse" aria-hidden="true"></span>
+            </a>
+            <span class="visually-hidden" id="start-desc">Opent het Levenskompas: ontdek per levensfase welke onderwerpen bij je passen.</span>
+            <a class="text-link" href="#/themas">Of bekijk de thema's <svg aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="assets/collage-full.jpg" width="1356" height="764" fetchpriority="high" alt="Collage van een jonge vrouw omringd door papieren documenten: een loonstrook met de vraag &quot;Bruto?&quot;, een arbeidscontract met de vraag &quot;Wat teken ik?&quot;, een briefje &quot;Waar begin ik?&quot;, een huurcontract met sleutels, een routebord naar studie, werk, eigen plek of later, en een kaartfragment met vervolgstappen.">
+        </div>
       </div>
-      <div class="hero-media">
-        <img src="assets/collage-full.jpg" width="1356" height="764" alt="Foto van een jonge vrouw omringd door papieren documenten: een loonstrook met de vraag &quot;Bruto?&quot;, een arbeidscontract met de vraag &quot;Wat teken ik?&quot;, een briefje &quot;Waar begin ik?&quot;, een huurcontract met sleutels, een routebordje onderweg met studie, werk, eigen plek of later, en een kaartfragment met vervolgstappen.">
-      </div>
-    </div>
     </section>
 
-    <section class="story-section story-intro" aria-labelledby="intro-title">
-      <div class="story-inner">
+    <!-- 2. Dit is KlaarWijs -->
+    <section class="section on-light torn-top" id="ontdek" aria-labelledby="intro-title">
+      <div class="wrap">
         <div class="intro-grid">
           <div class="reveal">
-            <p class="story-kicker">Dit is KlaarWijs</p>
-            <h2 class="intro-title" id="intro-title">Het echte leven komt niet met een <em>handleiding.</em></h2>
+            <p class="kicker">Dit is KlaarWijs</p>
+            <h2 class="display intro-title" id="intro-title" tabindex="-1">Het echte leven komt niet met een <span class="nowrap"><span class="accent scribble">handleiding<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 120 18, 180 9 S 270 6, 296 12"/></svg></span><span class="dot">.</span></span></h2>
           </div>
-          <div class="intro-copy reveal">
-            <p>Een DigiD aanvragen. Een telefoonabonnement kiezen. Je eerste bijbaan en loonstrook begrijpen. Studiefinanciering regelen. Of voor het eerst een huurcontract ondertekenen.</p>
-            <p>Als je ouder wordt, krijg je steeds meer zaken zelf te regelen. Soms weet je niet waar je moet beginnen.</p>
-            <strong class="intro-highlight">Daar is KlaarWijs voor.</strong>
-            <p>KlaarWijs helpt jongeren van 12 tot en met 24 jaar om steeds meer zelf te kunnen. Van een eerste keuze tot zaken die later op je pad komen.</p>
-            <p>Je krijgt duidelijke uitleg, herkent situaties uit je eigen leven en oefent met opdrachten. Zo leer je hoe iets werkt en wat je zelf kunt doen.</p>
+          <div class="intro-body reveal reveal-delay-1">
+            <p class="lead">Je eerste bankrekening. Je eerste salaris. Een DigiD, zorgverzekering of huurcontract. Er komt steeds meer op je af. Maar hoe weet je eigenlijk wat je moet doen, waar je op moet letten en hoe alles werkt?</p>
+            <p class="intro-turn">Daar helpt KlaarWijs je bij.</p>
+            <p>Ontdek hoe de wereld van geld, werk, studie, wonen en andere belangrijke zaken in elkaar zit. Met heldere uitleg, herkenbare voorbeelden en praktische opdrachten leer je niet alleen wat iets betekent, maar ook hoe je het zelf kunt aanpakken.</p>
+            <p>Of je nu 12 bent en vooruit wilt kijken, of 23 en voor het eerst iets moet regelen: bij KlaarWijs ontdek je wat jij wilt weten, op jouw moment.</p>
           </div>
         </div>
-        <p class="intro-signoff reveal">Want zelfstandig worden hoef je niet in één keer te kunnen.</p>
       </div>
     </section>
 
-    <section class="story-section story-route" aria-labelledby="route-title">
-      <div class="story-inner">
-        <div class="route-heading reveal">
+    <!-- 3. Thema's + zoeken -->
+    <section class="section on-light themes" id="themas" aria-labelledby="themes-title">
+      <div class="wrap">
+        <div class="themes-inner">
+          <div class="section-head reveal">
+            <div>
+              <p class="kicker">Wat wil jij ontdekken?</p>
+              <h2 class="display h2" id="themes-title" tabindex="-1">Van geldzaken tot je eerste baan. Ontdek wat jij wilt weten.</h2>
+            </div>
+            <p class="lead">Of het nu vandaag speelt of pas over een paar jaar: bij KlaarWijs kun je ontdekken hoe het werkt. Kies een onderwerp dat jou nieuwsgierig maakt.</p>
+          </div>
+
+          <div class="search reveal" role="search">
+            <label class="search-label" for="searchInput">Wat wil jij weten of regelen?</label>
+            <div class="search-field">
+              <svg aria-hidden="true"><use href="#i-search"/></svg>
+              <input class="search-input" id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Bijvoorbeeld loonstrook, DigiD of huurcontract" aria-describedby="searchStatus" aria-controls="searchResults">
+              <button type="button" class="search-clear" id="searchClear" aria-label="Zoekopdracht wissen" hidden>&times;</button>
+            </div>
+            <div class="search-suggest" id="searchSuggest">
+              <span>Veel gezocht:</span>
+            </div>
+            <p class="search-status" id="searchStatus" role="status" aria-live="polite"></p>
+            <div class="search-results" id="searchResults"></div>
+          </div>
+
+          <div class="theme-grid" id="themeGrid"></div>        </div>
+      </div>
+    </section>
+
+    <!-- 4. Situaties -->
+    <section class="section on-navy situations" id="situaties" aria-labelledby="situations-title">
+      <div class="wrap">
+        <div class="section-head reveal">
           <div>
-            <p class="story-kicker">Jouw volgende stappen</p>
-            <h2 id="route-title">Jouw leven verandert. KlaarWijs groeit met je mee.</h2>
+            <p class="kicker">Herkenbare situaties</p>
+            <h2 class="display h2" id="situations-title" tabindex="-1">Wat speelt er bij jou?</h2>
           </div>
+          <p class="lead">Soms weet je precies wat je wilt leren. Soms gebeurt er iets in je leven en wil je gewoon weten waar je moet beginnen.</p>
+        </div>
+        <div class="situation-grid" id="situationGrid"></div>
+      </div>
+    </section>
+
+    <!-- 5. Zo werkt KlaarWijs -->
+    <section class="section on-light torn-top how" id="zo-werkt-het" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head reveal">
           <div>
-            <p>Je maakt steeds meer eigen keuzes. Bekijk welke onderwerpen je in verschillende fases van je leven kunt tegenkomen.</p>
-            <span class="route-note">Zie deze route als richting. Jij bepaalt zelf wat bij je past.</span>
+            <p class="kicker">Zo werkt KlaarWijs</p>
+            <h2 class="display h2" id="how-title" tabindex="-1">Begrijp het. Probeer het. Regel het.</h2>
           </div>
         </div>
-        <div class="life-route">
-          <article class="life-stage reveal">
-            <span class="life-marker" aria-hidden="true">01</span>
-            <div class="life-card">
-              <span class="life-age">12 t/m 14 jaar</span>
-              <h3>Mijn eerste stappen</h3>
-              <p>Je ontdekt steeds meer zelf. Waar begin je en hoe maak je een goede keuze?</p>
-              <ul class="life-topics">
-                <li>DigiD</li><li>Geld</li><li>Online veiligheid</li><li>Telefoonabonnement</li>
-              </ul>
+        <ol class="how-steps reveal">
+          <li class="how-step">
+            <span class="how-marker" aria-hidden="true">01</span>
+            <div>
+              <h3>Ontdek</h3>
+              <p>Kies een onderwerp, levensfase of situatie die jou interesseert.</p>
+              <div class="how-detail mini-chips" aria-hidden="true"><span>Thema</span><span>Levensfase</span><span>Situatie</span></div>
             </div>
-          </article>
-          <article class="life-stage reveal">
-            <span class="life-marker" aria-hidden="true">02</span>
-            <div class="life-card">
-              <span class="life-age">15 t/m 17 jaar</span>
-              <h3>Ik regel steeds meer</h3>
-              <p>Je krijgt meer vrijheid en moet meer zelf regelen. Kijk eerst goed waar je ja tegen zegt.</p>
-              <ul class="life-topics">
-                <li>Eerste bijbaan</li><li>Loonstrook</li><li>Contracten</li><li>Sparen</li>
-              </ul>
+          </li>
+          <li class="how-step">
+            <span class="how-marker" aria-hidden="true">02</span>
+            <div>
+              <h3>Begrijp</h3>
+              <p>Leer met duidelijke uitleg en herkenbare voorbeelden hoe iets werkt.</p>
+              <div class="how-detail mini-doc" aria-hidden="true"><b>Uitleg</b><i></i><i></i><i></i></div>
             </div>
-          </article>
-          <article class="life-stage reveal">
-            <span class="life-marker" aria-hidden="true">03</span>
-            <div class="life-card">
-              <span class="life-age">18 t/m 20 jaar</span>
-              <h3>Er verandert veel</h3>
-              <p>Je krijgt nieuwe keuzes en zaken om zelf te regelen. Kijk waar je op moet letten.</p>
-              <ul class="life-topics">
-                <li>Zorgverzekering</li><li>Studiefinanciering</li><li>Studiekeuzes</li><li>Vaste lasten</li>
-              </ul>
+          </li>
+          <li class="how-step">
+            <span class="how-marker" aria-hidden="true">03</span>
+            <div>
+              <h3>Oefen</h3>
+              <p>Ontdek met praktische opdrachten waar je op kunt letten en welke stappen je zelf kunt zetten.</p>
+              <div class="how-detail mini-check" aria-hidden="true"><span>Bruto loon</span><span class="is-checked">Netto loon</span></div>
             </div>
-          </article>
-          <article class="life-stage reveal">
-            <span class="life-marker" aria-hidden="true">04</span>
-            <div class="life-card">
-              <span class="life-age">21 t/m 24 jaar</span>
-              <h3>Op eigen benen</h3>
-              <p>Misschien ga je werken, verder leren of kies je een andere weg. Leer hoe je zaken zelf kunt regelen.</p>
-              <ul class="life-topics">
-                <li>Arbeidscontract</li><li>Salaris</li><li>Pensioen</li><li>Werk en studie</li>
-              </ul>
-            </div>
-          </article>
+          </li>
+        </ol>
+        <div class="how-note reveal">
+          <svg aria-hidden="true"><use href="#i-shield"/></svg>
+          <h3>Oefenen met verzonnen gegevens</h3>
+          <p>KlaarWijs vraagt nooit om je echte DigiD-gegevens, BSN, loonstrook of andere persoonlijke documenten. De oefeningen werken met fictieve voorbeelden. En KlaarWijs regelt geen officiële aanvragen voor je: dat doe je zelf, bij de officiële instantie.</p>
         </div>
       </div>
     </section>
 
-    <section class="story-section story-cta" aria-label="KlaarWijs voor jongeren en scholen">
-      <div class="story-inner story-cta-inner reveal">
-        <p><strong>Leren begrijpen, leren regelen.</strong><br>Op het moment dat het bij jou past.</p>
-        <a href="#top">Naar boven <span aria-hidden="true">↑</span></a>
+    <!-- 6. Voor scholen -->
+    <section class="section on-deep schools" id="voor-scholen" aria-labelledby="schools-title">
+      <div class="wrap schools-grid">
+        <div class="reveal">
+          <p class="kicker">Voor het onderwijs</p>
+          <h2 class="display h2" id="schools-title" tabindex="-1">Praktische kennis die jongeren verder helpt.</h2>
+          <p class="concept-tag">Concept in ontwikkeling</p>
+        </div>
+        <div class="schools-text reveal reveal-delay-1">
+          <p>KlaarWijs wordt ontwikkeld als een lesmethode waarmee jongeren leren hoe belangrijke zaken in het dagelijks leven werken. Van geld en werk tot studie, wonen en digitale zelfstandigheid.</p>
+          <p>De beoogde aanpak combineert begrijpelijke uitleg, herkenbare praktijkvoorbeelden en actieve opdrachten. Zo kunnen jongeren niet alleen kennis opdoen, maar ook oefenen met situaties die zij buiten school tegenkomen.</p>
+          <ul class="schools-pillars" aria-label="De beoogde aanpak">
+            <li><b aria-hidden="true">01</b><div><strong>Begrijpelijke uitleg</strong><span>Helder geschreven, zonder wetteksten.</span></div></li>
+            <li><b aria-hidden="true">02</b><div><strong>Herkenbare voorbeelden</strong><span>Situaties uit het leven van jongeren.</span></div></li>
+            <li><b aria-hidden="true">03</b><div><strong>Actieve opdrachten</strong><span>Oefenen met fictieve gegevens.</span></div></li>
+          </ul>
+          <a class="btn btn-line" href="#/onderwijs">Ontdek KlaarWijs voor scholen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
       </div>
     </section>
   </div>
-</main>
 
-<footer class="site-footer">
-</footer>
-
-<!-- Program: each situation is a dedicated view at its own URL
-     (#/programma, #/programma/bijbaan, ...), not a stack of modals. -->
-<section class="program-view compass-view" id="view-program" hidden aria-label="Het Levenskompas">
-  <div class="program-view-inner compass-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> Het Levenskompas</p>
-    <div class="compass-intro">
-      <div>
-        <p class="overlay-eyebrow">Het Levenskompas</p>
-        <h1>Jouw leven. Jouw fase.</h1>
+  <!-- =====================================================
+       LEVENSKOMPAS (aparte ervaring)
+       ===================================================== -->
+  <section class="view compass on-navy" id="view-compass" hidden aria-labelledby="compass-title" data-title="Het Levenskompas | KlaarWijs">
+    <div class="wrap">
+      <div class="compass-top">
+        <a class="back-link" href="#/"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg> Terug naar home</a>
+        <p class="compass-hint">Tip: gebruik de pijltjestoetsen om door de fases te bladeren.</p>
       </div>
-      <p>Van je eerste eigen keuzes tot steeds meer zelf regelen. Ontdek wat bij jou past.</p>
-    </div>
-    <div class="compass-stage-wrap">
-      <button type="button" class="compass-arrow" id="compassPrevious" aria-label="Vorige levensfase">&#8592;</button>
-      <div class="compass-stage" id="compassStage">
-        <span class="compass-paper one" id="compassPaperOne">Kijk wat bij jou past</span>
-        <span class="compass-paper two" id="compassPaperTwo">Jouw volgende stap</span>
-        <div class="compass-orbit">
-          <img class="compass-collage" id="compassCollage" src="assets/levensfases/12-14.png" alt="Collage van de levensfase 12 tot en met 14 jaar met onderwerpen over een telefoon, geld, DigiD en online veiligheid.">
+      <div class="compass-intro">
+        <div>
+          <p class="kicker">Het Levenskompas</p>
+          <h1 class="display" id="compass-title" tabindex="-1"><span class="nowrap">Jouw leven<span class="dot">.</span></span> <span class="nowrap">Jouw fase<span class="dot">.</span></span></h1>
+        </div>
+        <p>Van je eerste eigen keuzes tot steeds meer zelf regelen. Blader door de fases en ontdek wat bij jou past.</p>
+      </div>
+      <div class="compass-stage-wrap">
+        <button type="button" class="compass-arrow" id="compassPrevious" aria-label="Vorige levensfase"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+        <div class="compass-stage" id="compassStage">
+          <span class="compass-paper one" aria-hidden="true">Kijk wat bij jou past</span>
+          <span class="compass-paper two" aria-hidden="true">Jouw volgende stap</span>
+          <div class="compass-orbit">
+            <img class="compass-collage" id="compassCollage" src="assets/levensfases/12-14.webp" width="1672" height="941" alt="">
+          </div>
+        </div>
+        <button type="button" class="compass-arrow" id="compassNext" aria-label="Volgende levensfase"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="compass-nav" role="group" aria-label="Kies een levensfase" id="compassTabs"></div>
+      <div class="compass-content">
+        <div aria-live="polite">
+          <span class="compass-age" id="compassAge"></span>
+          <h2 id="compassTitle"></h2>
+          <p class="compass-description" id="compassDescription"></p>
+          <p class="compass-principle"><svg aria-hidden="true"><use href="#i-open"/></svg><span>Je leeftijd helpt alleen bij het kiezen. Alle onderwerpen zijn voor iedereen: je mag vooruitkijken of juist bij de basis beginnen.</span></p>
+        </div>
+        <div>
+          <h3 class="compass-list-title">Onderwerpen in deze fase</h3>
+          <div class="compass-topics" id="compassTopics"></div>
+          <div class="compass-situations" id="compassSituations"></div>
+          <div class="compass-more">
+            <a class="text-link" href="#/themas">Bekijk alle thema's <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
       </div>
-      <button type="button" class="compass-arrow" id="compassNext" aria-label="Volgende levensfase">&#8594;</button>
     </div>
-    <nav class="compass-nav" aria-label="Kies een levensfase">
-      <button type="button" class="compass-tab is-active" data-phase="0" data-number="01">12–14</button>
-      <button type="button" class="compass-tab" data-phase="1" data-number="02">15–17</button>
-      <button type="button" class="compass-tab" data-phase="2" data-number="03">18–20</button>
-      <button type="button" class="compass-tab" data-phase="3" data-number="04">21–24</button>
-    </nav>
-    <div class="compass-content" aria-live="polite">
-      <div>
-        <span class="compass-age" id="compassAge">12–14 jaar</span>
-        <h2 id="compassTitle">Mijn eerste stappen</h2>
-        <p class="compass-description" id="compassDescription">Je krijgt steeds meer vrijheid en maakt je eerste eigen keuzes. Hoe werkt je bankrekening? Wat kost een telefoonabonnement? En waarom is DigiD belangrijk? Ontdek stap voor stap hoe de wereld om je heen werkt.</p>
+  </section>
+
+  <!-- =====================================================
+       THEMA / SITUATIE / ONDERWERP — gevuld vanuit content.js
+       ===================================================== -->
+  <div class="view" id="view-page" hidden></div>
+
+  <!-- =====================================================
+       VOOR SCHOLEN — informatiepagina
+       ===================================================== -->
+  <div class="view" id="view-edu" hidden data-title="KlaarWijs voor scholen | KlaarWijs">
+    <section class="page-head on-navy">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Kruimelpad"><a href="#/">KlaarWijs</a><span aria-hidden="true">/</span><a href="#/voor-scholen">Voor scholen</a><span aria-hidden="true">/</span><span aria-current="page">KlaarWijs voor scholen</span></nav>
+        <p class="kicker">Voor het onderwijs</p>
+        <h1 class="display" tabindex="-1">KlaarWijs voor scholen</h1>
+        <p class="lead">KlaarWijs is een concept in ontwikkeling: een lesmethode waarmee jongeren leren hoe belangrijke zaken in het dagelijks leven werken. Op deze pagina lees je wat het idee is en wat er nu al te zien is.</p>
+        <div class="meta"><span>Concept in ontwikkeling</span><span>Voor jongeren van 12 t/m 24 jaar</span></div>
       </div>
-      <div>
-        <ul class="compass-topics" id="compassTopics">
-          <li>Mijn telefoon</li><li>Mijn geld</li><li>Sparen voor</li><li>DigiD</li><li>Online veilig</li><li>School en toekomst</li>
-        </ul>
-        <button type="button" class="compass-cta" id="compassOpen">Ontdek deze fase <span aria-hidden="true">&#8594;</span></button>
+    </section>
+    <section class="page-body torn-top">
+      <div class="wrap">
+        <div class="page-section">
+          <h2>De beoogde aanpak</h2>
+          <p class="sub">Elke les is bedoeld om drie dingen te combineren.</p>
+          <div class="edu-grid">
+            <div class="edu-card"><b>01</b><h3>Begrijpelijke uitleg</h3><p>Korte, heldere uitleg op B1/B2-niveau over hoe iets werkt en waarom het belangrijk is.</p></div>
+            <div class="edu-card"><b>02</b><h3>Herkenbare praktijkvoorbeelden</h3><p>Situaties die jongeren buiten school tegenkomen, zoals een eerste bijbaan of op kamers gaan.</p></div>
+            <div class="edu-card"><b>03</b><h3>Actieve opdrachten</h3><p>Oefenen met fictieve documenten en gegevens, zodat leerlingen zelf ontdekken waar ze op moeten letten.</p></div>
+          </div>
+        </div>
+        <div class="page-section">
+          <h2>Zes thema's</h2>
+          <p class="sub">De voorlopige inhoud is opgebouwd rond zes thema's. Ieder thema is toegankelijk voor alle leeftijden.</p>
+          <div class="theme-chips" id="eduThemes"></div>
+        </div>
+        <div class="page-section">
+          <h2>Wat er nu te zien is</h2>
+          <ul class="plain-list">
+            <li>Deze website is een prototype dat het idee en de opbouw van KlaarWijs laat zien.</li>
+            <li>Er is één oefenversie te bekijken: <a class="text-link" href="#/onderwerpen/loonstrook">je loonstrook lezen</a>. Die werkt met fictieve gegevens.</li>
+            <li>De overige lessen zijn in ontwikkeling. Uitleg over wet- en regelgeving wordt pas gepubliceerd na controle met officiële bronnen, zoals Rijksoverheid, Belastingdienst, DUO en Dienst Toeslagen.</li>
+            <li>Er zijn nog geen docentenomgeving, accounts of koppelingen met schoolsystemen.</li>
+          </ul>
+        </div>
+        <div class="page-section">
+          <h2>Meedenken?</h2>
+          <p class="sub">We horen graag hoe KlaarWijs in de les van waarde kan zijn. Contactmogelijkheden voor scholen volgen in een volgende versie van deze website.</p>
+          <a class="btn btn-primary" href="#/themas">Bekijk de thema's <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
-</section>
 
-<section class="program-view situations-view" id="view-situations" hidden aria-label="Jouw situaties">
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/leeftijd">Kies je leeftijd</a> <span aria-hidden="true">/</span> Jouw situaties</p>
-    <p class="choice-summary" id="choiceSummary">Jouw onderwerpen</p>
-    <p class="overlay-eyebrow">Jouw situaties</p>
-    <h1 id="overviewTitle">Wat speelt er bij jou?</h1>
-    <p class="view-sub" id="overviewDescription">Kies wat nu bij jou past.</p>
-    <ul class="compass-topics" id="overviewTopics" aria-label="Onderwerpen van deze fase"></ul>
-    <div class="program-grid">
-      <button type="button" class="program-card" data-route="bijbaan">
-        <span class="card-body">
-          <span class="card-title">Mijn eerste bijbaan</span>
-          <span class="card-cue">Bekijk de route
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </span>
-        <span class="card-status status-demo">Demo beschikbaar</span>
-      </button>
-      <button type="button" class="program-card" data-route="achttien">
-        <span class="card-body">
-          <span class="card-title">Ik word 18</span>
-          <span class="card-cue">Bekijk de route
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </span>
-      </button>
-      <button type="button" class="program-card" data-route="studeren">
-        <span class="card-body">
-          <span class="card-title">Ik ga studeren</span>
-          <span class="card-cue">Bekijk de route
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </span>
-      </button>
-      <button type="button" class="program-card" data-route="opmezelf">
-        <span class="card-body">
-          <span class="card-title">Ik ga op mezelf</span>
-          <span class="card-cue">Bekijk de route
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<section class="program-view" id="view-route-bijbaan" hidden aria-label="Mijn eerste bijbaan">
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> Mijn eerste bijbaan</p>
-    <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
-    <h1>Mijn eerste bijbaan</h1>
-    <p class="view-sub">Drie dingen die je wilt weten als je voor het eerst gaat werken.</p>
-    <ul class="route-steps">
-      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/loonstrook"><span>Je loonstrook begrijpen</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
-      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/contract"><span>Je contract bekijken</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
-      <li><button type="button" class="step-btn" data-nav="#/programma/bijbaan/vragen"><span>Vragen die je kunt stellen</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
-    </ul>
-  </div>
-</section>
-
-<section class="program-view" id="view-step-loonstrook" hidden aria-label="Je loonstrook begrijpen">
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je loonstrook begrijpen</p>
-    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
-    <h1>Je loonstrook begrijpen</h1>
-    <p class="view-sub">Op een loonstrook zie je wat je bruto verdient en wat je netto krijgt. Oefen het verschil tussen die twee bedragen.</p>
-
-    <div class="exercise">
-      <div class="payslip-demo" aria-hidden="true">
-        <p class="payslip-demo-title">Voorbeeldloonstrook</p>
+  <!-- Oefening: wordt in de onderwerppagina 'loonstrook' geplaatst -->
+  <div hidden id="lessonStore">
+    <div class="exercise" id="lessonLoonstrook">
+      <div class="exercise-head">
+        <h2>Oefen: bruto of netto?</h2>
+        <span class="status status-demo">Demo</span>
+      </div>
+      <div class="payslip-demo">
+        <p class="payslip-demo-title">Voorbeeldloonstrook (fictief)</p>
         <div class="payslip-row"><span>Bruto loon</span><span>€ •••,••</span></div>
         <div class="payslip-row"><span>Loonheffing</span><span>− € •••,••</span></div>
-        <div class="payslip-row is-marked"><span>Netto loon</span><span>€ •••,••</span></div>
+        <div class="payslip-row is-marked"><span>Netto loon <span class="visually-hidden">(gemarkeerd)</span></span><span>€ •••,••</span></div>
       </div>
-
-      <div class="exercise-question">
-        <p class="exercise-prompt"><strong>Welk label is hierboven gemarkeerd?</strong></p>
+      <div>
+        <p class="exercise-prompt"><strong>Welke regel is gemarkeerd op de voorbeeldloonstrook?</strong></p>
         <div class="exercise-options">
           <button type="button" class="exercise-option" data-answer="bruto">Bruto loon</button>
           <button type="button" class="exercise-option" data-answer="netto">Netto loon</button>
         </div>
         <p class="exercise-feedback" id="exerciseFeedback" role="status" aria-live="polite"></p>
-        <button type="button" class="route-back exercise-retry" id="exerciseRetry" hidden>&#8635; Opnieuw proberen</button>
+        <button type="button" class="exercise-retry" id="exerciseRetry" hidden>&#8635; Opnieuw proberen</button>
+      </div>
+      <p class="exercise-disclaimer">Dit is een oefenvoorbeeld met verzonnen gegevens. Gebruik hier nooit je eigen loonstrook.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a href="#/" class="logo" aria-label="KlaarWijs, naar de homepage">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+          <path fill="#FFFFFF" d="M32 96H316Q322 96 322 102V154Q322 160 316 160H72V440H352V232Q352 226 358 226H410Q416 226 416 232V480Q416 504 392 504H32Q8 504 8 480V120Q8 96 32 96Z"/>
+          <rect x="348" y="32" width="156" height="156" rx="9" fill="#E76F51"/>
+        </svg>
+        <span class="logo-word">KlaarWijs</span>
+      </a>
+      <p>Leren begrijpen, leren regelen.</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h2>Ontdekken</h2>
+        <ul>
+          <li><a href="#/levenskompas">Het Levenskompas</a></li>
+          <li><a href="#/themas">Thema's</a></li>
+          <li><a href="#/situaties">Situaties</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Over KlaarWijs</h2>
+        <ul>
+          <li><a href="#/ontdek">Dit is KlaarWijs</a></li>
+          <li><a href="#/zo-werkt-het">Zo werkt het</a></li>
+          <li><a href="#/onderwijs">Voor scholen</a></li>
+        </ul>
       </div>
     </div>
-
   </div>
-</section>
-
-<section class="program-view" id="view-step-contract" hidden aria-label="Je contract bekijken">
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Je contract bekijken</p>
-    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
-    <h1>Je contract bekijken</h1>
-    <p class="view-sub">In een arbeidscontract staan afspraken over loon, uren, proeftijd en opzegtermijn.</p>
+  <div class="wrap footer-legal">
+    <span>KlaarWijs is een concept in ontwikkeling. Voorbeelden en oefeningen zijn fictief.</span>
+    <span>&copy; 2026 KlaarWijs</span>
   </div>
-</section>
+</footer>
 
-<section class="program-view" id="view-step-vragen" hidden aria-label="Vragen die je kunt stellen">
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <a href="#/programma/bijbaan">Mijn eerste bijbaan</a> <span aria-hidden="true">/</span> Vragen die je kunt stellen</p>
-    <button type="button" class="route-back" data-nav="#/programma/bijbaan">&larr; Terug</button>
-    <h1>Vragen die je kunt stellen</h1>
-    <p class="view-sub">Je mag een werkgever vragen stellen over uren, loon en vakantiedagen.</p>
-  </div>
-</section>
-
-<section class="program-view" id="view-stub" hidden>
-  <div class="program-view-inner">
-    <p class="breadcrumb"><a href="#/">KlaarWijs</a> <span aria-hidden="true">/</span> <a href="#/programma">Jouw situaties</a> <span aria-hidden="true">/</span> <span id="stubBreadcrumbCurrent"></span></p>
-    <button type="button" class="route-back" data-nav="#/programma">&larr; Terug</button>
-    <h1 id="stubTitle"></h1>
-  </div>
-</section>
-
-<!-- Zo werkt het panel -->
-<div class="overlay panel-small" id="panelHow" role="dialog" aria-modal="true" aria-labelledby="howTitle" hidden>
-  <div class="overlay-panel">
-    <button type="button" class="overlay-close" data-close-overlay="panelHow" aria-label="Sluiten">&times;</button>
-    <p class="overlay-eyebrow">Zo werkt het</p>
-    <h2 id="howTitle">In drie stappen</h2>
-    <div class="panel-body">
-      <ol class="panel-steps">
-        <li><span class="step-num">1</span><span>Kies jouw situatie.</span></li>
-        <li><span class="step-num">2</span><span>Begrijp hoe het werkt.</span></li>
-        <li><span class="step-num">3</span><span>Oefen je volgende stap.</span></li>
-      </ol>
-      <p>Geen wetteksten en geen moeilijke taal. Je krijgt korte uitleg over wat op dat moment bij je speelt.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Voor scholen panel -->
-<div class="overlay panel-small" id="panelSchools" role="dialog" aria-modal="true" aria-labelledby="schoolsTitle" hidden>
-  <div class="overlay-panel">
-    <button type="button" class="overlay-close" data-close-overlay="panelSchools" aria-label="Sluiten">&times;</button>
-    <p class="overlay-eyebrow">Voor scholen</p>
-    <h2 id="schoolsTitle">Voor scholen</h2>
-    <div class="panel-body">
-      <p>KlaarWijs helpt jongeren om zaken rond werk, wonen en studeren beter te begrijpen.</p>
-      <p>We denken graag mee over hoe je dit in je lessen kunt gebruiken.</p>
-    </div>
-  </div>
-</div>
-
-<script>
-(function () {
-  "use strict";
-
-  /* ---------- Accessible modal panels (Zo werkt het / Voor scholen) ---------- */
-
-  var lastFocused = null;
-
-  function openOverlay(overlay) {
-    lastFocused = document.activeElement;
-    overlay.hidden = false;
-    var closeBtn = overlay.querySelector(".overlay-close");
-    if (closeBtn) closeBtn.focus();
-    document.addEventListener("keydown", onKeydown);
-  }
-
-  function closeOverlay(overlay) {
-    overlay.hidden = true;
-    document.removeEventListener("keydown", onKeydown);
-    if (lastFocused) lastFocused.focus();
-  }
-
-  function onKeydown(e) {
-    if (e.key !== "Escape") return;
-    var openOne = document.querySelector(".overlay:not([hidden])");
-    if (openOne) closeOverlay(openOne);
-  }
-
-  document.querySelectorAll("[data-open-panel]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var target = document.getElementById(btn.getAttribute("data-open-panel"));
-      if (target) openOverlay(target);
-    });
-  });
-
-  document.querySelectorAll("[data-close-overlay]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var target = document.getElementById(btn.getAttribute("data-close-overlay"));
-      if (target) closeOverlay(target);
-    });
-  });
-
-  document.querySelectorAll(".overlay").forEach(function (overlay) {
-    overlay.addEventListener("click", function (e) {
-      if (e.target === overlay) closeOverlay(overlay);
-    });
-  });
-
-  /* ---------- Hash-based router for the dedicated program pages ---------- */
-
-  var routes = {
-    "": "homepage-content",
-    "top": "homepage-content",
-    "programma": "view-program",
-    "leeftijd": "view-program",
-    "leeftijd/12-14": "view-program",
-    "leeftijd/15-17": "view-program",
-    "leeftijd/18-20": "view-program",
-    "leeftijd/21-24": "view-program",
-    "situaties": "view-situations",
-    "situaties/12-14": "view-situations",
-    "situaties/15-17": "view-situations",
-    "situaties/18-20": "view-situations",
-    "situaties/21-24": "view-situations",
-    "programma/bijbaan": "view-route-bijbaan",
-    "programma/bijbaan/loonstrook": "view-step-loonstrook",
-    "programma/bijbaan/contract": "view-step-contract",
-    "programma/bijbaan/vragen": "view-step-vragen",
-    "programma/achttien": "view-stub",
-    "programma/studeren": "view-stub",
-    "programma/opmezelf": "view-stub"
-  };
-
-  var allViewIds = [
-    "homepage-content",
-    "view-program",
-    "view-situations",
-    "view-route-bijbaan",
-    "view-step-loonstrook",
-    "view-step-contract",
-    "view-step-vragen",
-    "view-stub"
-  ];
-
-  var pageTitles = {
-    "homepage-content": "KlaarWijs",
-    "view-program": "Het Levenskompas | KlaarWijs",
-    "view-situations": "Jouw situaties | KlaarWijs",
-    "view-route-bijbaan": "Mijn eerste bijbaan · KlaarWijs",
-    "view-step-loonstrook": "Je loonstrook begrijpen · KlaarWijs",
-    "view-step-contract": "Je contract bekijken · KlaarWijs",
-    "view-step-vragen": "Vragen die je kunt stellen · KlaarWijs"
-  };
-
-  var stubTitles = {
-    achttien: "Ik word 18",
-    studeren: "Ik ga studeren",
-    opmezelf: "Ik ga op mezelf"
-  };
-
-  var phases = [
-    {
-      key: "12-14",
-      image: "assets/levensfases/12-14.png",
-      alt: "Collage van de levensfase 12 tot en met 14 jaar met onderwerpen over een telefoon, geld, DigiD en online veiligheid.",
-      age: "12–14 jaar",
-      title: "Mijn eerste stappen",
-      description: "Je krijgt steeds meer vrijheid en maakt je eerste eigen keuzes. Hoe werkt je bankrekening? Wat kost een telefoonabonnement? En waarom is DigiD belangrijk? Ontdek stap voor stap hoe de wereld om je heen werkt.",
-      topics: ["Mijn telefoon", "Mijn geld", "Sparen voor", "DigiD", "Online veilig", "School en toekomst"]
-    },
-    {
-      key: "15-17",
-      image: "assets/levensfases/15-17.png",
-      alt: "Collage van de levensfase 15 tot en met 17 jaar met onderwerpen over een bijbaan, loonstrook, contracten en studiekeuze.",
-      age: "15–17 jaar",
-      title: "Steeds meer zelf",
-      description: "Je eerste bijbaan, je eigen salaris en keuzes over je toekomst. Je krijgt meer mogelijkheden, maar ook nieuwe vragen. Leer hoe je een loonstrook begrijpt en waar je op let bij een contract.",
-      topics: ["Mijn eerste bijbaan", "Mijn loonstrook", "Contracten", "Mbo, hbo, universiteit of werken?", "Studiekeuze", "Mijn rijbewijs", "Bijna 18"]
-    },
-    {
-      key: "18-20",
-      image: "assets/levensfases/18-20.png",
-      alt: "Collage van de levensfase 18 tot en met 20 jaar met onderwerpen over zorgverzekering, DUO, studeren, geld en op kamers gaan.",
-      age: "18–20 jaar",
-      title: "Er verandert veel",
-      description: "Je wordt meerderjarig en ineens verandert er van alles. Van je zorgverzekering tot DUO en misschien je eerste eigen kamer. Ontdek wat voor jou speelt en hoe je zaken zelf kunt regelen.",
-      topics: ["18 worden", "Zorgverzekering", "Zorgtoeslag", "DUO en studiefinanciering", "Op kamers", "Mijn geld en vaste lasten"]
-    },
-    {
-      key: "21-24",
-      image: "assets/levensfases/21-24.png",
-      alt: "Collage van de levensfase 21 tot en met 24 jaar met onderwerpen over werk, salaris, wonen, pensioen en vaste lasten.",
-      age: "21–24 jaar",
-      title: "Op eigen benen",
-      description: "Misschien rond je je studie af, begin je aan een nieuwe baan of ga je zelfstandig wonen. Je krijgt meer zaken rond werk, inkomen en je huishouden zelf te regelen.",
-      topics: ["Mijn eerste serieuze baan", "Salaris en arbeidsvoorwaarden", "Pensioen", "Van student naar werkende", "DUO stopzetten", "Wonen en eigen huishouden", "Belastingen en vaste lasten"]
-    }
-  ];
-
-  var activePhase = 0;
-
-  function phaseFromPath(path) {
-    var key = path.split("/").pop();
-    var index = phases.findIndex(function (phase) { return phase.key === key; });
-    return index < 0 ? 0 : index;
-  }
-
-  function currentPath() {
-    return location.hash.replace(/^#\/?/, "");
-  }
-
-  function ageFromPath(path) {
-    var key = path.split("/").pop();
-    var ages = {
-      "12-14": "12 t/m 14 jaar",
-      "15-17": "15 t/m 17 jaar",
-      "18-20": "18 t/m 20 jaar",
-      "21-24": "21 t/m 24 jaar"
-    };
-    return ages[key] || "";
-  }
-
-  function renderCompass(index, animate) {
-    activePhase = (index + phases.length) % phases.length;
-    var phase = phases[activePhase];
-    var stage = document.getElementById("compassStage");
-    var collage = document.getElementById("compassCollage");
-    var tabs = document.querySelectorAll(".compass-tab");
-
-    function update() {
-      document.getElementById("compassAge").textContent = phase.age;
-      document.getElementById("compassTitle").textContent = phase.title;
-      document.getElementById("compassDescription").textContent = phase.description;
-      document.getElementById("compassCollage").src = phase.image;
-      document.getElementById("compassCollage").alt = phase.alt;
-      document.getElementById("compassTopics").innerHTML = phase.topics.map(function (topic) {
-        return "<li>" + topic + "</li>";
-      }).join("");
-      tabs.forEach(function (tab, tabIndex) {
-        tab.classList.toggle("is-active", tabIndex === activePhase);
-        tab.setAttribute("aria-current", tabIndex === activePhase ? "true" : "false");
-      });
-      document.getElementById("compassOpen").setAttribute("data-phase-key", phase.key);
-    }
-
-    if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      update();
-      return;
-    }
-
-    stage.classList.add("is-changing");
-    collage.classList.add("is-changing");
-    window.setTimeout(function () {
-      update();
-      stage.classList.remove("is-changing");
-      collage.classList.remove("is-changing");
-    }, 360);
-  }
-
-  function render(moveFocus) {
-    var path = currentPath();
-    var viewId = routes.hasOwnProperty(path) ? routes[path] : "homepage-content";
-
-    if (path.indexOf("leeftijd/") === 0) {
-      activePhase = phaseFromPath(path);
-    }
-
-    allViewIds.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.hidden = id !== viewId;
-    });
-
-    if (viewId === "view-stub") {
-      var key = path.split("/").pop();
-      var title = stubTitles[key] || "";
-      document.getElementById("stubTitle").textContent = title;
-      document.getElementById("stubBreadcrumbCurrent").textContent = title;
-      document.title = title + " · KlaarWijs";
-    } else if (viewId === "view-situations") {
-      var age = ageFromPath(path);
-      var overviewPhase = phases[phaseFromPath(path)];
-      document.getElementById("choiceSummary").textContent = age ? "Gekozen fase: " + age : "Jouw onderwerpen";
-      document.getElementById("overviewTitle").textContent = overviewPhase.title;
-      document.getElementById("overviewDescription").textContent = overviewPhase.description;
-      document.getElementById("overviewTopics").innerHTML = overviewPhase.topics.map(function (topic) {
-        return "<li>" + topic + "</li>";
-      }).join("");
-      document.title = pageTitles[viewId] || "KlaarWijs";
-    } else {
-      document.title = pageTitles[viewId] || "KlaarWijs";
-    }
-
-    if (viewId === "view-program") {
-      renderCompass(activePhase, false);
-    }
-
-    if (viewId === "view-step-loonstrook") {
-      resetExercise();
-    }
-
-    window.scrollTo(0, 0);
-
-    if (moveFocus) {
-      var active = document.getElementById(viewId);
-      var heading = active ? active.querySelector("h1") : null;
-      if (heading) {
-        heading.setAttribute("tabindex", "-1");
-        heading.focus();
-      }
-    }
-  }
-
-  window.addEventListener("hashchange", function () {
-    render(true);
-  });
-
-  document.getElementById("startBtn").addEventListener("click", function () {
-    location.hash = "#/leeftijd";
-  });
-
-  document.querySelectorAll(".compass-tab").forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      var index = Number(tab.getAttribute("data-phase"));
-      history.replaceState(null, "", "#/leeftijd/" + phases[index].key);
-      renderCompass(index, true);
-    });
-  });
-
-  document.getElementById("compassPrevious").addEventListener("click", function () {
-    var nextIndex = (activePhase + phases.length - 1) % phases.length;
-    history.replaceState(null, "", "#/leeftijd/" + phases[nextIndex].key);
-    renderCompass(nextIndex, true);
-  });
-
-  document.getElementById("compassNext").addEventListener("click", function () {
-    var nextIndex = (activePhase + 1) % phases.length;
-    history.replaceState(null, "", "#/leeftijd/" + phases[nextIndex].key);
-    renderCompass(nextIndex, true);
-  });
-
-  document.getElementById("compassOpen").addEventListener("click", function () {
-    location.hash = "#/situaties/" + this.getAttribute("data-phase-key");
-  });
-
-  document.querySelectorAll("[data-route]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      location.hash = "#/programma/" + btn.getAttribute("data-route");
-    });
-  });
-
-  document.querySelectorAll("[data-nav]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      location.hash = btn.getAttribute("data-nav");
-    });
-  });
-
-  /* ---------- Loonstrook concept exercise ---------- */
-
-  function resetExercise() {
-    document.querySelectorAll("#view-step-loonstrook .exercise-option").forEach(function (opt) {
-      opt.disabled = false;
-      opt.classList.remove("is-correct", "is-incorrect");
-    });
-    var feedback = document.getElementById("exerciseFeedback");
-    if (feedback) feedback.textContent = "";
-    var retry = document.getElementById("exerciseRetry");
-    if (retry) retry.hidden = true;
-  }
-
-  document.querySelectorAll("#view-step-loonstrook .exercise-option").forEach(function (opt) {
-    opt.addEventListener("click", function () {
-      var options = document.querySelectorAll("#view-step-loonstrook .exercise-option");
-      options.forEach(function (o) {
-        o.disabled = true;
-      });
-
-      var correct = opt.getAttribute("data-answer") === "netto";
-      opt.classList.add(correct ? "is-correct" : "is-incorrect");
-      if (!correct) {
-        var correctBtn = document.querySelector('#view-step-loonstrook .exercise-option[data-answer="netto"]');
-        if (correctBtn) correctBtn.classList.add("is-correct");
-      }
-
-      var feedback = document.getElementById("exerciseFeedback");
-      feedback.textContent = correct
-        ? "Goed! \u201cNetto loon\u201d is het bedrag dat je daadwerkelijk ontvangt."
-        : "Niet helemaal. Het gemarkeerde label is \u201cNetto loon\u201d.";
-
-      document.getElementById("exerciseRetry").hidden = false;
-    });
-  });
-
-  document.getElementById("exerciseRetry").addEventListener("click", resetExercise);
-
-  var revealItems = document.querySelectorAll(".reveal");
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-    revealItems.forEach(function (item) {
-      item.classList.add("is-visible");
-    });
-  } else {
-    var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14 });
-
-    revealItems.forEach(function (item) {
-      revealObserver.observe(item);
-    });
-  }
-
-  render(false);
-})();
-</script>
-
+<script src="js/content.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
