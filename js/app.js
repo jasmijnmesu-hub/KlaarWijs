@@ -1,4 +1,4 @@
-/* KlaarWijs — router, weergaven, zoeken en Levenskompas.
+/* RegelRoute — router, weergaven, zoeken en Levenskompas.
    Alle inhoud komt uit js/content.js (window.KW_CONTENT). */
 (function () {
   "use strict";
@@ -210,7 +210,7 @@
     var related = situationsForTheme(theme);
 
     return pageHead({
-      crumbs: breadcrumb([["KlaarWijs", "#/"], ["Thema's", "#/themas"], [theme.title]]),
+      crumbs: breadcrumb([["RegelRoute", "#/"], ["Thema's", "#/themas"], [theme.title]]),
       kicker: "Thema " + pad(i + 1),
       title: theme.title,
       lead: theme.intro,
@@ -243,7 +243,7 @@
     var relatedThemes = themesForTopics(s.topics);
 
     return pageHead({
-      crumbs: breadcrumb([["KlaarWijs", "#/"], [s.title]]),
+      crumbs: breadcrumb([["RegelRoute", "#/"], [s.title]]),
       kicker: "Situatie · " + s.when,
       title: s.title,
       lead: s.lead,
@@ -273,8 +273,8 @@
   function renderTopic(topic) {
     var primary = themeById[topic.themes[0]];
     var crumbs = primary
-      ? [["KlaarWijs", "#/"], [primary.title, "#/themas/" + primary.id], [topic.title]]
-      : [["KlaarWijs", "#/"], [situationById[topic.situations[0]].title, "#/situaties/" + topic.situations[0]], [topic.title]];
+      ? [["RegelRoute", "#/"], [primary.title, "#/themas/" + primary.id], [topic.title]]
+      : [["RegelRoute", "#/"], [situationById[topic.situations[0]].title, "#/situaties/" + topic.situations[0]], [topic.title]];
     var places = "";
 
     if (topic.themes.length) {
@@ -327,7 +327,7 @@
         resetExercise();
       }
     }
-    pageView.setAttribute("data-title", item.title + " | KlaarWijs");
+    pageView.setAttribute("data-title", item.title + " | RegelRoute");
   }
 
   /* ---------- Levenskompas ---------- */
@@ -475,7 +475,7 @@
       el.classList.add("is-entering");
     }
     currentView = id;
-    document.title = el.getAttribute("data-title") || "KlaarWijs";
+    document.title = el.getAttribute("data-title") || "RegelRoute";
   }
 
   function focusHeading(el) {

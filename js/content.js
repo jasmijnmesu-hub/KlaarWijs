@@ -1,4 +1,4 @@
-/* KlaarWijs — centrale contentdata.
+/* RegelRoute — centrale contentdata.
    Eén bron voor thema's, onderwerpen, situaties en levensfasen.
    Een onderwerp heeft overal hetzelfde ID; thema's, situaties en
    levensfasen verwijzen er alleen naar. Zo bestaat elke tekst maar één keer.

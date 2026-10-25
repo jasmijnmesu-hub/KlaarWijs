@@ -1,5 +1,5 @@
 /* =========================================================
-   KlaarWijs — stylesheet
+   RegelRoute — stylesheet
    Eén systeem: tokens → basis → componenten → secties → pagina's.
    ========================================================= */
 
@@ -339,7 +339,7 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   2. DIT IS KLAARWIJS
+   2. DIT IS REGELROUTE
    ========================================================= */
 .intro-grid { display: grid; gap: clamp(36px, 6vw, 72px); }
 .intro-title { font-size: clamp(2.4rem, 6vw, 5.4rem); color: var(--ink); max-width: 12ch; }
@@ -483,7 +483,7 @@ main, .site-footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   5. ZO WERKT KLAARWIJS
+   5. ZO WERKT REGELROUTE
    ========================================================= */
 /* Volgt direct op de intro (zelfde ondergrond): scheiding met een lijn, net als de thema's. */
 .how { padding-block: 0 clamp(64px, 8vw, 112px); }
