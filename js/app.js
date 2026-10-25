@@ -136,24 +136,20 @@
       esc(label) + NEW_TAB + '<svg aria-hidden="true"><use href="#i-external"/></svg></a>';
   }
 
-  // Wegwijzer: onderwerp → bron. Elke regel is één gewone tekstlink, geen beeldmerk.
+  // Prikbord: elk papiertje is één gewone tekstlink (onderwerp → bron), geen beeldmerk.
   function renderSources() {
-    var groups = [
-      { kind: "overheid", title: "Overheid en uitvoeringsorganisaties" },
-      { kind: "onafhankelijk", title: "Onafhankelijke deskundige organisatie", note: "Geen overheidsinstantie." }
-    ];
-    document.getElementById("sourcesList").innerHTML = groups.map(function (group) {
-      return '<div class="signpost-group">' +
-        '<h3 class="signpost-label">' + esc(group.title) + (group.note ? " <span>" + esc(group.note) + "</span>" : "") + "</h3>" +
-        "<ul>" + sources.filter(function (s) { return s.kind === group.kind; }).map(function (s) {
-          return '<li><a class="signpost" href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' +
-            '<span class="signpost-topic">' + esc(s.topic) + "</span>" +
-            '<svg class="signpost-arrow" viewBox="0 0 64 20" aria-hidden="true"><path d="M2 11 C 18 7, 34 13, 58 10 M49 3 L 60 10 L 50 17"/></svg>' +
-            '<span class="signpost-name"><span class="visually-hidden">: </span><span class="marker">' + esc(s.name) + "</span>" +
-              '<svg class="signpost-ext" aria-hidden="true"><use href="#i-external"/></svg></span>' +
-            '<span class="visually-hidden">, </span><span class="signpost-domain">' + esc(s.url.replace(/^https?:\/\/(www\.)?/, "").split("/")[0]) + "</span>" +
-            NEW_TAB + "</a></li>";
-        }).join("") + "</ul></div>";
+    var KIND = { overheid: "Overheid", onafhankelijk: "Onafhankelijk · geen overheid" };
+    document.getElementById("sourcesList").innerHTML = sources.map(function (s) {
+      return '<li class="note note-' + s.kind + '">' +
+        '<span class="note-tape" aria-hidden="true"></span>' +
+        '<a class="note-paper" href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="note-kind">' + esc(KIND[s.kind]) + '<span class="visually-hidden">: </span></span>' +
+          '<span class="note-topic">' + esc(s.topic) + '<span class="visually-hidden">. </span></span>' +
+          '<span class="note-source"><span class="note-via">Lees verder bij<span class="visually-hidden"> </span></span>' +
+            '<span class="note-name">' + esc(s.name) + '<svg aria-hidden="true"><use href="#i-external"/></svg></span></span>' +
+          '<span class="visually-hidden">, </span><span class="note-domain">' + esc(s.url.replace(/^https?:\/\/(www\.)?/, "").split("/")[0]) + "</span>" +
+          NEW_TAB +
+        "</a></li>";
     }).join("");
   }
 
