@@ -285,5 +285,40 @@ window.KW_CONTENT = (function () {
   situations.forEach(function (situation) { link(situation.topics, "situations", situation.id); });
   phases.forEach(function (phase) { link(phase.topics, "phases", phase.key); });
 
-  return { topics: topics, themes: themes, situations: situations, phases: phases, sources: sources };
+  var parentPhases = [
+    {
+      age: "12–15 jaar",
+      title: "De eerste stappen naar meer zelfstandigheid",
+      topics: ["bankrekening", "betalen", "sparen", "telefoonabonnement", "online-veiligheid", "onderwijsroutes"],
+      learning: "Jongeren leren de basis van geld, digitale veiligheid en keuzes maken. Ze oefenen bijvoorbeeld met budgetteren, veilig online handelen en nadenken over een volgende schoolstap.",
+      tips: ["Bespreek samen welke keuzes je kind al zelf kan maken.", "Oefen met een klein, echt voorbeeld: een maandbudget of een abonnement vergelijken.", "Maak ruimte voor vragen zonder meteen over te nemen."],
+      questions: ["Wat zou je zelf willen regelen met je eigen geld?", "Waar let je op voordat je online iets deelt of koopt?", "Welke volgende stap lijkt je interessant?"]
+    },
+    {
+      age: "16–17 jaar",
+      title: "Steeds meer zelf regelen",
+      topics: ["eerste-bijbaan", "solliciteren", "loonstrook", "arbeidscontract", "studiekeuze", "onderwijsroutes"],
+      learning: "Jongeren ontdekken wat er komt kijken bij werken, salaris en keuzes voor hun toekomst. Ze leren een loonstrook en contract herkennen en vragen stellen als iets niet duidelijk is.",
+      tips: ["Kijk samen naar een fictieve loonstrook of arbeidsovereenkomst.", "Laat je kind zelf een vraag voorbereiden voor een werkgever of school.", "Gebruik twijfels over de toekomst als startpunt voor een rustig gesprek."],
+      questions: ["Wat staat er volgens jou in een arbeidscontract?", "Wat wil je weten voordat je ergens voor tekent?", "Welke informatie heb je nodig om een studiekeuze te maken?"]
+    },
+    {
+      age: "18–20 jaar",
+      title: "Er verandert veel tegelijk",
+      topics: ["zorgverzekering", "zorgtoeslag", "studiefinanciering", "duo", "op-kamers", "huurcontract", "vaste-lasten"],
+      learning: "Rond de overgang naar volwassenheid leren jongeren over zorgverzekering, toeslagen, studiefinanciering en zelfstandig wonen. Ze leren plannen, officiële informatie vinden en zelf contact opnemen.",
+      tips: ["Maak samen een overzicht van wat er verandert en wanneer.", "Laat je kind zelf de officiële informatie lezen en de eerste stap zetten.", "Blijf beschikbaar voor controle achteraf, zonder de regie over te nemen."],
+      questions: ["Welke zaken moet je vanaf je achttiende zelf regelen?", "Waar zou je betrouwbare informatie zoeken?", "Welke vaste lasten horen bij zelfstandig wonen?"]
+    },
+    {
+      age: "21–24 jaar",
+      title: "Op eigen benen",
+      topics: ["salaris", "arbeidsvoorwaarden", "pensioen", "student-naar-werkende", "huurcontract", "belastingen", "vaste-lasten", "budgetteren"],
+      learning: "Jongvolwassenen bouwen verder aan hun zelfstandigheid. Ze leren overzicht houden over werk, inkomen, wonen en langetermijnkeuzes zoals belastingen, pensioen en een passend budget.",
+      tips: ["Vraag vooral hoe je kunt helpen en respecteer de eigen keuzes.", "Bespreek vaste lasten en doelen aan de hand van een eenvoudig overzicht.", "Moedig je kind aan officiële instanties of onafhankelijke informatie zelf te benaderen."],
+      questions: ["Welke financiële keuzes zijn belangrijk voor de komende jaren?", "Wat wil je weten over je arbeidsvoorwaarden?", "Hoe houd je overzicht als werk, wonen en andere zaken tegelijk veranderen?"]
+    }
+  ];
+
+  return { topics: topics, themes: themes, situations: situations, phases: phases, parentPhases: parentPhases, sources: sources };
 })();

@@ -194,6 +194,16 @@ main, .site-footer { position: relative; z-index: 1; }
 .logo:hover svg { transform: rotate(-6deg); }
 .logo-word { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.01em; }
 .nav { display: flex; align-items: center; gap: clamp(8px, 1.6vw, 28px); }
+.nav-search { position: relative; width: clamp(150px, 16vw, 210px); }
+.nav-search > svg { position: absolute; z-index: 1; left: 12px; top: 50%; width: 18px; height: 18px; color: var(--navy); transform: translateY(-50%); pointer-events: none; }
+.nav-search input { width: 100%; min-height: 40px; padding: 8px 34px 8px 38px; border: 0; border-radius: 4px; background: var(--paper); color: var(--ink); font: inherit; font-size: 0.88rem; }
+.nav-search input::placeholder { color: #6A7894; }
+.nav-search input:focus { outline: 2px solid var(--coral); outline-offset: 2px; }
+.nav-search-clear { position: absolute; z-index: 1; right: 2px; top: 1px; width: 38px; height: 38px; border: 0; background: transparent; color: var(--navy); font-size: 1.3rem; cursor: pointer; }
+.nav-search-results { position: absolute; z-index: 60; top: calc(100% + 10px); right: 0; width: min(330px, 80vw); display: grid; gap: 2px; padding: 6px; background: var(--navy-deep); border: 1px solid var(--rule-dark); box-shadow: 0 18px 30px rgba(8,14,28,0.35); }
+.nav-search-results:empty { display: none; }
+.nav-search-results .result { grid-template-columns: 1fr; padding: 10px 12px; }
+.nav-search-results .result .status { display: none; }
 .nav-list { display: flex; align-items: center; gap: clamp(4px, 1.2vw, 18px); }
 .nav-link {
   position: relative; display: inline-block; padding: 10px 6px;
@@ -223,7 +233,10 @@ main, .site-footer { position: relative; z-index: 1; }
 
 @media (max-width: 959px) {
   .menu-toggle { display: inline-flex; }
-  .nav { gap: 10px; }
+  .nav { gap: 8px; }
+  .nav-search { width: clamp(130px, 27vw, 180px); }
+  .nav-search input { min-height: 38px; padding-left: 34px; }
+  .nav-search > svg { left: 10px; width: 16px; height: 16px; }
   .nav-list {
     position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 0;
@@ -242,6 +255,10 @@ main, .site-footer { position: relative; z-index: 1; }
   .logo-word { font-size: 1.08rem; }
   .menu-toggle .menu-label { display: none; }
   .nav-start { padding-inline: 14px; }
+  .nav-search { width: 38px; }
+  .nav-search input { padding-inline: 0; color: transparent; cursor: pointer; }
+  .nav-search input::placeholder { color: transparent; }
+  .nav-search > svg { left: 10px; color: var(--navy); }
 }
 
 /* ---------- Weergaven en paginaovergang ---------- */
@@ -677,6 +694,36 @@ main, .site-footer { position: relative; z-index: 1; }
 .page-figure .media-placeholder { aspect-ratio: 4 / 3; transform: rotate(-1.5deg); box-shadow: 0 24px 40px -12px rgba(0,0,0,0.45); }
 .page-figure.is-photo .media-placeholder { transform: rotate(1.5deg); }
 @media (min-width: 900px) { .page-head-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 64px; } }
+
+/* Voor ouders */
+.parents-head h1 { max-width: 18ch; }
+.page-body.parents-body { min-height: 60vh; background: var(--navy); color: var(--on-navy); }
+.parents-intro { max-width: 48rem; margin-bottom: 32px; }
+.parents-intro h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; color: var(--cream); margin: 8px 0 14px; }
+.parents-intro .sub { color: var(--on-navy-muted); max-width: 40rem; }
+.parent-phase-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 28px; }
+.parent-phase-tab { min-height: 58px; padding: 12px 10px; background: rgba(246,240,228,0.06); border: 1px solid var(--rule-dark); border-bottom: 3px solid var(--coral); color: var(--on-navy); font: inherit; font-weight: 800; cursor: pointer; transition: background var(--t-fast) ease, color var(--t-fast) ease, transform var(--t-fast) ease; }
+.parent-phase-tab:hover { transform: translateY(-2px); }
+.parent-phase-tab.is-active { background: var(--coral); color: var(--navy-deep); border-color: var(--coral); }
+.parent-phase-panel { padding: clamp(24px, 4vw, 48px); background: var(--navy-deep); border: 1px solid var(--rule-dark); border-top: 5px solid var(--coral); box-shadow: 0 18px 34px rgba(8,14,28,0.24); animation: view-in 320ms var(--ease-out) both; }
+.parent-phase-heading { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 34px; }
+.parent-phase-number { font-family: var(--font-display); font-size: 2rem; line-height: 1; color: var(--coral); }
+.parent-age { margin-bottom: 6px; color: var(--coral); font-size: var(--fs-kicker); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.parent-phase-heading h3 { font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.05; color: var(--cream); }
+.parent-phase-grid { display: grid; gap: 30px; }
+.parent-phase-grid h4 { margin-bottom: 10px; color: var(--cream); font-size: 1.05rem; }
+.parent-phase-grid p, .parent-list { color: var(--on-navy-muted); }
+.parent-topics { display: flex; flex-wrap: wrap; gap: 8px; }
+.parent-topics .chip { border-color: var(--rule-dark); color: var(--on-navy); }
+.parent-topics .chip:hover { border-color: var(--coral); background: rgba(231,111,81,0.16); }
+.parent-list { display: grid; gap: 9px; }
+.parent-list li { position: relative; padding-left: 20px; }
+.parent-list li::before { content: ""; position: absolute; top: 0.68em; left: 0; width: 9px; height: 3px; background: var(--coral); }
+.parent-questions li::before { width: 7px; height: 7px; border-radius: 50%; top: 0.55em; }
+.parents-note { display: flex; align-items: flex-start; gap: 10px; max-width: 48rem; margin: 28px 0 0; color: var(--on-navy-muted); font-size: var(--fs-small); }
+.parents-note svg { flex: 0 0 auto; width: 20px; height: 20px; color: var(--coral); }
+@media (min-width: 760px) { .parent-phase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 48px; } }
+@media (max-width: 560px) { .parent-phase-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } .parent-phase-tab { min-height: 52px; } }
 
 .page-body { background: var(--paper); color: var(--ink); padding-block: clamp(56px, 7vw, 104px); }
 .page-body.torn-top::before { top: -17px; }

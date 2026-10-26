@@ -8,6 +8,7 @@
   var themes = C.themes;
   var situations = C.situations;
   var phases = C.phases;
+  var parentPhases = C.parentPhases;
   var sources = C.sources;
 
   var themeById = indexBy(themes, "id");
@@ -326,6 +327,53 @@
     pageView.setAttribute("data-title", item.title + " | RegelRoute");
   }
 
+  /* ---------- Voor ouders ---------- */
+
+  var parentPhaseIndex = 0;
+
+  function renderParents() {
+    var phase = parentPhases[parentPhaseIndex];
+    var tabs = parentPhases.map(function (item, i) {
+      return '<button type="button" class="parent-phase-tab' + (i === parentPhaseIndex ? " is-active" : "") +
+        '" data-parent-phase="' + i + '" aria-selected="' + (i === parentPhaseIndex ? "true" : "false") + '">' +
+        esc(item.age) + "</button>";
+    }).join("");
+
+    return '<section class="page-head on-navy parents-head">' +
+      '<div class="wrap">' +
+        '<nav class="breadcrumb" aria-label="Kruimelpad"><a href="#/">RegelRoute</a><span aria-hidden="true">/</span><span aria-current="page">Voor ouders</span></nav>' +
+        '<p class="kicker">Voor ouders en verzorgers</p>' +
+        '<h1 class="display" tabindex="-1">Samen op weg naar zelfstandigheid.</h1>' +
+        '<p class="lead">Je kind wordt steeds zelfstandiger. Maar wat moet je kind eigenlijk weten en regelen? RegelRoute helpt je overzicht te houden, belangrijke onderwerpen te begrijpen en je kind stap voor stap te begeleiden.</p>' +
+        '<div class="meta"><span>Leeftijdsgrenzen zijn een richtlijn</span><span>Zonder accounts of persoonsgegevens</span></div>' +
+      "</div>" +
+    "</section>" +
+    '<section class="page-body on-navy torn-top parents-body"><div class="wrap">' +
+      '<div class="parents-intro"><p class="kicker">Samen kiezen</p><h2>In welke levensfase zit jouw kind?</h2><p class="sub">Elke jongere ontwikkelt zich in een eigen tempo. Kies de fase die nu het beste past, of kijk gerust vooruit.</p></div>' +
+      '<div class="parent-phase-tabs" role="tablist" aria-label="Kies een levensfase">' + tabs + "</div>" +
+      '<div class="parent-phase-panel" role="tabpanel" aria-live="polite">' +
+        '<div class="parent-phase-heading"><span class="parent-phase-number">0' + (parentPhaseIndex + 1) + '</span><div><p class="parent-age">' + esc(phase.age) + '</p><h3>' + esc(phase.title) + "</h3></div></div>" +
+        '<div class="parent-phase-grid">' +
+          '<div><h4>Belangrijke onderwerpen</h4><div class="parent-topics">' + phase.topics.map(function (id) { return '<a href="#/onderwerpen/' + id + '" class="chip">' + esc(topics[id].title) + "</a>"; }).join("") + "</div></div>" +
+          '<div><h4>Wat leert en regelt je kind?</h4><p>' + esc(phase.learning) + "</p></div>" +
+          "<div><h4>Praktische tips</h4><ul class='parent-list'>" + phase.tips.map(function (tip) { return "<li>" + esc(tip) + "</li>"; }).join("") + "</ul></div>" +
+          "<div><h4>Vragen voor een gesprek</h4><ul class='parent-list parent-questions'>" + phase.questions.map(function (question) { return "<li>" + esc(question) + "</li>"; }).join("") + "</ul></div>" +
+        "</div>" +
+      "</div>" +
+      '<p class="parents-note"><svg aria-hidden="true"><use href="#i-open"/></svg> Zie leeftijden als een kompas, niet als vaste regels. Een onderwerp kan eerder of later relevant worden.</p>' +
+    "</div></section>";
+  }
+
+  function bindParentPhaseTabs() {
+    document.querySelectorAll(".parent-phase-tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        parentPhaseIndex = Number(tab.getAttribute("data-parent-phase"));
+        pageViewParents.innerHTML = renderParents();
+        bindParentPhaseTabs();
+      });
+    });
+  }
+
   /* ---------- Levenskompas ---------- */
 
   var activePhase = 0;
@@ -429,8 +477,9 @@
     [/^programma\/opmezelf$/, "situaties/op-kamers"]
   ];
 
-  var VIEW_IDS = ["view-home", "view-compass", "view-page", "view-edu"];
+  var VIEW_IDS = ["view-home", "view-compass", "view-page", "view-parents", "view-edu"];
   var currentView = null;
+  var pageViewParents = document.getElementById("view-parents");
 
   function currentPath() {
     return decodeURIComponent(location.hash.replace(/^#\/?/, "")).replace(/\/+$/, "");
@@ -455,6 +504,7 @@
     if (parts.length === 2 && parts[0] === "themas" && themeById[parts[1]]) return { view: "view-page", kind: "theme", item: themeById[parts[1]], nav: "themas" };
     if (parts.length === 2 && parts[0] === "situaties" && situationById[parts[1]]) return { view: "view-page", kind: "situation", item: situationById[parts[1]] };
     if (parts.length === 2 && parts[0] === "onderwerpen" && topics[parts[1]]) return { view: "view-page", kind: "topic", item: topics[parts[1]], nav: "themas" };
+    if (path === "voor-ouders") return { view: "view-parents", nav: "voor-ouders" };
     if (path === "onderwijs") return { view: "view-edu", nav: "voor-scholen" };
     return null;
   }
@@ -507,6 +557,10 @@
     closeMenu();
 
     if (route.view === "view-page") renderPage(route.kind, route.item);
+    if (route.view === "view-parents") {
+      pageViewParents.innerHTML = renderParents();
+      bindParentPhaseTabs();
+    }
     if (route.view === "view-compass") {
       var key = route.phase && phaseByKey[route.phase] ? route.phase : null;
       activePhase = key ? phases.indexOf(phaseByKey[key]) : activePhase;
@@ -665,14 +719,12 @@
     return esc(title.slice(0, i)) + "<mark>" + esc(title.slice(i, i + len)) + "</mark>" + esc(title.slice(i + len));
   }
 
-  function runSearch() {
-    var raw = searchInput.value;
+  function renderSearch(raw, resultsEl, statusEl) {
     var q = norm(raw);
-    searchClear.hidden = !raw;
 
     if (q.length < 2) {
-      searchResults.innerHTML = "";
-      searchStatus.textContent = q.length ? "Typ nog een letter…" : "";
+      resultsEl.innerHTML = "";
+      if (statusEl) statusEl.textContent = q.length ? "Typ nog een letter…" : "";
       return;
     }
 
@@ -684,16 +736,16 @@
       .slice(0, 8);
 
     if (!hits.length) {
-      searchResults.innerHTML = "";
-      searchStatus.textContent = "Geen resultaten voor “" + raw.trim() + "”. Probeer een ander woord, of kies hieronder een thema.";
+      resultsEl.innerHTML = "";
+      if (statusEl) statusEl.textContent = "Geen resultaten voor “" + raw.trim() + "”.";
       return;
     }
 
     var devCount = hits.filter(function (h) { return h.entry.topic && h.entry.topic.status === "dev"; }).length;
-    searchStatus.textContent = hits.length + (hits.length === 1 ? " resultaat." : " resultaten.") +
+    if (statusEl) statusEl.textContent = hits.length + (hits.length === 1 ? " resultaat." : " resultaten.") +
       (devCount ? " Onderwerpen met ‘In ontwikkeling’ kennen we al, maar de les is nog niet beschikbaar." : "");
 
-    searchResults.innerHTML = hits.map(function (hit) {
+    resultsEl.innerHTML = hits.map(function (hit) {
       var e = hit.entry;
       return '<a class="result" href="' + e.href + '">' +
         '<span class="result-type">' + esc(e.type) + "</span>" +
@@ -701,6 +753,11 @@
         (e.topic ? statusBadge(e.topic) : "") +
         "</a>";
     }).join("");
+  }
+
+  function runSearch() {
+    searchClear.hidden = !searchInput.value;
+    renderSearch(searchInput.value, searchResults, searchStatus);
   }
 
   searchInput.addEventListener("input", runSearch);
@@ -724,6 +781,49 @@
     searchInput.value = "";
     runSearch();
     searchInput.focus();
+  });
+
+  var navSearchInput = document.getElementById("navSearchInput");
+  var navSearchResults = document.getElementById("navSearchResults");
+  var navSearchClear = document.getElementById("navSearchClear");
+  var navSearchForm = document.getElementById("navSearchForm");
+
+  function closeNavSearch() {
+    navSearchResults.innerHTML = "";
+    navSearchInput.setAttribute("aria-expanded", "false");
+  }
+
+  navSearchInput.addEventListener("input", function () {
+    navSearchClear.hidden = !navSearchInput.value;
+    renderSearch(navSearchInput.value, navSearchResults, null);
+    navSearchInput.setAttribute("aria-expanded", navSearchResults.children.length ? "true" : "false");
+  });
+
+  navSearchInput.addEventListener("keydown", function (e) {
+    var first = navSearchResults.querySelector(".result");
+    if (e.key === "Enter" && first) {
+      e.preventDefault();
+      location.hash = first.getAttribute("href");
+      closeNavSearch();
+    }
+    if (e.key === "Escape") {
+      navSearchInput.value = "";
+      navSearchClear.hidden = true;
+      closeNavSearch();
+    }
+  });
+
+  navSearchClear.addEventListener("click", function () {
+    navSearchInput.value = "";
+    navSearchClear.hidden = true;
+    closeNavSearch();
+    navSearchInput.focus();
+  });
+
+  navSearchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var first = navSearchResults.querySelector(".result");
+    if (first) location.hash = first.getAttribute("href");
   });
 
   var suggest = document.getElementById("searchSuggest");
